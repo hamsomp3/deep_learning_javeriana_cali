@@ -1,0 +1,16 @@
+---
+title: Sesión 2 - Contenido por definir
+info: |
+  ## Sesión 2
+  DEEP LEARNING
+  Pontificia Universidad Javeriana Cali — Pregrado
+  Semestre 2026-2 · Tutor: Jan Polanco Velasco
+---
+
+# Sesión 2
+
+### Contenido: PENDIENTE
+
+<div class="mt-8 text-sm opacity-70">
+  El material de esta sesión se publicará cuando el tutor confirme el contenido.
+</div>

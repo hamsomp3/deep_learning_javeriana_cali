@@ -19,7 +19,7 @@
 |----------|---------|
 | **Audiencia** | Estudiantes de pregrado, Pontificia Universidad Javeriana Cali |
 | **Duración total** | 8 horas (4 sesiones × 2 horas) |
-| **Sesión 1** | Fecha: PENDIENTE — Contenido: PENDIENTE |
+| **Sesión 1** | Fecha: PENDIENTE — **Modelos Auto Regresivos** (regresión, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales) |
 | **Sesión 2** | Fecha: PENDIENTE — Contenido: PENDIENTE |
 | **Sesión 3** | Fecha: PENDIENTE — Contenido: PENDIENTE |
 | **Sesión 4** | Fecha: PENDIENTE — Contenido: PENDIENTE |
@@ -32,11 +32,12 @@
 ## 📝 Notas y Tareas Pendientes
 
 - [ ] Definir fechas de las 4 sesiones.
-- [ ] Definir contenido temático de cada sesión.
+- [ ] Definir contenido temático de las sesiones 2, 3 y 4.
 - [ ] Confirmar si el proyecto usará **Streamlit** para demos interactivas (hoy: PENDIENTE).
 - [ ] Definir fuentes de **Datos** del curso (datasets por sesión).
-- [ ] Inicializar `Slides/` como proyecto Slidev (`pnpm init` + deps + lockfile).
+- [x] Inicializar `Slides/` como proyecto Slidev (hecho: scaffold `slidev@52.19.1`, migrado a pnpm).
 - [ ] Configurar **Ruff** y **pre-commit** en el repo.
+- [ ] Completar `sesion2/3/4.md` (hoy: placeholders) cuando el tutor entregue el contenido.
 
 ---
 
@@ -117,6 +118,13 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 - **Titular:** Jan Polanco Velasco (2026).
 - **Archivo:** `LICENSE` en la raíz; badge de licencia en `README.md`.
 - **Rol del README:** puerta de entrada pública del repo (badges, arquitectura, quickstart). Ante discrepancia README vs Constitución, **gana la Constitución**.
+
+### Scaffold Slidev
+- Creado con `pnpm create slidev` (Slidev **v52.19.1**, tema `seriph`).
+- **Migrado de npm → pnpm**: se borraron `package-lock.json` y `node_modules` del scaffold; ahora `Slides/pnpm-lock.yaml` es el lock determinista (regla: un solo gestor = pnpm).
+- El proyecto se **aplanó a la raíz `Slides/`** (originalmente el scaffold lo creó en `Slides/deep-learnig/`). No debe haber anidamiento extra.
+- `pnpm-workspace.yaml` incluye `shamefullyHoist: true` y `allowBuilds.playwright-chromium: true` (necesario para `slidev export`).
+- Nombre del paquete: `dl-javeriana-slides` (corrige el typo `deep-learnig` del scaffold).
 
 ### Estructura de carpetas
 - **Convención en mayúsculas** para los dos módulos principales del curso:
