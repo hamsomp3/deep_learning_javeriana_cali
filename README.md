@@ -67,10 +67,10 @@ Contiene, de forma versionada y reproducible:
 
 | # | Sesión | Fecha | Contenido | Estado |
 |---|--------|-------|-----------|--------|
-| 1 | Sesión 1 | _Pendiente_ | _Pendiente_ | 🔜 |
-| 2 | Sesión 2 | _Pendiente_ | _Pendiente_ | 🔜 |
-| 3 | Sesión 3 | _Pendiente_ | _Pendiente_ | 🔜 |
-| 4 | Sesión 4 | _Pendiente_ | _Pendiente_ | 🔜 |
+| 1 | Modelos Auto Regresivos | _Pendiente_ | Regresión lineal/logística, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales | ✅ Deck |
+| 2 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
+| 3 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
+| 4 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
 
 > Las fechas y contenidos se publicarán aquí y en `CONSTITUTION.md` conforme se confirmen. Cada sesión consta de un deck en `Slides/pages/sesionN.md` y material práctico en `Sesiones/sesionN/`.
 
@@ -199,14 +199,14 @@ cd deep_learning_javeriana_cali
 make python-sync   # Crea .venv/ e instala dependencias declaradas
 ```
 
-### 3. Presentaciones (una vez inicializado `Slides/`)
+### 3. Presentaciones
 
 ```bash
 make slidev-install   # pnpm install en Slides/
-make slidev-dev       # http://localhost:3030
+make slidev-dev       # abre http://localhost:3030
 ```
 
-> ⚠️ `Slides/` aún no ha sido inicializado como proyecto Slidev. Es una de las tareas pendientes registradas en `CONSTITUTION.md`.
+> El deck maestro es `Slides/slides.md`, que importa cada sesión desde `Slides/pages/sesionN.md`.
 
 ### 4. Verificar la configuración disponible
 
