@@ -37,7 +37,6 @@
 - [ ] Definir fuentes de **Datos** del curso (datasets por sesión).
 - [ ] Inicializar `Slides/` como proyecto Slidev (`pnpm init` + deps + lockfile).
 - [ ] Configurar **Ruff** y **pre-commit** en el repo.
-- [ ] .
 
 ---
 
@@ -113,6 +112,12 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 - Las dependencias se declaran en `pyproject.toml`.
 - Entorno virtual ubicado en `.venv/` (no trackeado).
 
+### Licencia
+- **MIT** adoptada para todo el repositorio (código y material del curso).
+- **Titular:** Jan Polanco Velasco (2026).
+- **Archivo:** `LICENSE` en la raíz; badge de licencia en `README.md`.
+- **Rol del README:** puerta de entrada pública del repo (badges, arquitectura, quickstart). Ante discrepancia README vs Constitución, **gana la Constitución**.
+
 ### Estructura de carpetas
 - **Convención en mayúsculas** para los dos módulos principales del curso:
   - `Slides/` → monolito Slidev (todas las presentaciones).
@@ -126,6 +131,8 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 ```
 DL-Javeriana/
 ├── CONSTITUTION.md          # Verdad central del proyecto (este archivo)
+├── README.md                # Puerta de entrada pública (badges, arquitectura, quickstart)
+├── LICENSE                  # MIT — Copyright (c) 2026 Jan Polanco Velasco
 ├── Makefile                 # Comandos: python-*, slidev-*
 ├── pyproject.toml           # Proyecto uv (dependencias Python)
 ├── .python-version          # 3.13
