@@ -183,6 +183,47 @@ Slides/
 
 > **Deploy:** PENDIENTE (evaluar Netlify/Vercel/GitHub Pages cuando los decks estén listos).
 
+---
+
+### Reglas de Animación (v-click / v-clicks)
+
+> **REGLA OBLIGATORIA:** todas las diapositivas del curso revelan su contenido progresivamente con los clics del presentador. Requiere `mdc: true` en el frontmatter global (ya está en `slides.md`).
+
+1. **Título con `<v-click>`**: el H1 (y su `###` subtítulo asociado) se envuelve en `<v-click>`; aparece con el primer clic de la diapositiva.
+2. **Listas con `<v-clicks>`**: cada bullet/elemento de la columna izquierda se revela con un clic individual dentro de `<v-clicks>`.
+3. **Columna derecha con `<v-clicks>`**: todo lo que va tras `::right::` (mermaid, imágenes, bloques ASCII, placeholders) se envuelve en su propio `<v-clicks>`, de modo que la visual aparece después del texto.
+4. **Tablas grandes sin animar**: las tablas de referencia (p. ej. Loss Functions, Funciones de Activación) NO se animan fila por fila; solo su título lleva `<v-click>` y la tabla queda visible con la diapositiva.
+5. **Imágenes SOLO en markdown**: `![Texto descriptivo](/img/sesionN/imgN.jpg)` — **nunca** `<img>` HTML. Los assets viven en `Slides/public/img/sesionN/` y se referencian con ruta absoluta `/img/...`.
+
+Patrón canónico de diapositiva `two-cols`:
+
+```markdown
+---
+layout: two-cols
+---
+
+<v-click>
+
+# Modelos Auto Regresivos
+
+</v-click>
+
+<v-clicks>
+
+- Regresión Lineal
+- Función de costo
+
+</v-clicks>
+
+::right::
+
+<v-clicks>
+
+![Taxonomía de algoritmos de Machine Learning](/img/sesion1/img49.jpg)
+
+</v-clicks>
+```
+
 ### Frontmatter Obligatorio (Institucional)
 
 Todo `slides.md` debe iniciar con:
