@@ -11,13 +11,6 @@ info: |
 
 **Jan Polanco Velasco**
 
----
-
-# Modelos Auto Regresivos
-
-- Antes de hablar de DL o RNN hablemos sobre los componentes.
-- **Libro recomendado:** *"Deep learning with python"* del autor Francois Chollet.
-- **Pregunta:** ¿Cuáles pueden ser esas aplicaciones que puede resolver el DL?
 
 ---
 layout: two-cols
@@ -33,33 +26,7 @@ layout: two-cols
 
 ::right::
 
-```mermaid
-graph TD
-    ML[Machine Learning] --> Sup[Supervised]
-    ML --> Unsup[Unsupervised]
-    ML --> Semi[Semi-Supervised]
-    ML --> Rein[Reinforcement]
-
-    Sup --> Class[Classification]
-    Sup --> Reg[Regression]
-
-    Class --> NB[Naive Bayes]
-    Class --> LR[Logistic Regression]
-    Class --> KNN[KNN]
-    Class --> RF[Random Forest]
-    Class --> SVM[SVM]
-    Class --> DT[Decision Tree]
-
-    Reg --> SLR[Simple Linear Regression]
-    Reg --> MR[Multivariate Regression]
-    Reg --> Lasso[Lasso Regression]
-
-    Unsup --> Clust[Clustering]
-    Clust --> KMeans[K-Means]
-    Clust --> DBSCAN[DBSCAN]
-    Unsup --> PCA[PCA / ICA]
-    Unsup --> Anom[Anomaly Detection]
-```
+<img src="/img/sesion1/img49.jpg" class="max-h-[80vh] max-w-full object-contain mx-auto" alt="Taxonomía de algoritmos de Machine Learning: Supervised, Unsupervised, Semi-Supervised y Reinforcement" />
 
 ---
 layout: two-cols
