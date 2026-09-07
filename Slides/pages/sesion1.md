@@ -32,7 +32,7 @@ layout: two-cols
 
 <v-clicks>
 
-- <span style="color:#d63384">Regresión Lineal</span>
+- [Regresión Lineal](https://www.researchgate.net/figure/Different-types-of-Machine-Learning-algorithms_fig3_373838363)
 - Función de costo
 - Gradiente descendente
 - Regresión Lineal multivariada
@@ -44,7 +44,7 @@ layout: two-cols
 
 <v-clicks>
 
-![Taxonomía de algoritmos de Machine Learning](/img/sesion1/img49.jpg)
+![Taxonomía de algoritmos de Machine Learning](/img/sesion1/img01.jpg)
 
 </v-clicks>
 
@@ -55,45 +55,10 @@ layout: two-cols
 <v-click>
 
 # Modelos Auto Regresivos
-
-### Regresión Lineal
 
 </v-click>
 
-<v-clicks>
-
-- **Relación lineal:** Este modelo describe una relación lineal entre las entradas $x$ y las salidas $y$.
-- Donde $w_0$ y $w_1$ representan el intercepto y la pendiente de la recta, respectivamente.
-
-$$y = w_0 + w_1 \cdot x$$
-
-</v-clicks>
-
-::right::
-
-<v-clicks>
-
-<!-- Placeholder de la gráfica de dispersión (Scatter plot) -->
-```
-        y ^
-          |          .  .
-          |        .  .
-          |      .  .
-          |    .  .
-    ------+-------------> x
-          |  .  .
-          | .  .
-```
-
-</v-clicks>
-
----
-layout: two-cols
----
-
 <v-click>
-
-# Modelos Auto Regresivos
 
 ### Regresión Lineal
 
@@ -103,6 +68,13 @@ layout: two-cols
 
 - **Relación lineal:** Este modelo describe una relación lineal entre las entradas $x$ y las salidas $y$.
 - Donde $w_0$ y $w_1$ *(weights)* representan el intercepto y la pendiente de la recta, respectivamente.
+- Los pesos pueden tomar cualquier valor.
+- Diferentes pesos producen diferentes rectas.
+- Es necesario calcular la función de costo *(para encontrar los mejores pesos)*.
+
+</v-clicks>
+
+<v-clicks>
 
 $$y = w_0 + w_1 \cdot x$$
 
@@ -112,19 +84,11 @@ $$y = w_0 + w_1 \cdot x$$
 
 <v-clicks>
 
-<!-- Gráfica de dispersión con puntos x, y -->
-```
-        y ^
-          |          .  .
-          |        .  .
-          |      .  .
-          |    .  .
-    ------+-------------> x
-          |  .  .
-          | .  .
-```
+![Regresion Lineal](/img/sesion1/img02.jpg)
 
 </v-clicks>
+
+
 
 ---
 layout: two-cols
@@ -140,9 +104,7 @@ layout: two-cols
 
 <v-clicks>
 
-- Los pesos pueden tomar cualquier valor.
-- Diferentes pesos producen diferentes rectas.
-- Es necesario calcular la función de costo *(para encontrar los mejores pesos)*.
+
 
 $$y = w_0 + w_1 \cdot x$$
 
@@ -152,8 +114,8 @@ $$y = w_0 + w_1 \cdot x$$
 
 <v-clicks>
 
-<!-- Gráfica mostrando distintas pendientes/rectas sobre los puntos -->
-*(Ajuste de rectas con distintos $w_0$ y $w_1$)*
+![Ajuste de rectas con distintos w0 y w1](/img/sesion1/img03.jpg)
+
 
 </v-clicks>
 
