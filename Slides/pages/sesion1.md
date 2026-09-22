@@ -1,4 +1,5 @@
 ---
+id: sesion1
 title: Sesión 1 - Modelos Auto Regresivos
 info: |
   ## Sesión 1: Modelos Auto Regresivos
@@ -26,7 +27,7 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
+
 
 </v-click>
 
@@ -54,13 +55,13 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
+
 
 </v-click>
 
 <v-click>
 
-### Regresión Lineal
+# Regresión Lineal
 
 </v-click>
 
@@ -68,9 +69,7 @@ layout: two-cols
 
 - **Relación lineal:** Este modelo describe una relación lineal entre las entradas $x$ y las salidas $y$.
 - Donde $w_0$ y $w_1$ *(weights)* representan el intercepto y la pendiente de la recta, respectivamente.
-- Los pesos pueden tomar cualquier valor.
-- Diferentes pesos producen diferentes rectas.
-- Es necesario calcular la función de costo *(para encontrar los mejores pesos)*.
+
 
 </v-clicks>
 
@@ -84,7 +83,12 @@ $$y = w_0 + w_1 \cdot x$$
 
 <v-clicks>
 
-![Regresion Lineal](/img/sesion1/img02.jpg)
+
+<div class="h-full flex items-center justify-center">
+
+<LinearRegressionPlot />
+
+</div>
 
 </v-clicks>
 
@@ -96,15 +100,24 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Función de costos
+
+</v-click>
+
+<v-click>
+
+# Regresión Lineal
 
 </v-click>
 
 <v-clicks>
 
+- Los pesos pueden tomar cualquier valor.
+- Diferentes pesos producen diferentes rectas.
+- Es necesario calcular la función de costo *(para encontrar los mejores pesos)*.
+</v-clicks>
 
+<v-clicks>
 
 $$y = w_0 + w_1 \cdot x$$
 
@@ -114,8 +127,12 @@ $$y = w_0 + w_1 \cdot x$$
 
 <v-clicks>
 
-![Ajuste de rectas con distintos w0 y w1](/img/sesion1/img03.jpg)
 
+<div class="h-full flex items-center justify-center">
+
+<LinearRegressionPlot />
+
+</div>
 
 </v-clicks>
 
@@ -125,9 +142,13 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Función de costos
+
+</v-click>
+
+<v-click>
+
+# Función de costos
 
 </v-click>
 
@@ -138,6 +159,10 @@ layout: two-cols
 - Es necesario calcular la función de costo *(Los mejores pesos)*.
 - **La función de costo (asumiendo $w_0$ conocido):**
 
+</v-clicks>
+
+<v-clicks>
+
 $$\mathcal{L}(w_1) = \sum_{i=1}^{N} (w_1 \cdot x_i - y_i)^2$$
 
 </v-clicks>
@@ -147,17 +172,90 @@ $$\mathcal{L}(w_1) = \sum_{i=1}^{N} (w_1 \cdot x_i - y_i)^2$$
 <v-clicks>
 
 <!-- Curva convexa de costo en función de w_1 -->
-```
-  L(w1) ^
-        \           /
-         \         /
-          \       /
-           \__.__/
-              |
-             w1*    ---> w1
-```
 
+
+<div class="h-full flex items-center justify-center">
+
+<CostFunctionPlot />
+
+</div>
 </v-clicks>
+
+---
+
+<v-click>
+
+# 10 Most Common Loss Functions in Machine Learning
+
+</v-click>
+
+<v-click>
+
+## Regression Loss Functions
+
+</v-click>
+
+
+<v-click>
+
+| Loss Function | Description | Formula |
+|---------------|-------------|---------|
+| **Mean Bias Error (MBE)** | Captures average bias in prediction. Rarely used for training. | $\mathcal{L}_{MBE} = \frac{1}{N} \sum_{i=1}^N (y_i - f(x_i))$ |
+| **Mean Absolute Error (MAE / L1)** | Measures absolute average bias in prediction. | $\mathcal{L}_{MAE} = \frac{1}{N} \sum_{i=1}^N \|y_i - f(x_i)\|$ |
+| **Mean Squared Error (MSE / L2)** | Average squared distance between actual and predicted. | $\mathcal{L}_{MSE} = \frac{1}{N} \sum_{i=1}^N (y_i - f(x_i))^2$ |
+| **Root Mean Squared Error (RMSE)** | Square root of MSE. Same units as target. | $\mathcal{L}_{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^N (y_i - f(x_i))^2}$ |
+
+</v-click>
+
+---
+
+<v-click>
+
+# 10 Most Common Loss Functions in Machine Learning
+
+</v-click>
+
+<v-click>
+
+## Regression Loss Functions
+
+</v-click>
+
+<v-click>
+
+| Loss Function | Description | Formula |
+|---------------|-------------|---------|
+| **Huber Loss** | Combination of MSE and MAE. Parametric robust loss. | $\mathcal{L}_{\delta} = \begin{cases} \frac{1}{2}(y - f(x))^2 & \text{si } \|y - f(x)\| \le \delta \\ \delta(\|y - f(x)\| - \frac{1}{2}\delta) & \text{en otro caso} \end{cases}$ |
+| **Log Cosh Loss** | Similar to Huber, non-parametric, twice differentiable. | $\mathcal{L}_{\log\cosh} = \sum_{i=1}^N \log(\cosh(f(x_i) - y_i))$ |
+
+</v-click>
+
+---
+
+<v-click>
+
+# 10 Most Common Loss Functions in Machine Learning
+
+</v-click>
+
+
+<v-click>
+
+## Classification Loss Functions
+
+</v-click>
+
+
+<v-click>
+
+| Loss Function | Description | Formula |
+|---------------|-------------|---------|
+| **Binary Cross Entropy (BCE)** | Loss function for binary classification tasks. | $\mathcal{L}_{BCE} = -\frac{1}{N} \sum [y_i \log p(x_i) + (1-y_i) \log(1-p(x_i))]$ |
+| **Hinge Loss** | Penalizes wrong and low-confidence predictions (SVMs). | $\mathcal{L}_{\text{hinge}} = \max(0, 1 - f(x) \cdot y)$ |
+| **Categorical Cross Entropy** | Multi-class classification extension of BCE. | $\mathcal{L}_{CE} = -\frac{1}{N}\sum \sum y_{ij} \log(f(x_{ij}))$ |
+| **KL Divergence** | Relative entropy between true and predicted distributions. | $\mathcal{L}_{KL} = \sum y_i \cdot \log\left(\frac{y_i}{f(x_i)}\right)$ |
+
+</v-click>
 
 ---
 layout: two-cols
@@ -165,11 +263,24 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Gradiente Descendente
+
+</v-click>
+
+
+<v-click>
+
+# Gradiente Descendente
+
+</v-click>
+
+<v-click>
 
 $$\mathcal{L}(w_1) = \sum_{i=1}^N (w_1 \cdot x_i - y_i)^2$$
+
+</v-click>
+
+<v-click>
 
 $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 
@@ -189,43 +300,12 @@ $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 <v-clicks>
 
 <!-- Gráfica de pasos hacia el mínimo global -->
-```
-Cost ^
-     \  (Paso inicial)
-      \ *
-       \  *
-        \   *
-         \    * (Minimum)
-          \___*___/ ---> w
-```
+
+![Gráfica de pasos hacia el mínimo global](/img/sesion1/img05.jpg)
 
 </v-clicks>
 
----
 
-<v-click>
-
-# 10 Most Common Loss Functions in Machine Learning
-
-</v-click>
-
-### Regression Loss Functions
-| Loss Function | Description | Formula |
-|---|---|---|
-| **Mean Bias Error (MBE)** | Captures average bias in prediction. Rarely used for training. | $\mathcal{L}_{MBE} = \frac{1}{N} \sum_{i=1}^N (y_i - f(x_i))$ |
-| **Mean Absolute Error (MAE / L1)** | Measures absolute average bias in prediction. | $\mathcal{L}_{MAE} = \frac{1}{N} \sum_{i=1}^N \|y_i - f(x_i)\|$ |
-| **Mean Squared Error (MSE / L2)** | Average squared distance between actual and predicted. | $\mathcal{L}_{MSE} = \frac{1}{N} \sum_{i=1}^N (y_i - f(x_i))^2$ |
-| **Root Mean Squared Error (RMSE)** | Square root of MSE. Same units as target. | $\mathcal{L}_{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^N (y_i - f(x_i))^2}$ |
-| **Huber Loss** | Combination of MSE and MAE. Parametric robust loss. | $\mathcal{L}_{\delta} = \begin{cases} \frac{1}{2}(y - f(x))^2 & \text{si } \|y - f(x)\| \le \delta \\ \delta(\|y - f(x)\| - \frac{1}{2}\delta) & \text{en otro caso} \end{cases}$ |
-| **Log Cosh Loss** | Similar to Huber, non-parametric, twice differentiable. | $\mathcal{L}_{\log\cosh} = \sum_{i=1}^N \log(\cosh(f(x_i) - y_i))$ |
-
-### Classification Loss Functions
-| Loss Function | Description | Formula |
-|---|---|---|
-| **Binary Cross Entropy (BCE)** | Loss function for binary classification tasks. | $\mathcal{L}_{BCE} = -\frac{1}{N} \sum [y_i \log p(x_i) + (1-y_i) \log(1-p(x_i))]$ |
-| **Hinge Loss** | Penalizes wrong and low-confidence predictions (SVMs). | $\mathcal{L}_{\text{hinge}} = \max(0, 1 - f(x) \cdot y)$ |
-| **Categorical Cross Entropy** | Multi-class classification extension of BCE. | $\mathcal{L}_{CE} = -\frac{1}{N}\sum \sum y_{ij} \log(f(x_{ij}))$ |
-| **KL Divergence** | Relative entropy between true and predicted distributions. | $\mathcal{L}_{KL} = \sum y_i \cdot \log\left(\frac{y_i}{f(x_i)}\right)$ |
 
 ---
 layout: two-cols
@@ -233,9 +313,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Gradiente Descendente
+
+# Gradiente Descendente
 
 </v-click>
 
@@ -251,8 +331,8 @@ $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 
 <v-clicks>
 
-<!-- Imagen: Superficie 3D de costo con múltiples mínimos locales y la trayectoria del gradiente -->
-*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*
+
+![*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*](/img/sesion1/img06.jpg)
 
 </v-clicks>
 
@@ -260,28 +340,23 @@ $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 layout: two-cols
 ---
 
-<v-click>
 
-# Modelos Auto Regresivos
 
-### Gradiente Descendente
+# Gradiente Descendente
 
-</v-click>
-
-<v-clicks>
 
 $$\mathcal{L}(w_1) = \sum_{i=1}^N (w_1 \cdot x_i - y_i)^2$$
 
 $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 
-</v-clicks>
+
 
 ::right::
 
 <v-clicks>
 
-<!-- Imagen: Superficie 3D ondulada mostrando valles y curvas de nivel -->
-*(Superficie de optimización compleja y curvas de nivel en el plano inferior)*
+
+![*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*](/img/sesion1/img07.jpg)
 
 </v-clicks>
 
@@ -289,28 +364,23 @@ $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 layout: two-cols
 ---
 
-<v-click>
 
-# Modelos Auto Regresivos
 
-### Gradiente Descendente
 
-</v-click>
+# Gradiente Descendente
 
-<v-clicks>
 
 $$\mathcal{L}(w_1) = \sum_{i=1}^N (w_1 \cdot x_i - y_i)^2$$
 
 $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 
-</v-clicks>
 
 ::right::
 
 <v-clicks>
 
-<!-- Imagen: Curvas de nivel 2D concéntricas con flechas hacia el centro -->
-*(Vista 3D y vista 2D de curvas de nivel convergiendo al centro del elipsoide)*
+
+![*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*](/img/sesion1/img08.jpg)
 
 </v-clicks>
 
@@ -320,9 +390,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Regresión Lineal Multivariada
+
+# Regresión Lineal Multivariada
 
 </v-click>
 
@@ -337,19 +407,79 @@ $$\hat{y} = w_0 + \sum_{j=1}^m w_j \cdot x_j$$
 
 ::right::
 
-<v-clicks>
+<div class="h-full flex items-center justify-center">
 
-<!-- Diagrama: Nodos de entrada x_1 .. x_m con bias a un nodo sumador de salida y_hat -->
-```mermaid
-graph LR
-    B((1)) -- w0 --> Y((ŷ))
-    X1((x1)) -- w1 --> Y
-    X2((x2)) -- w2 --> Y
-    Dots[...] -.-> Y
-    Xm((xm)) -- wm --> Y
-```
+<!-- Contenedor relativo calibrado para Slidev -->
+<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
 
-</v-clicks>
+  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+      </marker>
+    </defs>
+    <!-- Flecha 1 -> ŷ -->
+    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x1 -> ŷ -->
+    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x2 -> ŷ -->
+    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha xm -> ŷ -->
+    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  </svg>
+
+  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
+  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">0</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">1</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">2</sub>
+  </span>
+
+  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] italic">m</sub>
+  </span>
+
+  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
+  <!-- Nodo 1 -->
+  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
+    1
+  </div>
+
+  <!-- Nodo x1 -->
+  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">1</sub>
+  </div>
+
+  <!-- Nodo x2 -->
+  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">2</sub>
+  </div>
+
+  <!-- Puntos suspensivos verticales ⋮ -->
+  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
+    &#8942;
+  </div>
+
+  <!-- Nodo xm -->
+  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs italic">m</sub>
+  </div>
+
+  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
+  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
+    ŷ
+  </div>
+
+</div>
+
+</div>
 
 ---
 layout: two-cols
@@ -357,9 +487,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Regresión Lineal Multivariada
+
+# Regresión Lineal Multivariada
 
 </v-click>
 
@@ -373,18 +503,79 @@ $$\hat{y} = w_0 + \sum_{j=1}^m w_j \cdot x_j$$
 
 ::right::
 
-<v-clicks>
+<div class="h-full flex items-center justify-center">
 
-```mermaid
-graph LR
-    B((1)) -- w0 --> Y((ŷ))
-    X1((x1)) -- w1 --> Y
-    X2((x2)) -- w2 --> Y
-    Dots[...] -.-> Y
-    Xm((xm)) -- wm --> Y
-```
+<!-- Contenedor relativo calibrado para Slidev -->
+<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
 
-</v-clicks>
+  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+      </marker>
+    </defs>
+    <!-- Flecha 1 -> ŷ -->
+    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x1 -> ŷ -->
+    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x2 -> ŷ -->
+    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha xm -> ŷ -->
+    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  </svg>
+
+  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
+  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">0</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">1</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">2</sub>
+  </span>
+
+  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] italic">m</sub>
+  </span>
+
+  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
+  <!-- Nodo 1 -->
+  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
+    1
+  </div>
+
+  <!-- Nodo x1 -->
+  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">1</sub>
+  </div>
+
+  <!-- Nodo x2 -->
+  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">2</sub>
+  </div>
+
+  <!-- Puntos suspensivos verticales ⋮ -->
+  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
+    &#8942;
+  </div>
+
+  <!-- Nodo xm -->
+  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs italic">m</sub>
+  </div>
+
+  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
+  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
+    ŷ
+  </div>
+
+</div>
+
+</div>
 
 ---
 layout: two-cols
@@ -392,9 +583,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Regresión Logística
+
+# Regresión Logística
 
 </v-click>
 
@@ -403,28 +594,103 @@ layout: two-cols
 - Realiza predicciones a partir de una combinación lineal.
 - Se mide la probabilidad de que una instancia pertenezca a una de las dos clases (**clasificación binaria**).
 
+</v-clicks>
+
+<v-clicks>
+
 $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j \right)$$
 
 </v-clicks>
 
-*Donde:*
-- $\hat{y}$ es la probabilidad de que $y = 1$ dado el vector de atributos $\mathbf{x}$.
-- $\sigma(\cdot)$ es la función sigmoide.
-
-::right::
 
 <v-clicks>
 
-```mermaid
-graph LR
-    B((1)) -- w0 --> Y((ŷ))
-    X1((x1)) -- w1 --> Y
-    X2((x2)) -- w2 --> Y
-    Dots[...] -.-> Y
-    Xm((xm)) -- wm --> Y
-```
+*Donde:*
 
 </v-clicks>
+
+<v-clicks>
+
+- $\hat{y}$ es la probabilidad de que $y = 1$ dado el vector de atributos $\mathbf{x}$.
+- $\sigma(\cdot)$ es la función sigmoide.
+
+</v-clicks>
+
+::right::
+
+<div class="h-full flex items-center justify-center">
+
+<!-- Contenedor relativo calibrado para Slidev -->
+<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
+
+  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+      </marker>
+    </defs>
+    <!-- Flecha 1 -> ŷ -->
+    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x1 -> ŷ -->
+    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x2 -> ŷ -->
+    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha xm -> ŷ -->
+    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  </svg>
+
+  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
+  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">0</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">1</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">2</sub>
+  </span>
+
+  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] italic">m</sub>
+  </span>
+
+  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
+  <!-- Nodo 1 -->
+  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
+    1
+  </div>
+
+  <!-- Nodo x1 -->
+  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">1</sub>
+  </div>
+
+  <!-- Nodo x2 -->
+  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">2</sub>
+  </div>
+
+  <!-- Puntos suspensivos verticales ⋮ -->
+  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
+    &#8942;
+  </div>
+
+  <!-- Nodo xm -->
+  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs italic">m</sub>
+  </div>
+
+  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
+  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
+    ŷ
+  </div>
+
+</div>
+
+</div>
 
 ---
 layout: two-cols
@@ -432,9 +698,13 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Regresión Logística
+
+</v-click>
+
+<v-click>
+
+# Regresión Logística
 
 </v-click>
 
@@ -443,36 +713,167 @@ layout: two-cols
 - La combinación lineal toma cualquier valor real.
 - Para mapear la predicción a una **probabilidad**, se usa la **función sigmoidal**.
 
+</v-clicks>
+
+<v-clicks>
+
 $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j \right)$$
 
 </v-clicks>
 
-*Donde:*
-- $\hat{y}$ es la probabilidad de que $y = 1$ dado el vector de atributos $\mathbf{x}$.
-- $\sigma(\cdot)$ es la función sigmoide.
+<v-clicks>
 
-::right::
+*Donde:*
+
+</v-clicks>
+
 
 <v-clicks>
 
-```mermaid
-graph LR
-    B((1)) -- w0 --> Y((ŷ))
-    X1((x1)) -- w1 --> Y
-    X2((x2)) -- w2 --> Y
-    Dots[...] -.-> Y
-    Xm((xm)) -- wm --> Y
-```
+- $\hat{y}$ es la probabilidad de que $y = 1$ dado el vector de atributos $\mathbf{x}$.
+- $\sigma(\cdot)$ es la función sigmoide.
+</v-clicks>
+
+::right::
+
+<div class="h-full flex items-center justify-center">
+
+<!-- Contenedor relativo calibrado para Slidev -->
+<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
+
+  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+      </marker>
+    </defs>
+    <!-- Flecha 1 -> ŷ -->
+    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x1 -> ŷ -->
+    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha x2 -> ŷ -->
+    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+    <!-- Flecha xm -> ŷ -->
+    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  </svg>
+
+  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
+  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">0</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">1</sub>
+  </span>
+
+  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] not-italic">2</sub>
+  </span>
+
+  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
+    w<sub class="text-[10px] italic">m</sub>
+  </span>
+
+  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
+  <!-- Nodo 1 -->
+  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
+    1
+  </div>
+
+  <!-- Nodo x1 -->
+  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">1</sub>
+  </div>
+
+  <!-- Nodo x2 -->
+  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs not-italic">2</sub>
+  </div>
+
+  <!-- Puntos suspensivos verticales ⋮ -->
+  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
+    &#8942;
+  </div>
+
+  <!-- Nodo xm -->
+  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
+    x<sub class="text-xs italic">m</sub>
+  </div>
+
+  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
+  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
+    ŷ
+  </div>
+
+</div>
+
+</div>
+
+---
+layout: two-cols
+---
+
+# Regresión Logística
+
+<v-clicks>
+
+- **Clasificación binaria:** Modela la probabilidad de que una instancia pertenezca a la clase positiva ($y = 1$).
+- **Combinación lineal acotada:** Pasa la pre-activación $z$ por la <span v-mark.circle.emerald="1">función sigmoide $\sigma(z)$</span> para garantizar un rango en $[0, 1]$.
+
+$$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j \right)$$
+
+- **Función de costo:** En lugar de MSE, se optimiza mediante **Entropía Cruzada Binaria (BCE)**.
 
 </v-clicks>
+
+::right::
+
+<div class="h-full flex items-center justify-center">
+
+<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
+
+  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
+    <defs>
+      <marker id="log-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+      </marker>
+    </defs>
+    <line x1="62" y1="38" x2="210" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+    <line x1="64" y1="102" x2="208" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+    <line x1="65" y1="166" x2="206" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+    <line x1="62" y1="280" x2="210" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+  </svg>
+
+  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">w₀</span>
+  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">w₁</span>
+  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">w₂</span>
+  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">wₘ</span>
+
+  <!-- Entradas -->
+  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg shadow-sm">1</div>
+  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg italic shadow-sm">x₁</div>
+  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg italic shadow-sm">x₂</div>
+  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl text-slate-700 dark:text-slate-300">⋮</div>
+  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg italic shadow-sm">xₘ</div>
+
+  <!-- Nodo de Salida Sigmoidal -->
+  <div class="absolute left-[210px] top-[140px] w-14 h-14 rounded-full border-2 border-emerald-600 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200 flex flex-col items-center justify-center shadow-lg">
+    <span class="font-serif italic font-bold text-sm leading-none">σ(z)</span>
+    <span class="text-[10px] font-sans font-semibold text-emerald-700 dark:text-emerald-300 leading-none mt-0.5">ŷ ∈ [0,1]</span>
+  </div>
+
+</div>
+
+</div>
 
 ---
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Red Neuronal Fully Connected
+
+# Red Neuronal Fully Connected
 
 </v-click>
 
@@ -489,15 +890,17 @@ graph LR
 ### ¿Cuántas capas tiene la NN?
 *(Modelo biológico de la neurona: dendritas, soma/núcleo, axón vs modelo artificial de suma ponderada + activación)*
 
+
+![Taxonomía de algoritmos de Machine Learning](/img/sesion1/Artificial-Neurons-a-computational-model-Source.png)
 </v-click>
 
 ---
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Red Neuronal Fully Connected
+
+# Red Neuronal Fully Connected
 
 </v-click>
 
@@ -508,13 +911,22 @@ graph LR
 
 </v-clicks>
 
+<v-clicks>
+
+<!-- Contenedor del Diagrama Vectorial -->
+<div class="mt-4 flex justify-center">
+  <NeuralNetwork />
+</div>
+
+</v-clicks>
+
 ---
 layout: two-cols
 ---
 
 <v-click>
 
-# Modelos Auto Regresivos
+
 
 </v-click>
 
@@ -541,65 +953,15 @@ $$h_1 = g\left( w_{1,0}^{[1]} + \sum_{j=1}^3 w_{1,j}^{[1]} x_j \right)$$
 
 <v-clicks>
 
-<!-- Arquitectura: 3 entradas (x1, x2, x3) conectadas a capas ocultas -->
-```mermaid
-graph LR
-    subgraph IN["Input Layer"]
-        x1((x1))
-        x2((x2))
-        x3((x3))
-    end
-    subgraph HID["First Hidden Layer"]
-        h1((h1))
-        h2((h2))
-        h3((h3))
-        h4((h4))
-    end
-    x1 --> h1
-    x2 --> h1
-    x3 --> h1
-```
+<div class="h-full flex items-center justify-center pl-2">
+
+<!-- Componente interactivo y fiel a tu referencia -->
+<NeuronDetail />
+
+</div>
 
 </v-clicks>
 
----
-
-<v-click>
-
-# Modelos Auto Regresivos
-
-### Red con una capa oculta y salida escalar
-
-</v-click>
-
-<v-click>
-
-```mermaid
-graph LR
-    subgraph Entradas
-        x1((x1))
-        x2((x2))
-        x3((x3))
-        x4((x4))
-    end
-    subgraph Oculta
-        h1((h1))
-        h2((h2))
-        h3((h3))
-        h4((h4))
-    end
-    subgraph Salida
-        out((output))
-    end
-
-    x1 --> h1 & h2 & h3 & h4
-    x2 --> h1 & h2 & h3 & h4
-    x3 --> h1 & h2 & h3 & h4
-    x4 --> h1 & h2 & h3 & h4
-    h1 & h2 & h3 & h4 --> out
-```
-
-</v-click>
 
 ---
 layout: two-cols
@@ -607,9 +969,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Cálculo de la neurona de salida $\hat{y}$
+
+# Cálculo de la neurona de salida $\hat{y}$
 
 </v-click>
 
@@ -625,23 +987,21 @@ $$\hat{y} = g\left( w_{1,0}^{[2]} + \sum_{j=1}^3 w_{1,j}^{[2]} h_j \right)$$
 
 <v-clicks>
 
-```mermaid
-graph LR
-    B((1)) -- "w₀⁽²⁾" --> Y((ŷ))
-    h1((h1)) -- "w₁,₁⁽²⁾" --> Y
-    h2((h2)) -- "w₁,₂⁽²⁾" --> Y
-    h3((h3)) -- "w₁,₃⁽²⁾" --> Y
-```
+<div class="h-full flex items-center justify-center pl-2">
 
+<!-- Diagrama anatómico y calculadora interactiva -->
+<OutputNeuronCalculation />
+
+</div>
 </v-clicks>
 
 ---
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Funciones de Activación
+
+# Funciones de Activación
 
 </v-click>
 
@@ -657,9 +1017,9 @@ graph LR
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Funciones de Activación
+
+# Funciones de Activación
 
 </v-click>
 
@@ -679,15 +1039,14 @@ $$h_2 = g\left( w_{2,0}^{[1]} + \sum_{j=1}^4 w_{2,j}^{[1]} x_j \right)$$
 
 </v-click>
 
+
 ---
 layout: two-cols
 ---
 
 <v-click>
 
-# Modelos Auto Regresivos
-
-### Tipos de Funciones de Activación: Identidad
+# Tipos de Funciones de Activación: Identidad
 
 </v-click>
 
@@ -695,26 +1054,16 @@ layout: two-cols
 
 - **Función Identidad:** $f(x) = x$
 - Salida igual a la entrada.
-- Recomendación de la diapo anterior: en capas ocultas produce un modelo puramente lineal (no tiene sentido).
-- **Se puede usar para regresión** en la capa de salida.
+- En capas ocultas produce un modelo puramente lineal *(pierde la capacidad de aproximar no linealidades)*.
+- **Se suele usar en la capa de salida** para problemas de regresión continua.
 
 </v-clicks>
 
 ::right::
 
-<v-clicks>
-
-```
-        y ^
-          |      /
-          |     /
-          |    /
-    ------+---/-----> x
-        / |
-       /  |
-```
-
-</v-clicks>
+<div class="h-full flex items-center justify-center pl-2">
+  <ActivationPlot type="identity" />
+</div>
 
 ---
 layout: two-cols
@@ -722,36 +1071,24 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
-
-### Tipos de Funciones de Activación: Sigmoide
+# Tipos de Funciones de Activación: Sigmoide
 
 </v-click>
 
 <v-clicks>
 
 - **Función sigmoide:** $\sigma(x) = \frac{1}{1 + e^{-x}}$
-- Rango de valores: $[0, 1]$.
-- Se usaba al inicio de las NN, pero introduce problemas de saturación/latencia de gradientes.
+- **Rango de salida:** $[0, 1]$ *(ideal para interpretar probabilidades)*.
+- Introduce problemas de **saturación de gradientes** en valores extremos ($|x| > 3$).
 - **Softmax** es la versión generalizada para clasificación multiclase en la capa de salida.
 
 </v-clicks>
 
 ::right::
 
-<v-clicks>
-
-```
-        y ^
-      1 --+-----.......
-          |    /
-    0.5 --+---/
-          |  /
-    ------+--/-------> x
-          |
-```
-
-</v-clicks>
+<div class="h-full flex items-center justify-center pl-2">
+  <ActivationPlot type="sigmoid" />
+</div>
 
 ---
 layout: two-cols
@@ -759,35 +1096,24 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
-
-### Tipos de Funciones de Activación: Tangente Hiperbólica
+# Tipos de Funciones de Activación: Tangente Hiperbólica
 
 </v-click>
 
 <v-clicks>
 
-- **Función Tangente Hiperbólica:** $\tanh(x)$
-- Rango de valores: $[-1, 1]$.
-- Centrada en cero (normaliza los valores respecto a la entrada).
-- Puede tener problemas de **gradientes que se desvanecen** *(vanishing gradient problem)* en valores extremos.
+- **Función Tangente Hiperbólica:** $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$
+- **Rango de salida:** $[-1, 1]$.
+- **Centrada en cero:** Facilita la convergencia del entrenamiento frente a la sigmoide.
+- Sufre del problema de **gradientes que se desvanecen** *(vanishing gradient)* en las colas.
 
 </v-clicks>
 
 ::right::
 
-<v-clicks>
-
-```
-        y ^
-      1 --+---......
-          |  /
-    ------+--+-------> x
-         /|
-     -1 --+---......
-```
-
-</v-clicks>
+<div class="h-full flex items-center justify-center pl-2">
+  <ActivationPlot type="tanh" />
+</div>
 
 ---
 layout: two-cols
@@ -795,9 +1121,7 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
-
-### Tipos de Funciones de Activación: ReLU
+# Tipos de Funciones de Activación: ReLU
 
 </v-click>
 
@@ -805,26 +1129,18 @@ layout: two-cols
 
 - **Función ReLU** *(Rectified Linear Unit)*:
   $$f(x) = \max(0, x)$$
-- Es computacionalmente eficiente y muy usada.
-- Se suele usar en **capas ocultas**.
-- *¿Hay otros tipos de funciones de activación?*
+- Computacionalmente muy eficiente: cálculo directo sin exponenciales.
+- Evita la saturación del gradiente para $x > 0$.
+- Estándar por defecto en **capas ocultas**.
 
 </v-clicks>
 
 ::right::
 
-<v-clicks>
+<div class="h-full flex items-center justify-center pl-2">
+  <ActivationPlot type="relu" />
+</div>
 
-```
-        y ^
-          |     /
-          |    /
-          |   /
-    ------+--/------> x
-    ======+--+
-```
-
-</v-clicks>
 
 ---
 
@@ -847,9 +1163,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Estimación de Hiperparámetros
+
+# Estimación de Hiperparámetros
 
 </v-click>
 
@@ -867,9 +1183,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Selección de Funciones y Optimizadores
+
+# Selección de Funciones y Optimizadores
 
 </v-click>
 
@@ -886,9 +1202,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Hiperparámetros de Arquitectura
+
+# Hiperparámetros de Arquitectura
 
 </v-click>
 
@@ -907,9 +1223,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Hiperparámetros de Entrenamiento
+
+# Hiperparámetros de Entrenamiento
 
 </v-click>
 
@@ -947,7 +1263,7 @@ class: text-center
 
 <v-click>
 
-# Modelos Auto Regresivos
+
 
 </v-click>
 
@@ -963,9 +1279,9 @@ class: text-center
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Datos Secuenciales
+
+# Datos Secuenciales
 
 </v-click>
 
@@ -981,9 +1297,9 @@ class: text-center
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Datos Secuenciales
+
+# Datos Secuenciales
 
 </v-click>
 
@@ -999,9 +1315,9 @@ class: text-center
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Ejemplos de Datos Secuenciales
+
+# Ejemplos de Datos Secuenciales
 
 </v-click>
 
@@ -1021,9 +1337,9 @@ layout: two-cols
 
 <v-click>
 
-# Modelos Auto Regresivos
 
-### Limitaciones de las NN Tradicionales
+
+# Limitaciones de las NN Tradicionales
 
 </v-click>
 
@@ -1038,25 +1354,139 @@ layout: two-cols
 
 ::right::
 
+<div class="h-full flex items-center justify-center pl-2">
+
+<div class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-xl select-none text-center">
+  <div class="text-xs font-mono text-slate-500 mb-2 font-bold">NN Densa — sin memoria temporal:</div>
+  <svg viewBox="0 0 300 220" class="w-[300px] h-[220px]">
+    <defs>
+      <marker id="nn-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M 0 2 L 7 5 L 0 8 z" class="fill-slate-600 dark:fill-zinc-400" />
+      </marker>
+    </defs>
+
+    <!-- Layer labels -->
+    <text x="45" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Input</text>
+    <text x="150" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Hidden</text>
+    <text x="245" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Output</text>
+
+    <!-- Edges: Input -> Hidden -->
+    <line x1="58" y1="60" x2="132" y2="75" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+    <line x1="58" y1="60" x2="132" y2="145" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+    <line x1="58" y1="140" x2="132" y2="75" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+    <line x1="58" y1="140" x2="132" y2="145" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+
+    <!-- Edges: Hidden -> Output -->
+    <line x1="168" y1="75" x2="228" y2="110" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+    <line x1="168" y1="145" x2="228" y2="110" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+
+    <!-- Input nodes -->
+    <rect x="10" y="42" width="48" height="36" rx="8" class="fill-blue-100 stroke-blue-600 dark:fill-blue-950/70 dark:stroke-blue-400" stroke-width="2" />
+    <text x="34" y="64" text-anchor="middle" class="text-[10px] font-serif italic font-bold fill-blue-900 dark:fill-blue-200">Temp</text>
+
+    <rect x="10" y="122" width="48" height="36" rx="8" class="fill-blue-100 stroke-blue-600 dark:fill-blue-950/70 dark:stroke-blue-400" stroke-width="2" />
+    <text x="34" y="144" text-anchor="middle" class="text-[10px] font-serif italic font-bold fill-blue-900 dark:fill-blue-200">Hum</text>
+
+    <!-- Hidden nodes -->
+    <circle cx="150" cy="75" r="20" class="fill-emerald-100 stroke-emerald-600 dark:fill-emerald-950/70 dark:stroke-emerald-400" stroke-width="2" />
+    <text x="150" y="79" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-emerald-900 dark:fill-emerald-200">h₁</text>
+
+    <circle cx="150" cy="145" r="20" class="fill-emerald-100 stroke-emerald-600 dark:fill-emerald-950/70 dark:stroke-emerald-400" stroke-width="2" />
+    <text x="150" y="149" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-emerald-900 dark:fill-emerald-200">h₂</text>
+
+    <!-- Output node -->
+    <circle cx="245" cy="110" r="22" class="fill-rose-100 stroke-rose-600 dark:fill-rose-950/70 dark:stroke-rose-400" stroke-width="2" />
+    <text x="245" y="114" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-rose-900 dark:fill-rose-200">ŷ</text>
+
+    <!-- Output class label -->
+    <rect x="200" y="175" width="90" height="28" rx="6" class="fill-amber-100 stroke-amber-600 dark:fill-amber-950/70 dark:stroke-amber-400" stroke-width="1.5" />
+    <text x="245" y="193" text-anchor="middle" class="text-[10px] font-bold fill-amber-900 dark:fill-amber-200">Output Class</text>
+    <line x1="245" y1="132" x2="245" y2="173" class="stroke-slate-600 dark:stroke-zinc-400" stroke-width="1.5" marker-end="url(#nn-arr)" />
+
+    <!-- Annotation: no memory -->
+    <text x="150" y="210" text-anchor="middle" class="text-[9px] fill-slate-400 dark:fill-slate-500">cada muestra se procesa de forma independiente (i.i.d.)</text>
+  </svg>
+</div>
+
+</div>
+
+---
+layout: two-cols
+---
+
+# Redes Neuronales Autorregresivas (NN-AR)
+
+### De serie temporal a problema supervisado
+
 <v-clicks>
 
-```mermaid
-graph LR
-    subgraph IN["Input Layer"]
-        T[Temperature]
-        H[Humidity]
-    end
-    subgraph HID["Hidden Layer"]
-        h1(( ))
-        h2(( ))
-    end
-    subgraph OUT["Output Layer"]
-        out(( ))
-    end
-    T --> h1 & h2
-    H --> h1 & h2
-    h1 & h2 --> out
-    out --> C[Output Class]
-```
+- **Idea central:** Transformar una secuencia temporal $T_1, T_2, \dots, T_k$ en pares de entrenamiento $(X, Y)$ mediante una <span v-mark.underline.orange="1">ventana deslizante (*lagged features*)</span>.
+- **Formulación matemática:**
+  $$T(k) = f_{\theta}\big(T(k-1), T(k-2), \dots, T(k-n)\big)$$
+- **Parámetro $n$ (*window size*):** Cantidad de retardos pasados que alimentan la capa de entrada.
+- El modelo es una MLP densa entrenada con función de costo **MSE**.
 
 </v-clicks>
+
+::right::
+
+<div class="h-full flex flex-col justify-center items-center pl-2">
+
+<!-- Bento Card explicativo de la ventana deslizante -->
+<div class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-lg text-xs font-mono select-none w-full">
+  <div class="text-slate-500 mb-2 font-sans font-bold">Concepto de Ventana Deslizante ($n=3$):</div>
+  <div class="space-y-1.5">
+    <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
+      <span>X₁: [T₁, T₂, T₃]</span> <span class="text-rose-600 font-bold">→ Y₁: T₄</span>
+    </div>
+    <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
+      <span>X₂: [T₂, T₃, T₄]</span> <span class="text-rose-600 font-bold">→ Y₂: T₅</span>
+    </div>
+    <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
+      <span>X₃: [T₃, T₄, T₅]</span> <span class="text-rose-600 font-bold">→ Y₃: T₆</span>
+    </div>
+  </div>
+  <div class="mt-3 text-[11px] text-slate-500 font-sans">
+    La red densa aprende la dinámica temporal mapeando vectores fijos del pasado hacia el siguiente paso futuro.
+  </div>
+</div>
+
+</div>
+---
+
+# Construyendo la Arquitectura en Keras
+
+````md magic-move
+```python
+# 1. Regresión Lineal Clásica (1 sola neurona lineal)
+model = Sequential([
+    Input(shape=(10,)),
+    Dense(1, activation='linear')
+])
+```
+```python
+# 2. Red Neuronal Profunda (MLP No Lineal para la serie temporal)
+model = Sequential([
+    Input(shape=(10,)),
+    Dense(16, activation='relu'),    # 1ª Capa oculta: extrae patrones locales
+    Dense(8, activation='relu'),     # 2ª Capa oculta: combina representaciones
+    Dense(1, activation='linear')    # Capa de salida: pronóstico de temperatura
+])
+```
+```python
+# 3. Compilación y Entrenamiento con Gradiente Descendente
+model.compile(
+    optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+    loss='mse',
+    metrics=['mae']
+)
+
+history = model.fit(
+    X_train, y_train,
+    validation_data=(X_val, y_val),
+    epochs=150,
+    batch_size=32,
+    verbose=1
+)
+```
+

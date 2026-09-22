@@ -68,7 +68,7 @@ Contiene, de forma versionada y reproducible:
 | # | Sesión | Fecha | Contenido | Estado |
 |---|--------|-------|-----------|--------|
 | 1 | Modelos Auto Regresivos | _Pendiente_ | Regresión lineal/logística, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales | ✅ Deck |
-| 2 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
+| 2 | Redes Neuronales Recurrentes (RNN, LSTM y GRU) | _Pendiente_ | Orden temporal vs. bag of words, arquitecturas RNN, desvanecimiento del gradiente, LSTM (compuertas), GRU y bidireccionales | ✅ Deck |
 | 3 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
 | 4 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
 
@@ -80,46 +80,30 @@ Contiene, de forma versionada y reproducible:
 
 El proyecto sigue un **monolito de presentación** (un solo `Slides/` con un único `package.json`/lockfile) y un **paquete Python** gestionado con `uv`, ambos orquestados por un `Makefile` único en la raíz:
 
-```mermaid
-graph TD
-    subgraph RAIZ["Repositorio (root)"]
-        CONF["CONSTITUTION.md<br/>Verdad central"]
-        MK["Makefile<br/>Punto de entrada de comandos"]
-        README["README.md<br/>Puerta de entrada"]
-        PY["pyproject.toml<br/>Dependencias Python"]
-    end
+```
+DL-Javeriana/
+├── CONSTITUTION.md ─── verdad central (reglas, stack, decisiones)
+├── Makefile ─────────── orquesta: pnpm -C Slides · uv sync · ruff
+├── pyproject.toml ───── dependencias Python (uv)
+│
+├── Slides/ ──────────── monolito Slidev
+│   ├── slides.md ────── entry point maestro (menú + importa sesiones)
+│   ├── pages/sesionN.md  una sesión = un archivo
+│   ├── components/ ──── Vue compartidos (LstmCell, RnnArchitectures, …)
+│   ├── public/img/ ──── assets + logos institucionales
+│   └── global-bottom.vue  logos SIAM + Javeriana en todo deck
+│
+├── Sesiones/sesionN/ ── material práctico (notebooks/scripts)
+└── src/dl_javeriana/ ── paquete Python reutilizable
+```
 
-    subgraph SLIDES["Slides/ — Monolito Slidev"]
-        MAIN["slides.md<br/>(entry point maestro)"]
-        PG["pages/sesionN.md<br/>(una sesión = un archivo)"]
-        COMP["components/ · layouts/<br/>(Vue compartidos)"]
-        PUB["public/img/sesionN/<br/>(assets por deck)"]
-        MAIN -->|src: ./pages/sesionN.md| PG
-        PG --> COMP
-        PG --> PUB
-    end
+**Flujo de importación:**
 
-    subgraph SESIONES["Sesiones/ — Material práctico"]
-        S1["sesion1/"]
-        S2["sesion2/"]
-        S3["sesion3/"]
-        S4["sesion4/"]
-    end
-
-    subgraph CODIGO["src/dl_javeriana/ — Paquete Python"]
-        SRC["Código reutilizable<br/>(utils, demos)"]
-    end
-
-    MK -->|"pnpm -C Slides"| MAIN
-    MK -->|"uv sync · ruff"| PY
-    PG -.->|notebooks/scripts de apoyo| SESIONES
-    SESIONES -.->|usan el paquete| SRC
-    CONF -.->|documenta reglas de| SLIDES
-    CONF -.->|documenta reglas de| SESIONES
-
-    style CONF fill:#f5d76e,stroke:#b8860b,color:#000
-    style MK fill:#4b8bbe,stroke:#2c5f8a,color:#fff
-    style MAIN fill:#cc8b86,stroke:#a05a52,color:#fff
+```
+slides.md  --src:-->  pages/sesionN.md  --usa-->  components/ · public/img/
+    ^                        ^
+    |                        |
+  menú hub              id: sesionN (enlaces directos)
 ```
 
 **Reglas de ingeniería clave** (detalle en `CONSTITUTION.md`):
@@ -128,6 +112,7 @@ graph TD
 2. **Una sesión = un archivo**: `Slides/pages/sesionN.md`, importado por `Slides/slides.md` vía `src:`.
 3. **Compartir, no duplicar**: `components/`, `layouts/`, `styles.css` y `setup.ts` son globales.
 4. **Comandos centralizados**: todo se ejecuta con `make ...` desde la raíz.
+5. **Sin Mermaid por defecto**: los diagramas usan SVG/componentes Vue; Mermaid solo si se pide explícitamente.
 
 ---
 
@@ -143,11 +128,12 @@ DL-Javeriana/
 ├── .python-version          # 🐍 3.13 (pin de uv)
 ├── .gitignore               # Exclusiones (.venv, __pycache__, .DS_Store)
 ├── Slides/                  # 🎬 Monolito Slidev (todas las presentaciones)
-│   ├── slides.md            #    Entry point maestro
+│   ├── slides.md            #    Entry point maestro (menú hub + src:)
 │   ├── pages/               #    sesion1.md … sesion4.md
 │   ├── components/          #    Componentes Vue compartidos
 │   ├── layouts/             #    Layouts personalizados compartidos
-│   ├── public/              #    Assets globales + img/sesionN/
+│   ├── public/              #    Assets globales + img/logos/ + img/sesionN/
+│   ├── global-bottom.vue    #    Logos SIAM + Javeriana en todo deck
 │   ├── styles.css           #    Estilos globales
 │   └── setup.ts             #    Config global (shortcuts, etc.)
 ├── Sesiones/                # 🧪 Material práctico por sesión

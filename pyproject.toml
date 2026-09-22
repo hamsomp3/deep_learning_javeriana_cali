@@ -7,7 +7,18 @@ authors = [
     { name = "Jan Polanco V.", email = "hamsomp3@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "ipykernel>=7.3.0",
+    "numpy>=2.0.0",
+    "pandas>=2.2.0",
+    "plotly>=5.24.0",
+    "scipy>=1.14.0",
+    "statsmodels>=0.14.0",
+    "scikit-learn>=1.5.0",
+    "tensorflow>=2.18.0",
+    "notebook>=7.0.0",
+    "nbformat>=4.2.0",
+]
 
 [project.scripts]
 dl-javeriana = "dl_javeriana:main"

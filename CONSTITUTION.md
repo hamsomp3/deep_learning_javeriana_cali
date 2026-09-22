@@ -20,7 +20,7 @@
 | **Audiencia** | Estudiantes de pregrado, Pontificia Universidad Javeriana Cali |
 | **Duración total** | 8 horas (4 sesiones × 2 horas) |
 | **Sesión 1** | Fecha: PENDIENTE — **Modelos Auto Regresivos** (regresión, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales) |
-| **Sesión 2** | Fecha: PENDIENTE — Contenido: PENDIENTE |
+| **Sesión 2** | Fecha: PENDIENTE — **Redes Neuronales Recurrentes (RNN, LSTM y GRU)**: orden temporal vs. bag of words, arquitecturas RNN (Many-to-One, One-to-Many, Many-to-Many), desvanecimiento del gradiente, LSTM (celda de memoria y compuertas), GRU y redes bidireccionales |
 | **Sesión 3** | Fecha: PENDIENTE — Contenido: PENDIENTE |
 | **Sesión 4** | Fecha: PENDIENTE — Contenido: PENDIENTE |
 
@@ -32,12 +32,13 @@
 ## 📝 Notas y Tareas Pendientes
 
 - [ ] Definir fechas de las 4 sesiones.
-- [ ] Definir contenido temático de las sesiones 2, 3 y 4.
+- [x] Definir contenido temático de la sesión 2 (RNN, LSTM y GRU — deck creado).
+- [ ] Definir contenido temático de las sesiones 3 y 4.
 - [ ] Confirmar si el proyecto usará **Streamlit** para demos interactivas (hoy: PENDIENTE).
 - [ ] Definir fuentes de **Datos** del curso (datasets por sesión).
 - [x] Inicializar `Slides/` como proyecto Slidev (hecho: scaffold `slidev@52.19.1`, migrado a pnpm).
 - [ ] Configurar **Ruff** y **pre-commit** en el repo.
-- [ ] Completar `sesion2/3/4.md` (hoy: placeholders) cuando el tutor entregue el contenido.
+- [ ] Completar `sesion3/4.md` (hoy: placeholders) cuando el tutor entregue el contenido.
 
 ---
 
@@ -164,24 +165,44 @@ DL-Javeriana/
 
 ```
 Slides/
-├── slides.md              # Entry point maestro (importa todas las sesiones)
+├── slides.md              # Entry point maestro (menú hub + importa todas las sesiones)
 ├── package.json           # Dependencias Slidev (pnpm) — 1 solo lockfile
 ├── pnpm-lock.yaml         # Lock determinista compartido
 ├── components/            # Componentes Vue COMPARTIDOS
 ├── layouts/               # Layouts personalizados compartidos
 ├── public/                # Assets globales (logos, favicons, img/sesionN/ por deck)
+├── global-bottom.vue      # Logos SIAM + Javeriana (automático en todo deck)
 ├── styles.css             # Estilos globales
 ├── setup.ts               # Config global (shortcuts, etc.)
 └── pages/                 # Slides por sesión (importables vía src:)
-    ├── sesion1.md         # Diapositivas Sesión 1
-    ├── sesion2.md         # Diapositivas Sesión 2
-    ├── sesion3.md         # Diapositivas Sesión 3
-    └── sesion4.md         # Diapositivas Sesión 4
+    ├── sesion1.md         # Diapositivas Sesión 1 (id: sesion1)
+    ├── sesion2.md         # Diapositivas Sesión 2 (id: sesion2)
+    ├── sesion3.md         # Diapositivas Sesión 3 (id: sesion3)
+    └── sesion4.md         # Diapositivas Sesión 4 (id: sesion4)
 ```
 
 > **Regla:** Un **único** proyecto Slidev (`Slides/`) con **un solo** `package.json` y `pnpm-lock.yaml`. Cada sesión vive en `Slides/pages/sesionN.md` y se importa en `Slides/slides.md` vía `src: ./pages/sesionN.md`. Componentes, layouts, estilos y assets son compartidos. Los comandos Slidev se ejecutan desde el `Makefile` de la raíz (`make slidev-dev`, etc.).
 
 > **Deploy:** PENDIENTE (evaluar Netlify/Vercel/GitHub Pages cuando los decks estén listos).
+
+### Regla de Diagramas — Sin Mermaid por Defecto
+
+> **REGLA OBLIGATORIA:** **No usar diagramas Mermaid por defecto** en diapositivas, README ni documentación del proyecto, **salvo que se solicite de forma explícita**.
+>
+> - Preferir **SVG vectoriales**, **componentes Vue interactivos** o **imágenes** cuando se necesite un diagrama.
+> - Mermaid solo se permite si el usuario/tutor lo pide explícitamente en la petición.
+> - Esta regla aplica a todo el repositorio (presentaciones, docs, README).
+
+### Logos Institucionales (Obligatorio en Todo Deck)
+
+> **REGLA:** Toda presentación Slidev del curso muestra los logos de **SIAM** y **Pontificia Universidad Javeriana Cali** en la esquina inferior derecha, vía `Slides/global-bottom.vue` (global automático). Variantes claro/oscuro en `Slides/public/img/logos/`. La portada de `slides.md` los muestra además en tamaño destacado.
+
+### Estructura de Sesiones (Plantilla)
+
+- Portada de sesión con `id: sesionN` (permite el enlace del menú hub en `slides.md`).
+- Frontmatter institucional obligatorio (ver sección Frontmatter).
+- Animación progresiva con `v-click` / `v-clicks` (ver Reglas de Animación).
+- Contenido en dos columnas (`layout: two-cols`) con componentes interactivos en la columna derecha cuando aplique.
 
 ---
 
