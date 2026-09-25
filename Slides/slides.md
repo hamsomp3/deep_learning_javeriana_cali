@@ -34,9 +34,6 @@ toolbar: false
   <img src="/img/logos/siam.png" class="h-8 block dark:hidden" alt="SIAM" />
 </div>
 
-<!--
-Notas del presentador (presenter mode: http://localhost:3030/presenter/).
--->
 
 ---
 layout: default

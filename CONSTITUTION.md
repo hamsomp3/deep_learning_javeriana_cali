@@ -39,6 +39,8 @@
 - [x] Inicializar `Slides/` como proyecto Slidev (hecho: scaffold `slidev@52.19.1`, migrado a pnpm).
 - [ ] Configurar **Ruff** y **pre-commit** en el repo.
 - [ ] Completar `sesion3/4.md` (hoy: placeholders) cuando el tutor entregue el contenido.
+- [x] Regla de navegación del menú: toda sesión nueva en `pages/` requiere `routeAlias: sesionN` (ver *Presentaciones con Slidev*).
+- [x] Regla HTML/SVG sin líneas en blanco internas (evita errores *Invalid end tag* al compilar).
 
 ---
 
@@ -86,8 +88,8 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 | **Lenguaje** | Python 3.13 |
 | **Gestor de Paquetes (Python)** | [uv](https://docs.astral.sh/uv/) |
 | **Gestor de Paquetes (Frontend/Slidev)** | [pnpm](https://pnpm.io/) |
-| **Deep Learning** | PENDIENTE (a definir con el contenido de las sesiones) |
-| **Datos** | PENDIENTE |
+| **Deep Learning** | TensorFlow 2 / Keras 3 |
+| **Datos** | Series temporales (*Monthly Sunspots*, `jbrownlee/Datasets`) + tareas sintéticas |
 | **UI / Demos** | Streamlit — *PENDIENTE de confirmar* |
 | **Presentaciones** | [Slidev](https://sli.dev/) (Markdown + Vue + Tailwind) |
 | **Linting** | Ruff |
@@ -133,6 +135,13 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
   - `Sesiones/` → material práctico por sesión (notebooks/scripts).
 - Un **único `Makefile` en la raíz** orquesta comandos Python y Slidev.
 
+### Material Práctico (`Sesiones/`)
+
+- **Sesión 1:** `Sesiones/sesion1/sesion_1_modelos_autorregresivos.ipynb` — red **MLP autorregresiva** sobre *Monthly Sunspots* (FFT, descomposición estacional, ventana deslizante 2D, inferencia recursiva).
+- **Sesión 2:** `Sesiones/sesion2/sesion_2_rnn_lstm_gru.ipynb` — **RNN, LSTM y GRU**: tensor 3D `[samples, time_steps, features]`, *benchmarking* de arquitecturas (parámetros, tiempo, MSE), inferencia paso a paso y *adding problem* para evidenciar el desvanecimiento del gradiente.
+- **Estilo de los notebooks:** teoría en Markdown + celdas de código reproducibles (semillas fijas: `np.random.seed` / `tf.random.set_seed`), gráficas interactivas con **Plotly** y salidas **no versionadas** (notebook *clean*).
+- **Stack de DL:** **TensorFlow 2 / Keras 3**, elegido por su claridad académica y su API de capas recurrentes.
+
 ---
 
 ## 📁 Estructura Canónica del Repositorio
@@ -175,10 +184,10 @@ Slides/
 ├── styles.css             # Estilos globales
 ├── setup.ts               # Config global (shortcuts, etc.)
 └── pages/                 # Slides por sesión (importables vía src:)
-    ├── sesion1.md         # Diapositivas Sesión 1 (id: sesion1)
-    ├── sesion2.md         # Diapositivas Sesión 2 (id: sesion2)
-    ├── sesion3.md         # Diapositivas Sesión 3 (id: sesion3)
-    └── sesion4.md         # Diapositivas Sesión 4 (id: sesion4)
+    ├── sesion1.md         # Diapositivas Sesión 1 (id + routeAlias: sesion1)
+    ├── sesion2.md         # Diapositivas Sesión 2 (id + routeAlias: sesion2)
+    ├── sesion3.md         # Diapositivas Sesión 3 (id + routeAlias: sesion3)
+    └── sesion4.md         # Diapositivas Sesión 4 (id + routeAlias: sesion4)
 ```
 
 > **Regla:** Un **único** proyecto Slidev (`Slides/`) con **un solo** `package.json` y `pnpm-lock.yaml`. Cada sesión vive en `Slides/pages/sesionN.md` y se importa en `Slides/slides.md` vía `src: ./pages/sesionN.md`. Componentes, layouts, estilos y assets son compartidos. Los comandos Slidev se ejecutan desde el `Makefile` de la raíz (`make slidev-dev`, etc.).
@@ -199,10 +208,47 @@ Slides/
 
 ### Estructura de Sesiones (Plantilla)
 
-- Portada de sesión con `id: sesionN` (permite el enlace del menú hub en `slides.md`).
+- Portada de sesión con `id: sesionN` **y** `routeAlias: sesionN` en el frontmatter (ver regla de navegación del menú).
 - Frontmatter institucional obligatorio (ver sección Frontmatter).
 - Animación progresiva con `v-click` / `v-clicks` (ver Reglas de Animación).
 - Contenido en dos columnas (`layout: two-cols`) con componentes interactivos en la columna derecha cuando aplique.
+
+### Navegación del Menú Hub (Obligatorio en Toda Sesión Nueva)
+
+> **REGLA OBLIGATORIA:** todo `pages/sesionN.md` **debe** declarar `routeAlias: sesionN` en su frontmatter, junto al `id`:
+
+```yaml
+---
+id: sesionN
+routeAlias: sesionN
+title: Sesión N - ...
+---
+```
+
+**Por qué:** el `<Link to="/sesionN">` del menú en `slides.md` genera la ruta `/:no`. Slidev resuelve ese parámetro solo con **número de slide** o con **`frontmatter.routeAlias`** — el campo `id` **NO** sirve para navegación. Sin `routeAlias`, `/sesionN` no matchea y la navegación falla (parece que el menú no funciona o todo es secuencial).
+
+**Alcance:** aplica a `sesion1`–`sesion4` (ya hechos) y a **cualquier sesión nueva** que se agregue a `slides.md` con `src: ./pages/sesionN.md` + `<Link to="/sesionN">`.
+
+### Reglas de HTML/SVG en Markdown (Evitar Errores de Compilación)
+
+> **REGLA OBLIGATORIA:** en bloques HTML/SVG dentro de las diapositivas **no dejar líneas en blanco** entre tags contenedores (`<div>`, `<svg>`, `<span>`, etc.).
+
+**Por qué:** markdown-it cierra el bloque HTML en cada línea en blanco (CommonMark type 6). Si tras el blanco hay indentación de 4+ espacios, el contenido se convierte en bloque de código (`<pre><code>`), se escapa el `<svg>` y queda un `</svg>` huérfano → error de Vue *Invalid end tag* (o *`<pre>` cannot be child of `<svg>`*).
+
+**Patrón correcto (sin blancos dentro del árbol HTML):**
+
+```html
+<div class="h-full flex items-center justify-center">
+<div class="relative w-[280px] h-[330px]">
+  <svg viewBox="0 0 280 330">
+  <defs>...</defs>
+  <line ... />
+  </svg>
+</div>
+</div>
+```
+
+**Verificación:** `pnpm -C Slides build` debe pasar (exit 0) antes de dar por buenas las slides.
 
 ---
 

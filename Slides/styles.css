@@ -1,0 +1,34 @@
+/* Hide the default Slidev toolbar - multiple selector attempts */
+.slidev-toolbar,
+.slidev-layout-toolbar,
+#slidev-toolbar,
+.toolbar,
+[data-slidev-toolbar],
+.slidev-theme-toolbar {
+  display: none !important;
+}
+
+/* Hide remote control button */
+.slidev-remote-control,
+[data-slidev-remote] {
+  display: none !important;
+}
+
+/* Hide any fixed position toolbar elements at top of viewport */
+.slidev-layout > div[style*="fixed"]:first-child,
+.slidev-layout > div[style*="sticky"]:first-child {
+  display: none !important;
+}
+
+/* More specific targeting for theme-seriph toolbar */
+.seriph-toolbar,
+.theme-toolbar,
+.slidev-theme-seriph .toolbar {
+  display: none !important;
+}
+
+/* Separación de columnas en layouts nativos de columnas */
+.slidev-layout.two-cols {
+  column-gap: 20px;
+  row-gap: 12px;
+}

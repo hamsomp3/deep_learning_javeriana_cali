@@ -1,5 +1,6 @@
 ---
 id: sesion1
+routeAlias: sesion1
 title: Sesión 1 - Modelos Auto Regresivos
 info: |
   ## Sesión 1: Modelos Auto Regresivos
@@ -85,9 +86,7 @@ $$y = w_0 + w_1 \cdot x$$
 
 
 <div class="h-full flex items-center justify-center">
-
 <LinearRegressionPlot />
-
 </div>
 
 </v-clicks>
@@ -129,9 +128,7 @@ $$y = w_0 + w_1 \cdot x$$
 
 
 <div class="h-full flex items-center justify-center">
-
 <LinearRegressionPlot />
-
 </div>
 
 </v-clicks>
@@ -171,13 +168,10 @@ $$\mathcal{L}(w_1) = \sum_{i=1}^{N} (w_1 \cdot x_i - y_i)^2$$
 
 <v-clicks>
 
-<!-- Curva convexa de costo en función de w_1 -->
 
 
 <div class="h-full flex items-center justify-center">
-
 <CostFunctionPlot />
-
 </div>
 </v-clicks>
 
@@ -299,7 +293,6 @@ $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 
 <v-clicks>
 
-<!-- Gráfica de pasos hacia el mínimo global -->
 
 ![Gráfica de pasos hacia el mínimo global](/img/sesion1/img05.jpg)
 
@@ -408,77 +401,49 @@ $$\hat{y} = w_0 + \sum_{j=1}^m w_j \cdot x_j$$
 ::right::
 
 <div class="h-full flex items-center justify-center">
-
-<!-- Contenedor relativo calibrado para Slidev -->
 <div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-
-  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
   <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-    <defs>
-      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-      </marker>
-    </defs>
-    <!-- Flecha 1 -> ŷ -->
-    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x1 -> ŷ -->
-    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x2 -> ŷ -->
-    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha xm -> ŷ -->
-    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+  </marker>
+  </defs>
+  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
   </svg>
-
-  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
   <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">0</sub>
   </span>
-
   <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">1</sub>
   </span>
-
   <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">2</sub>
   </span>
-
   <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] italic">m</sub>
   </span>
-
-  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
-  <!-- Nodo 1 -->
   <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
     1
   </div>
-
-  <!-- Nodo x1 -->
   <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">1</sub>
   </div>
-
-  <!-- Nodo x2 -->
   <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">2</sub>
   </div>
-
-  <!-- Puntos suspensivos verticales ⋮ -->
   <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
     &#8942;
   </div>
-
-  <!-- Nodo xm -->
   <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs italic">m</sub>
   </div>
-
-  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
   <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
     ŷ
   </div>
-
 </div>
-
 </div>
 
 ---
@@ -504,77 +469,49 @@ $$\hat{y} = w_0 + \sum_{j=1}^m w_j \cdot x_j$$
 ::right::
 
 <div class="h-full flex items-center justify-center">
-
-<!-- Contenedor relativo calibrado para Slidev -->
 <div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-
-  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
   <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-    <defs>
-      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-      </marker>
-    </defs>
-    <!-- Flecha 1 -> ŷ -->
-    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x1 -> ŷ -->
-    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x2 -> ŷ -->
-    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha xm -> ŷ -->
-    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+  </marker>
+  </defs>
+  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
   </svg>
-
-  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
   <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">0</sub>
   </span>
-
   <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">1</sub>
   </span>
-
   <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">2</sub>
   </span>
-
   <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] italic">m</sub>
   </span>
-
-  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
-  <!-- Nodo 1 -->
   <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
     1
   </div>
-
-  <!-- Nodo x1 -->
   <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">1</sub>
   </div>
-
-  <!-- Nodo x2 -->
   <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">2</sub>
   </div>
-
-  <!-- Puntos suspensivos verticales ⋮ -->
   <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
     &#8942;
   </div>
-
-  <!-- Nodo xm -->
   <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs italic">m</sub>
   </div>
-
-  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
   <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
     ŷ
   </div>
-
 </div>
-
 </div>
 
 ---
@@ -619,77 +556,49 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 ::right::
 
 <div class="h-full flex items-center justify-center">
-
-<!-- Contenedor relativo calibrado para Slidev -->
 <div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-
-  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
   <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-    <defs>
-      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-      </marker>
-    </defs>
-    <!-- Flecha 1 -> ŷ -->
-    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x1 -> ŷ -->
-    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x2 -> ŷ -->
-    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha xm -> ŷ -->
-    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+  </marker>
+  </defs>
+  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
   </svg>
-
-  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
   <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">0</sub>
   </span>
-
   <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">1</sub>
   </span>
-
   <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">2</sub>
   </span>
-
   <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] italic">m</sub>
   </span>
-
-  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
-  <!-- Nodo 1 -->
   <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
     1
   </div>
-
-  <!-- Nodo x1 -->
   <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">1</sub>
   </div>
-
-  <!-- Nodo x2 -->
   <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">2</sub>
   </div>
-
-  <!-- Puntos suspensivos verticales ⋮ -->
   <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
     &#8942;
   </div>
-
-  <!-- Nodo xm -->
   <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs italic">m</sub>
   </div>
-
-  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
   <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
     ŷ
   </div>
-
 </div>
-
 </div>
 
 ---
@@ -737,77 +646,49 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 ::right::
 
 <div class="h-full flex items-center justify-center">
-
-<!-- Contenedor relativo calibrado para Slidev -->
 <div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-
-  <!-- CAPA 1: Solo líneas y flechas (SVG puro sin texto que se deforme) -->
   <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-    <defs>
-      <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-      </marker>
-    </defs>
-    <!-- Flecha 1 -> ŷ -->
-    <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x1 -> ŷ -->
-    <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha x2 -> ŷ -->
-    <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-    <!-- Flecha xm -> ŷ -->
-    <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+  </marker>
+  </defs>
+  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
   </svg>
-
-  <!-- CAPA 2: Etiquetas de los pesos w (con máscara de fondo para no tocar la línea) -->
   <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">0</sub>
   </span>
-
   <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">1</sub>
   </span>
-
   <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] not-italic">2</sub>
   </span>
-
   <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
     w<sub class="text-[10px] italic">m</sub>
   </span>
-
-  <!-- CAPA 3: Nodos de Entrada (Círculos verdes) -->
-  <!-- Nodo 1 -->
   <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
     1
   </div>
-
-  <!-- Nodo x1 -->
   <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">1</sub>
   </div>
-
-  <!-- Nodo x2 -->
   <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs not-italic">2</sub>
   </div>
-
-  <!-- Puntos suspensivos verticales ⋮ -->
   <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
     &#8942;
   </div>
-
-  <!-- Nodo xm -->
   <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
     x<sub class="text-xs italic">m</sub>
   </div>
-
-  <!-- CAPA 4: Nodo de Salida (Círculo rojo/coral con ŷ) -->
   <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
     ŷ
   </div>
-
 </div>
-
 </div>
 
 ---
@@ -830,41 +711,32 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 ::right::
 
 <div class="h-full flex items-center justify-center">
-
 <div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-
   <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-    <defs>
-      <marker id="log-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-        <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-      </marker>
-    </defs>
-    <line x1="62" y1="38" x2="210" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
-    <line x1="64" y1="102" x2="208" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
-    <line x1="65" y1="166" x2="206" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
-    <line x1="62" y1="280" x2="210" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+  <defs>
+  <marker id="log-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
+  </marker>
+  </defs>
+  <line x1="62" y1="38" x2="210" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+  <line x1="64" y1="102" x2="208" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+  <line x1="65" y1="166" x2="206" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
+  <line x1="62" y1="280" x2="210" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#log-arrow)" />
   </svg>
-
   <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">w₀</span>
   <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">w₁</span>
   <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">w₂</span>
   <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212]">wₘ</span>
-
-  <!-- Entradas -->
   <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg shadow-sm">1</div>
   <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg italic shadow-sm">x₁</div>
   <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg italic shadow-sm">x₂</div>
   <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl text-slate-700 dark:text-slate-300">⋮</div>
   <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg italic shadow-sm">xₘ</div>
-
-  <!-- Nodo de Salida Sigmoidal -->
   <div class="absolute left-[210px] top-[140px] w-14 h-14 rounded-full border-2 border-emerald-600 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200 flex flex-col items-center justify-center shadow-lg">
-    <span class="font-serif italic font-bold text-sm leading-none">σ(z)</span>
-    <span class="text-[10px] font-sans font-semibold text-emerald-700 dark:text-emerald-300 leading-none mt-0.5">ŷ ∈ [0,1]</span>
+  <span class="font-serif italic font-bold text-sm leading-none">σ(z)</span>
+  <span class="text-[10px] font-sans font-semibold text-emerald-700 dark:text-emerald-300 leading-none mt-0.5">ŷ ∈ [0,1]</span>
   </div>
-
 </div>
-
 </div>
 
 ---
@@ -913,7 +785,6 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 
 <v-clicks>
 
-<!-- Contenedor del Diagrama Vectorial -->
 <div class="mt-4 flex justify-center">
   <NeuralNetwork />
 </div>
@@ -954,10 +825,7 @@ $$h_1 = g\left( w_{1,0}^{[1]} + \sum_{j=1}^3 w_{1,j}^{[1]} x_j \right)$$
 <v-clicks>
 
 <div class="h-full flex items-center justify-center pl-2">
-
-<!-- Componente interactivo y fiel a tu referencia -->
 <NeuronDetail />
-
 </div>
 
 </v-clicks>
@@ -988,10 +856,7 @@ $$\hat{y} = g\left( w_{1,0}^{[2]} + \sum_{j=1}^3 w_{1,j}^{[2]} h_j \right)$$
 <v-clicks>
 
 <div class="h-full flex items-center justify-center pl-2">
-
-<!-- Diagrama anatómico y calculadora interactiva -->
 <OutputNeuronCalculation />
-
 </div>
 </v-clicks>
 
@@ -1250,7 +1115,6 @@ layout: two-cols
 
 <v-clicks>
 
-<!-- Estrategias de búsqueda de hiperparámetros -->
 - **Grid Search:** Búsqueda exhaustiva en malla regular.
 - **Random Search:** Muestreo aleatorio en el espacio continuo.
 - **Bayesian Search:** Optimización probabilística guiada por evaluaciones previas.
@@ -1355,59 +1219,39 @@ layout: two-cols
 ::right::
 
 <div class="h-full flex items-center justify-center pl-2">
-
 <div class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-xl select-none text-center">
   <div class="text-xs font-mono text-slate-500 mb-2 font-bold">NN Densa — sin memoria temporal:</div>
   <svg viewBox="0 0 300 220" class="w-[300px] h-[220px]">
-    <defs>
-      <marker id="nn-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-        <path d="M 0 2 L 7 5 L 0 8 z" class="fill-slate-600 dark:fill-zinc-400" />
-      </marker>
-    </defs>
-
-    <!-- Layer labels -->
-    <text x="45" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Input</text>
-    <text x="150" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Hidden</text>
-    <text x="245" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Output</text>
-
-    <!-- Edges: Input -> Hidden -->
-    <line x1="58" y1="60" x2="132" y2="75" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
-    <line x1="58" y1="60" x2="132" y2="145" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
-    <line x1="58" y1="140" x2="132" y2="75" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
-    <line x1="58" y1="140" x2="132" y2="145" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
-
-    <!-- Edges: Hidden -> Output -->
-    <line x1="168" y1="75" x2="228" y2="110" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
-    <line x1="168" y1="145" x2="228" y2="110" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
-
-    <!-- Input nodes -->
-    <rect x="10" y="42" width="48" height="36" rx="8" class="fill-blue-100 stroke-blue-600 dark:fill-blue-950/70 dark:stroke-blue-400" stroke-width="2" />
-    <text x="34" y="64" text-anchor="middle" class="text-[10px] font-serif italic font-bold fill-blue-900 dark:fill-blue-200">Temp</text>
-
-    <rect x="10" y="122" width="48" height="36" rx="8" class="fill-blue-100 stroke-blue-600 dark:fill-blue-950/70 dark:stroke-blue-400" stroke-width="2" />
-    <text x="34" y="144" text-anchor="middle" class="text-[10px] font-serif italic font-bold fill-blue-900 dark:fill-blue-200">Hum</text>
-
-    <!-- Hidden nodes -->
-    <circle cx="150" cy="75" r="20" class="fill-emerald-100 stroke-emerald-600 dark:fill-emerald-950/70 dark:stroke-emerald-400" stroke-width="2" />
-    <text x="150" y="79" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-emerald-900 dark:fill-emerald-200">h₁</text>
-
-    <circle cx="150" cy="145" r="20" class="fill-emerald-100 stroke-emerald-600 dark:fill-emerald-950/70 dark:stroke-emerald-400" stroke-width="2" />
-    <text x="150" y="149" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-emerald-900 dark:fill-emerald-200">h₂</text>
-
-    <!-- Output node -->
-    <circle cx="245" cy="110" r="22" class="fill-rose-100 stroke-rose-600 dark:fill-rose-950/70 dark:stroke-rose-400" stroke-width="2" />
-    <text x="245" y="114" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-rose-900 dark:fill-rose-200">ŷ</text>
-
-    <!-- Output class label -->
-    <rect x="200" y="175" width="90" height="28" rx="6" class="fill-amber-100 stroke-amber-600 dark:fill-amber-950/70 dark:stroke-amber-400" stroke-width="1.5" />
-    <text x="245" y="193" text-anchor="middle" class="text-[10px] font-bold fill-amber-900 dark:fill-amber-200">Output Class</text>
-    <line x1="245" y1="132" x2="245" y2="173" class="stroke-slate-600 dark:stroke-zinc-400" stroke-width="1.5" marker-end="url(#nn-arr)" />
-
-    <!-- Annotation: no memory -->
-    <text x="150" y="210" text-anchor="middle" class="text-[9px] fill-slate-400 dark:fill-slate-500">cada muestra se procesa de forma independiente (i.i.d.)</text>
+  <defs>
+  <marker id="nn-arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+  <path d="M 0 2 L 7 5 L 0 8 z" class="fill-slate-600 dark:fill-zinc-400" />
+  </marker>
+  </defs>
+  <text x="45" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Input</text>
+  <text x="150" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Hidden</text>
+  <text x="245" y="18" text-anchor="middle" class="text-[10px] font-bold fill-slate-500">Output</text>
+  <line x1="58" y1="60" x2="132" y2="75" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <line x1="58" y1="60" x2="132" y2="145" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <line x1="58" y1="140" x2="132" y2="75" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <line x1="58" y1="140" x2="132" y2="145" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <line x1="168" y1="75" x2="228" y2="110" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <line x1="168" y1="145" x2="228" y2="110" class="stroke-slate-500 dark:stroke-zinc-500" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <rect x="10" y="42" width="48" height="36" rx="8" class="fill-blue-100 stroke-blue-600 dark:fill-blue-950/70 dark:stroke-blue-400" stroke-width="2" />
+  <text x="34" y="64" text-anchor="middle" class="text-[10px] font-serif italic font-bold fill-blue-900 dark:fill-blue-200">Temp</text>
+  <rect x="10" y="122" width="48" height="36" rx="8" class="fill-blue-100 stroke-blue-600 dark:fill-blue-950/70 dark:stroke-blue-400" stroke-width="2" />
+  <text x="34" y="144" text-anchor="middle" class="text-[10px] font-serif italic font-bold fill-blue-900 dark:fill-blue-200">Hum</text>
+  <circle cx="150" cy="75" r="20" class="fill-emerald-100 stroke-emerald-600 dark:fill-emerald-950/70 dark:stroke-emerald-400" stroke-width="2" />
+  <text x="150" y="79" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-emerald-900 dark:fill-emerald-200">h₁</text>
+  <circle cx="150" cy="145" r="20" class="fill-emerald-100 stroke-emerald-600 dark:fill-emerald-950/70 dark:stroke-emerald-400" stroke-width="2" />
+  <text x="150" y="149" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-emerald-900 dark:fill-emerald-200">h₂</text>
+  <circle cx="245" cy="110" r="22" class="fill-rose-100 stroke-rose-600 dark:fill-rose-950/70 dark:stroke-rose-400" stroke-width="2" />
+  <text x="245" y="114" text-anchor="middle" class="text-[11px] font-serif italic font-bold fill-rose-900 dark:fill-rose-200">ŷ</text>
+  <rect x="200" y="175" width="90" height="28" rx="6" class="fill-amber-100 stroke-amber-600 dark:fill-amber-950/70 dark:stroke-amber-400" stroke-width="1.5" />
+  <text x="245" y="193" text-anchor="middle" class="text-[10px] font-bold fill-amber-900 dark:fill-amber-200">Output Class</text>
+  <line x1="245" y1="132" x2="245" y2="173" class="stroke-slate-600 dark:stroke-zinc-400" stroke-width="1.5" marker-end="url(#nn-arr)" />
+  <text x="150" y="210" text-anchor="middle" class="text-[9px] fill-slate-400 dark:fill-slate-500">cada muestra se procesa de forma independiente (i.i.d.)</text>
   </svg>
 </div>
-
 </div>
 
 ---
@@ -1431,26 +1275,23 @@ layout: two-cols
 ::right::
 
 <div class="h-full flex flex-col justify-center items-center pl-2">
-
-<!-- Bento Card explicativo de la ventana deslizante -->
 <div class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-lg text-xs font-mono select-none w-full">
   <div class="text-slate-500 mb-2 font-sans font-bold">Concepto de Ventana Deslizante ($n=3$):</div>
   <div class="space-y-1.5">
-    <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
-      <span>X₁: [T₁, T₂, T₃]</span> <span class="text-rose-600 font-bold">→ Y₁: T₄</span>
-    </div>
-    <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
-      <span>X₂: [T₂, T₃, T₄]</span> <span class="text-rose-600 font-bold">→ Y₂: T₅</span>
-    </div>
-    <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
-      <span>X₃: [T₃, T₄, T₅]</span> <span class="text-rose-600 font-bold">→ Y₃: T₆</span>
-    </div>
+  <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
+  <span>X₁: [T₁, T₂, T₃]</span> <span class="text-rose-600 font-bold">→ Y₁: T₄</span>
+  </div>
+  <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
+  <span>X₂: [T₂, T₃, T₄]</span> <span class="text-rose-600 font-bold">→ Y₂: T₅</span>
+  </div>
+  <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
+  <span>X₃: [T₃, T₄, T₅]</span> <span class="text-rose-600 font-bold">→ Y₃: T₆</span>
+  </div>
   </div>
   <div class="mt-3 text-[11px] text-slate-500 font-sans">
     La red densa aprende la dinámica temporal mapeando vectores fijos del pasado hacia el siguiente paso futuro.
   </div>
 </div>
-
 </div>
 ---
 

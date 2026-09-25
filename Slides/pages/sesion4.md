@@ -1,5 +1,6 @@
 ---
 id: sesion4
+routeAlias: sesion4
 title: Sesión 4 - Contenido por definir
 info: |
   ## Sesión 4

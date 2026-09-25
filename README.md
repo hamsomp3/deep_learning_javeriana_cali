@@ -67,8 +67,8 @@ Contiene, de forma versionada y reproducible:
 
 | # | Sesión | Fecha | Contenido | Estado |
 |---|--------|-------|-----------|--------|
-| 1 | Modelos Auto Regresivos | _Pendiente_ | Regresión lineal/logística, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales | ✅ Deck |
-| 2 | Redes Neuronales Recurrentes (RNN, LSTM y GRU) | _Pendiente_ | Orden temporal vs. bag of words, arquitecturas RNN, desvanecimiento del gradiente, LSTM (compuertas), GRU y bidireccionales | ✅ Deck |
+| 1 | Modelos Auto Regresivos | _Pendiente_ | Regresión lineal/logística, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales | ✅ Deck + Lab |
+| 2 | Redes Neuronales Recurrentes (RNN, LSTM y GRU) | _Pendiente_ | Orden temporal vs. bag of words, arquitecturas RNN, desvanecimiento del gradiente, LSTM (compuertas), GRU y bidireccionales | ✅ Deck + Lab |
 | 3 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
 | 4 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
 
@@ -137,8 +137,8 @@ DL-Javeriana/
 │   ├── styles.css           #    Estilos globales
 │   └── setup.ts             #    Config global (shortcuts, etc.)
 ├── Sesiones/                # 🧪 Material práctico por sesión
-│   ├── sesion1/
-│   ├── sesion2/
+│   ├── sesion1/sesion_1_modelos_autorregresivos.ipynb
+│   ├── sesion2/sesion_2_rnn_lstm_gru.ipynb
 │   ├── sesion3/
 │   └── sesion4/
 └── src/                     # 🐍 Paquete Python reutilizable
@@ -160,7 +160,7 @@ DL-Javeriana/
 | **Hooks** | pre-commit | Verificación previa al commit *(pendiente de configurar)* |
 | **Automatización** | Make | Un único punto de entrada de comandos |
 | **UI / Demos** | Streamlit | *Pendiente de confirmar* |
-| **Deep Learning / Datos** | _Pendiente_ | Se definirá con el contenido de las sesiones |
+| **Deep Learning / Datos** | TensorFlow 2 / Keras 3 · Series temporales | Laboratorios de las sesiones |
 
 ---
 

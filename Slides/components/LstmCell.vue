@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -8,37 +9,37 @@ const gateInfo = {
   all: {
     title: 'Celda de Memoria LSTM Completa',
     desc: 'Regula el flujo de información a través de 3 compuertas sigmoides (σ) y una autopista de estado celular (Ct).',
-    formula: 'C_t = f_t \\odot C_{t-1} + i_t \\odot \\tilde{C}_t \\quad ; \\quad h_t = o_t \\odot \\tanh(C_t)'
+    formulaHtml: '<i>C</i><sub>t</sub> = <i>f</i><sub>t</sub> ⊙ <i>C</i><sub>t-1</sub> + <i>i</i><sub>t</sub> ⊙ <i>C̃</i><sub>t</sub> &nbsp;&nbsp;;&nbsp;&nbsp; <i>h</i><sub>t</sub> = <i>o</i><sub>t</sub> ⊙ tanh(<i>C</i><sub>t</sub>)'
   },
   forget: {
     title: '1. Compuerta de Olvido (Forget Gate)',
     desc: 'Decide qué porcentaje de la memoria pasada (Ct-1) se descarta. Si ft ≈ 0, se olvida; si ft ≈ 1, se preserva intacto.',
-    formula: 'f_t = \\sigma(W_f \\cdot [h_{t-1}, x_t] + b_f)'
+    formulaHtml: '<i>f</i><sub>t</sub> = σ(<i>W</i><sub>f</sub> · [<i>h</i><sub>t-1</sub>, <i>x</i><sub>t</sub>] + <i>b</i><sub>f</sub>)'
   },
   input: {
     title: '2. Compuerta de Entrada y Candidato (Input Gate)',
     desc: 'it decide qué valores actualizar. C̃t genera un vector con nuevos contenidos candidatos entre -1 y 1.',
-    formula: 'i_t = \\sigma(W_i \\cdot [h_{t-1}, x_t] + b_i) \\quad ; \\quad \\tilde{C}_t = \\tanh(W_c \\cdot [h_{t-1}, x_t] + b_c)'
+    formulaHtml: '<i>i</i><sub>t</sub> = σ(<i>W</i><sub>i</sub> · [<i>h</i><sub>t-1</sub>, <i>x</i><sub>t</sub>] + <i>b</i><sub>i</sub>) &nbsp;&nbsp;;&nbsp;&nbsp; <i>C̃</i><sub>t</sub> = tanh(<i>W</i><sub>c</sub> · [<i>h</i><sub>t-1</sub>, <i>x</i><sub>t</sub>] + <i>b</i><sub>c</sub>)'
   },
   cell: {
     title: '3. Actualización del Estado Celular (Cell State)',
     desc: 'La "autopista lineal": combina el pasado filtrado por el olvido más la nueva información ponderada.',
-    formula: 'C_t = f_t \\odot C_{t-1} + i_t \\odot \\tilde{C}_t'
+    formulaHtml: '<i>C</i><sub>t</sub> = <i>f</i><sub>t</sub> ⊙ <i>C</i><sub>t-1</sub> + <i>i</i><sub>t</sub> ⊙ <i>C̃</i><sub>t</sub>'
   },
   output: {
     title: '4. Compuerta de Salida (Output Gate)',
     desc: 'ot decide qué partes del estado de celda pasan al estado oculto ht, modulado por tanh.',
-    formula: 'o_t = \\sigma(W_o \\cdot [h_{t-1}, x_t] + b_o) \\quad ; \\quad h_t = o_t \\odot \\tanh(C_t)'
+    formulaHtml: '<i>o</i><sub>t</sub> = σ(<i>W</i><sub>o</sub> · [<i>h</i><sub>t-1</sub>, <i>x</i><sub>t</sub>] + <i>b</i><sub>o</sub>) &nbsp;&nbsp;;&nbsp;&nbsp; <i>h</i><sub>t</sub> = <i>o</i><sub>t</sub> ⊙ tanh(<i>C</i><sub>t</sub>)'
   }
 }
 </script>
 
 <template>
   <div class="flex flex-col items-center bg-white/80 dark:bg-zinc-900/90 p-4 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xl backdrop-blur-md select-none w-full max-w-[520px]">
-
+    
     <!-- Selector Interactivo de Compuertas -->
     <div class="flex flex-wrap gap-1.5 justify-center mb-3">
-      <button
+      <button 
         v-for="(label, key) in { all: 'Celda Total', forget: '1. Olvido (f)', input: '2. Entrada (i)', cell: '3. Estado (C)', output: '4. Salida (o)' }"
         :key="key"
         @click="activeGate = key as GateType"
@@ -67,7 +68,6 @@ const gateInfo = {
         <!-- Entrada inferior: Línea de ht-1 y xt -->
         <path d="M 20 185 L 110 185 L 110 170" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.2" />
         <path d="M 75 225 L 75 185" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.2" />
-        <!-- Ramificaciones hacia las compuertas -->
         <path d="M 110 185 L 180 185 L 180 170" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.2" />
         <path d="M 180 185 L 250 185 L 250 170" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.2" />
         <path d="M 250 185 L 320 185 L 320 170" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.2" />
@@ -91,7 +91,7 @@ const gateInfo = {
         <path d="M 370 115 L 370 185 L 455 185" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.5" marker-end="url(#lstm-arrow)" />
         <path d="M 405 185 L 405 25" fill="none" class="stroke-slate-800 dark:stroke-zinc-200" stroke-width="2.5" marker-end="url(#lstm-arrow)" />
 
-        <!-- OPERADORES MATEMÁTICOS (Círculos rosados) -->
+        <!-- OPERADORES MATEMÁTICOS -->
         <circle cx="110" cy="55" r="12" class="fill-rose-200 stroke-rose-600 dark:fill-rose-950 dark:stroke-rose-400" stroke-width="2" />
         <text x="110" y="59" text-anchor="middle" class="font-bold text-xs">×</text>
 
@@ -107,7 +107,7 @@ const gateInfo = {
         <circle cx="370" cy="115" r="10" class="fill-rose-200 stroke-rose-600 dark:fill-rose-950 dark:stroke-rose-400" stroke-width="2" />
         <text x="370" y="118" text-anchor="middle" class="font-bold text-[10px]">×</text>
 
-        <!-- COMPUERTAS NEURONALES (Rectángulos amarillos) -->
+        <!-- COMPUERTAS NEURONALES -->
         <g :class="{ 'opacity-30': activeGate !== 'all' && activeGate !== 'forget' }">
           <rect x="95" y="135" width="30" height="30" rx="5" class="fill-amber-200 stroke-amber-600 dark:fill-amber-900 dark:stroke-amber-400" stroke-width="2" />
           <text x="110" y="154" text-anchor="middle" class="font-serif font-bold text-sm">σ</text>
@@ -142,13 +142,14 @@ const gateInfo = {
       <span class="absolute right-[65px] top-[2px] font-serif text-xs italic font-bold text-emerald-600 dark:text-emerald-400">ht</span>
     </div>
 
-    <!-- Panel de Explicación Didáctica y Ecuación -->
+    <!-- Panel de Explicación Didáctica y Ecuación Renderizada en HTML Matemático -->
     <div class="w-full mt-3 p-2.5 rounded-xl bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700 text-xs">
       <div class="font-bold text-slate-800 dark:text-zinc-100">{{ gateInfo[activeGate].title }}</div>
       <p class="text-slate-600 dark:text-zinc-300 mt-0.5 leading-snug">{{ gateInfo[activeGate].desc }}</p>
-      <div class="mt-1 font-mono text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold">
-        {{ gateInfo[activeGate].formula }}
-      </div>
+      <div 
+        class="mt-1.5 font-serif text-[13px] text-indigo-700 dark:text-indigo-300 font-medium tracking-wide"
+        v-html="gateInfo[activeGate].formulaHtml"
+      ></div>
     </div>
 
   </div>
