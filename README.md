@@ -69,7 +69,7 @@ Contiene, de forma versionada y reproducible:
 |---|--------|-------|-----------|--------|
 | 1 | Modelos Auto Regresivos | _Pendiente_ | Regresión lineal/logística, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales | ✅ Deck + Lab |
 | 2 | Redes Neuronales Recurrentes (RNN, LSTM y GRU) | _Pendiente_ | Orden temporal vs. bag of words, arquitecturas RNN, desvanecimiento del gradiente, LSTM (compuertas), GRU y bidireccionales | ✅ Deck + Lab |
-| 3 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
+| 3 | Diagnóstico, Regularización y Espectrogramas | _Pendiente_ | Curvas de pérdida, overfitting/underfitting, gradientes que se desvanecen/explosionan, dropout, early stopping, gradient clipping, STFT y espectrogramas, transición a CNN (Conv2D + Pooling) | ✅ Deck + Lab |
 | 4 | _Pendiente_ | _Pendiente_ | _Pendiente_ | 🔜 |
 
 > Las fechas y contenidos se publicarán aquí y en `CONSTITUTION.md` conforme se confirmen. Cada sesión consta de un deck en `Slides/pages/sesionN.md` y material práctico en `Sesiones/sesionN/`.
@@ -139,7 +139,7 @@ DL-Javeriana/
 ├── Sesiones/                # 🧪 Material práctico por sesión
 │   ├── sesion1/sesion_1_modelos_autorregresivos.ipynb
 │   ├── sesion2/sesion_2_rnn_lstm_gru.ipynb
-│   ├── sesion3/
+│   ├── sesion3/sesion_3_espectrogramas_cnn.ipynb
 │   └── sesion4/
 └── src/                     # 🐍 Paquete Python reutilizable
     └── dl_javeriana/

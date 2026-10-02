@@ -763,7 +763,12 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 *(Modelo biológico de la neurona: dendritas, soma/núcleo, axón vs modelo artificial de suma ponderada + activación)*
 
 
+<div style="zoom: 0.55;">
+
 ![Taxonomía de algoritmos de Machine Learning](/img/sesion1/Artificial-Neurons-a-computational-model-Source.png)
+
+</div>
+
 </v-click>
 
 ---
@@ -824,7 +829,7 @@ $$h_1 = g\left( w_{1,0}^{[1]} + \sum_{j=1}^3 w_{1,j}^{[1]} x_j \right)$$
 
 <v-clicks>
 
-<div class="h-full flex items-center justify-center pl-2">
+<div class="h-full flex items-center justify-center pl-2" style="zoom: 0.95;">
 <NeuronDetail />
 </div>
 

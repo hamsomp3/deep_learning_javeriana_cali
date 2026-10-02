@@ -142,6 +142,47 @@ layout: two-cols
 </div>
 
 </v-clicks>
+
+---
+layout: two-cols
+---
+
+<v-click>
+
+# Anatomía Interna de la RNN
+
+</v-click>
+
+<div class="text-[12px] leading-snug space-y-2 pr-2">
+
+<v-click>
+
+### Zoom al paso temporal $t=2$: ¿Qué hay dentro de $h_2$?
+
+</v-click>
+
+<v-clicks>
+
+- **La celda recurrente no es un escalar:** Es una **capa densa (*Fully Connected*)** compuesta por $M$ neuronas ocultas.
+- **Entradas simultáneas:** La capa $h_2$ recibe dos fuentes de información:
+  1. <span v-mark.underline.green="1">La memoria previa ($h_1 \in \mathbb{R}^M$)</span> ponderada por la matriz $W^{(h,h)}$.
+  2. <span v-mark.underline.blue="2">La entrada actual ($x_2 \in \mathbb{R}^P$)</span> ponderada por la matriz $W^{(h,x)}$.
+- **Ecuación escalar por cada neurona $m$:**
+  $$h_{2,m} = g\left( \sum_{k=1}^M w_{m,k}^{(h,h)} h_{1,k} + \sum_{p=1}^P w_{m,p}^{(h,x)} x_{2,p} + b_h \right)$$
+- **Generación de la predicción $\hat{y}_2$:**
+  Las $M$ activaciones se combinan mediante $W^{(y,h)}$ para emitir la salida:
+  $$\hat{y}_2 = g\left( \sum_{m=1}^M w_m^{(y,h)} h_{2,m} + b_y \right)$$
+
+</v-clicks>
+
+</div>
+
+::right::
+
+<div class="h-full flex items-center justify-center pl-2">
+  <RnnCellZoom />
+</div>
+
 ---
 layout: two-cols
 ---

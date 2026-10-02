@@ -54,9 +54,9 @@ title: 📚 Índice del Curso (4 Sesiones)
   <span class="hub-no bg-emerald-600">2</span><span class="hub-name">RNN, LSTM &amp; GRU</span><span class="hub-status">✅ Deck</span>
 </Link>
 
-<div class="hub-card hub-soon border border-dashed border-gray-400/50">
-  <span class="hub-no bg-gray-500">3</span><span class="hub-name">Contenido por definir</span><span class="hub-status">🔜</span>
-</div>
+<Link to="/sesion3" class="hub-card border border-cyan-500/40 bg-cyan-500/5 hover:bg-cyan-500/20">
+  <span class="hub-no bg-cyan-600">3</span><span class="hub-name">Diagnóstico, Regularización &amp; Espectrogramas</span><span class="hub-status">✅ Deck</span>
+</Link>
 
 <div class="hub-card hub-soon border border-dashed border-gray-400/50">
   <span class="hub-no bg-gray-500">4</span><span class="hub-name">Contenido por definir</span><span class="hub-status">🔜</span>

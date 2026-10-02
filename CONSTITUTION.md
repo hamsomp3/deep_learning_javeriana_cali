@@ -21,7 +21,7 @@
 | **Duración total** | 8 horas (4 sesiones × 2 horas) |
 | **Sesión 1** | Fecha: PENDIENTE — **Modelos Auto Regresivos** (regresión, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales) |
 | **Sesión 2** | Fecha: PENDIENTE — **Redes Neuronales Recurrentes (RNN, LSTM y GRU)**: orden temporal vs. bag of words, arquitecturas RNN (Many-to-One, One-to-Many, Many-to-Many), desvanecimiento del gradiente, LSTM (celda de memoria y compuertas), GRU y redes bidireccionales |
-| **Sesión 3** | Fecha: PENDIENTE — Contenido: PENDIENTE |
+| **Sesión 3** | Fecha: PENDIENTE — **Diagnóstico, Regularización y Espectrogramas**: curvas de pérdida (overfitting/underfitting), patologías del gradiente (desvanecimiento/explosión), dropout, early stopping, gradient clipping, procesamiento de audio (STFT) y espectrogramas como puente hacia las CNN (Conv2D + Pooling) |
 | **Sesión 4** | Fecha: PENDIENTE — Contenido: PENDIENTE |
 
 > Las fechas y el contenido de cada sesión se completarán cuando sean provistos.
@@ -33,12 +33,15 @@
 
 - [ ] Definir fechas de las 4 sesiones.
 - [x] Definir contenido temático de la sesión 2 (RNN, LSTM y GRU — deck creado).
-- [ ] Definir contenido temático de las sesiones 3 y 4.
+- [x] Definir contenido temático de la sesión 3 (diagnóstico, regularización y espectrogramas — deck creado).
+- [ ] Definir contenido temático de la sesión 4.
 - [ ] Confirmar si el proyecto usará **Streamlit** para demos interactivas (hoy: PENDIENTE).
 - [ ] Definir fuentes de **Datos** del curso (datasets por sesión).
 - [x] Inicializar `Slides/` como proyecto Slidev (hecho: scaffold `slidev@52.19.1`, migrado a pnpm).
 - [ ] Configurar **Ruff** y **pre-commit** en el repo.
-- [ ] Completar `sesion3/4.md` (hoy: placeholders) cuando el tutor entregue el contenido.
+- [x] Completar `sesion3.md` (deck creado con 3 componentes interactivos: `TrainingCurvesDiagnostics`, `PoolingSimulator`, `SpectrogramHeatmap`).
+- [x] Crear el Laboratorio 3 (`Sesiones/sesion3/sesion_3_espectrogramas_cnn.ipynb` — espectrogramas + CNN).
+- [ ] Completar `sesion4.md` (hoy: placeholder).
 - [x] Regla de navegación del menú: toda sesión nueva en `pages/` requiere `routeAlias: sesionN` (ver *Presentaciones con Slidev*).
 - [x] Regla HTML/SVG sin líneas en blanco internas (evita errores *Invalid end tag* al compilar).
 
@@ -129,6 +132,14 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 - `pnpm-workspace.yaml` incluye `shamefullyHoist: true` y `allowBuilds.playwright-chromium: true` (necesario para `slidev export`).
 - Nombre del paquete: `dl-javeriana-slides` (corrige el typo `deep-learnig` del scaffold).
 
+### Deck Sesión 3 — Diagnóstico, Regularización y Espectrogramas
+- **Estructura pedagógica en 4 actos:** (1) diagnóstico clínico del entrenamiento, (2) arsenal de estabilización y regularización, (3) de señales 1D a imágenes 2D (STFT/espectrogramas), (4) introducción a la convolución y pooling.
+- **Tres componentes Vue interactivos nuevos** en `Slides/components/`:
+  - `TrainingCurvesDiagnostics.vue` — alterna 5 estados clínicos (overfitting, underfitting, good fit, gradientes que explotan y que se desvanecen) con receta de regularización y perfil de `‖∇W‖` por capa.
+  - `PoolingSimulator.vue` — matriz 4×4 → salida 2×2 o 1×1 con modos **Max / Average / Global Average Pooling**, calculados dinámicamente.
+  - `SpectrogramHeatmap.vue` — espectrograma sintético `Tiempo × Frecuencia` con conmutador de escala **lineal / dB** y tensor `(124, 129, 1)`.
+- **Puente audio → CNN:** el lab de la sesión clasifica 3 clases de audio usando `tf.signal.stft` + arquitectura `Conv2D → MaxPooling2D → GlobalAveragePooling2D → Dropout → Dense(softmax)`.
+
 ### Estructura de carpetas
 - **Convención en mayúsculas** para los dos módulos principales del curso:
   - `Slides/` → monolito Slidev (todas las presentaciones).
@@ -139,6 +150,7 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 
 - **Sesión 1:** `Sesiones/sesion1/sesion_1_modelos_autorregresivos.ipynb` — red **MLP autorregresiva** sobre *Monthly Sunspots* (FFT, descomposición estacional, ventana deslizante 2D, inferencia recursiva).
 - **Sesión 2:** `Sesiones/sesion2/sesion_2_rnn_lstm_gru.ipynb` — **RNN, LSTM y GRU**: tensor 3D `[samples, time_steps, features]`, *benchmarking* de arquitecturas (parámetros, tiempo, MSE), inferencia paso a paso y *adding problem* para evidenciar el desvanecimiento del gradiente.
+- **Sesión 3:** `Sesiones/sesion3/sesion_3_espectrogramas_cnn.ipynb` — **Espectrogramas + CNN**: dataset sintético de audio de 3 clases (grave, agudo, barrido), STFT (`frame_length=255`, `frame_step=128`) → espectrograma `(124, 129, 1)`, visualización 2D/3D, CNN `Conv2D → MaxPooling2D → GlobalAveragePooling2D → Dropout → Dense(softmax)`, curvas de aprendizaje, matriz de confusión/F1, visualización de filtros, pooling a mano + fórmula de reducción, GAP vs. Flatten, Gradient Clipping en acción, Dropout entrenamiento vs. inferencia y diagnóstico con etiquetas aleatorias (memorización/sobreajuste).
 - **Estilo de los notebooks:** teoría en Markdown + celdas de código reproducibles (semillas fijas: `np.random.seed` / `tf.random.set_seed`), gráficas interactivas con **Plotly** y salidas **no versionadas** (notebook *clean*).
 - **Stack de DL:** **TensorFlow 2 / Keras 3**, elegido por su claridad académica y su API de capas recurrentes.
 
