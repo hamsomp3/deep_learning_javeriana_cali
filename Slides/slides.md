@@ -46,21 +46,21 @@ title: 📚 Índice del Curso (4 Sesiones)
 
 <div class="grid grid-cols-2 gap-x-3 gap-y-1.5">
 
-<Link to="/sesion1" class="hub-card border border-red-500/40 bg-red-500/5 hover:bg-red-500/20">
+<HubNavCard to="/sesion1" class="hub-card border border-red-500/40 bg-red-500/5 hover:bg-red-500/20">
   <span class="hub-no bg-red-600">1</span><span class="hub-name">Modelos Auto Regresivos</span><span class="hub-status">✅ Deck</span>
-</Link>
+</HubNavCard>
 
-<Link to="/sesion2" class="hub-card border border-emerald-500/40 bg-emerald-500/5 hover:bg-emerald-500/20">
+<HubNavCard to="/sesion2" class="hub-card border border-emerald-500/40 bg-emerald-500/5 hover:bg-emerald-500/20">
   <span class="hub-no bg-emerald-600">2</span><span class="hub-name">RNN, LSTM &amp; GRU</span><span class="hub-status">✅ Deck</span>
-</Link>
+</HubNavCard>
 
-<Link to="/sesion3" class="hub-card border border-cyan-500/40 bg-cyan-500/5 hover:bg-cyan-500/20">
+<HubNavCard to="/sesion3" class="hub-card border border-cyan-500/40 bg-cyan-500/5 hover:bg-cyan-500/20">
   <span class="hub-no bg-cyan-600">3</span><span class="hub-name">Diagnóstico, Regularización &amp; Espectrogramas</span><span class="hub-status">✅ Deck</span>
-</Link>
+</HubNavCard>
 
-<div class="hub-card hub-soon border border-dashed border-gray-400/50">
-  <span class="hub-no bg-gray-500">4</span><span class="hub-name">Contenido por definir</span><span class="hub-status">🔜</span>
-</div>
+<HubNavCard to="/sesion4" class="hub-card border border-teal-500/40 bg-teal-500/5 hover:bg-teal-500/20">
+  <span class="hub-no bg-teal-600">4</span><span class="hub-name">Redes Neuronales Convolucionales (CNNs)</span><span class="hub-status">✅ Deck</span>
+</HubNavCard>
 
 </div>
 

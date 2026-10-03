@@ -22,7 +22,7 @@
 | **Sesión 1** | Fecha: PENDIENTE — **Modelos Auto Regresivos** (regresión, funciones de costo, gradiente descendente, NN fully connected, activaciones, hiperparámetros, datos secuenciales) |
 | **Sesión 2** | Fecha: PENDIENTE — **Redes Neuronales Recurrentes (RNN, LSTM y GRU)**: orden temporal vs. bag of words, arquitecturas RNN (Many-to-One, One-to-Many, Many-to-Many), desvanecimiento del gradiente, LSTM (celda de memoria y compuertas), GRU y redes bidireccionales |
 | **Sesión 3** | Fecha: PENDIENTE — **Diagnóstico, Regularización y Espectrogramas**: curvas de pérdida (overfitting/underfitting), patologías del gradiente (desvanecimiento/explosión), dropout, early stopping, gradient clipping, procesamiento de audio (STFT) y espectrogramas como puente hacia las CNN (Conv2D + Pooling) |
-| **Sesión 4** | Fecha: PENDIENTE — Contenido: PENDIENTE |
+| **Sesión 4** | Fecha: PENDIENTE — **Redes Neuronales Convolucionales (CNNs)**: imagen como tensor, colapso de la MLP (flatten), convolución 2D y kernels, padding/stride, convolución 3D multicanal, pooling, jerarquía visual y arquitectura canónica en Keras |
 
 > Las fechas y el contenido de cada sesión se completarán cuando sean provistos.
 > Cada sesión tendrá: diapositivas en `Slides/pages/sesionN.md` + material práctico en `Sesiones/sesionN/`.
@@ -34,14 +34,16 @@
 - [ ] Definir fechas de las 4 sesiones.
 - [x] Definir contenido temático de la sesión 2 (RNN, LSTM y GRU — deck creado).
 - [x] Definir contenido temático de la sesión 3 (diagnóstico, regularización y espectrogramas — deck creado).
-- [ ] Definir contenido temático de la sesión 4.
+- [x] Definir contenido temático de la sesión 4 (CNNs — deck creado).
 - [ ] Confirmar si el proyecto usará **Streamlit** para demos interactivas (hoy: PENDIENTE).
 - [ ] Definir fuentes de **Datos** del curso (datasets por sesión).
 - [x] Inicializar `Slides/` como proyecto Slidev (hecho: scaffold `slidev@52.19.1`, migrado a pnpm).
 - [ ] Configurar **Ruff** y **pre-commit** en el repo.
 - [x] Completar `sesion3.md` (deck creado con 3 componentes interactivos: `TrainingCurvesDiagnostics`, `PoolingSimulator`, `SpectrogramHeatmap`).
 - [x] Crear el Laboratorio 3 (`Sesiones/sesion3/sesion_3_espectrogramas_cnn.ipynb` — espectrogramas + CNN).
-- [ ] Completar `sesion4.md` (hoy: placeholder).
+- [x] Completar `sesion4.md` (deck creado con componente interactivo: `ConvolutionSimulator`).
+- [ ] Crear el Laboratorio 4 (`Sesiones/sesion4/` — hoy solo `.gitkeep`; notebook pendiente: convoluciones manuales, CNN en Keras, feature maps).
+- [x] Fix presenter del menú hub (`HubNavCard` — ver *Historial de Decisiones*).
 - [x] Regla de navegación del menú: toda sesión nueva en `pages/` requiere `routeAlias: sesionN` (ver *Presentaciones con Slidev*).
 - [x] Regla HTML/SVG sin líneas en blanco internas (evita errores *Invalid end tag* al compilar).
 
@@ -140,6 +142,19 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
   - `SpectrogramHeatmap.vue` — espectrograma sintético `Tiempo × Frecuencia` con conmutador de escala **lineal / dB** y tensor `(124, 129, 1)`.
 - **Puente audio → CNN:** el lab de la sesión clasifica 3 clases de audio usando `tf.signal.stft` + arquitectura `Conv2D → MaxPooling2D → GlobalAveragePooling2D → Dropout → Dense(softmax)`.
 
+### Deck Sesión 4 — Redes Neuronales Convolucionales (CNNs)
+- **Estructura pedagógica en 4 actos:** (1) de la imagen al tensor y colapso de la MLP, (2) operación de convolución 2D, (3) geometría (padding/stride/volúmenes 3D), (4) pooling, jerarquía y arquitectura canónica.
+- **Componente Vue interactivo nuevo** en `Slides/components/`:
+  - `ConvolutionSimulator.vue` — kernel $3 \times 3$ deslizante sobre matriz $5 \times 5$ (Sobel Vertical / Laplaciano / Identidad), salida $3 \times 3$ clicable con cálculo $\Sigma (X_{local} \odot K)$ en vivo.
+- **Ecuación dimensional universal:** $O = \lfloor (N + 2p - f)/s \rfloor + 1$ con ejemplo MNIST $28 \to 14$ ($f=3$, $p=1$, $s=2$) y Magic Move Keras `Conv2D + MaxPooling2D → Flatten → Dropout → Dense(softmax)`.
+
+### Fix Presenter del Menú Hub — `HubNavCard`
+- **Síntoma:** con `make slidev-dev` (pestañas `:3030` + `:3030/presenter/`), clicar una sesión desde el índice (`/2`) mataba el modo presenter.
+- **Causa raíz:** el hub usaba `<Link to="/sesionN">` crudo (`RouterLink`). Slidev genera rutas como `getSlideRoutePath`: normal `/<alias>` vs. presenter `/presenter/<alias>`; el link crudo navega a `/sesionN` y **abandona `/presenter/*`**. Verificado en `node_modules/@slidev/client/logic/slidePath.ts` y `composables/useNav.ts` (`go()` sí preserva el prefijo).
+- **Solución:** `Slides/components/HubNavCard.vue` — wrapper que replica el patrón del `TocList` oficial (`builtin/TocList.vue:56`): `<Link :to="isPresenter ? \`/presenter${to}\` : to">`. El hub (`Slides/slides.md`) usa `<HubNavCard to="/sesionN">` en las 4 cards.
+- **Regla de imports Slidev:** en componentes propios importar desde el entrypoint público (`import { useNav } from '@slidev/client'`); el subpath profundo (`@slidev/client/composables/useNav`) **rompe el build** (`[UNLOADABLE_DEPENDENCY]`, exit 1).
+- **Verificación:** `pnpm -C Slides build` en verde + `200` en `/2`, `/sesion1`, `/presenter/2`, `/presenter/sesion1`. Prueba manual: abrir `/presenter/2`, clicar sesión → debe ir a `/presenter/sesionN` con notas/preview intactos.
+
 ### Estructura de carpetas
 - **Convención en mayúsculas** para los dos módulos principales del curso:
   - `Slides/` → monolito Slidev (todas las presentaciones).
@@ -237,9 +252,11 @@ title: Sesión N - ...
 ---
 ```
 
-**Por qué:** el `<Link to="/sesionN">` del menú en `slides.md` genera la ruta `/:no`. Slidev resuelve ese parámetro solo con **número de slide** o con **`frontmatter.routeAlias`** — el campo `id` **NO** sirve para navegación. Sin `routeAlias`, `/sesionN` no matchea y la navegación falla (parece que el menú no funciona o todo es secuencial).
+**Por qué:** el `<HubNavCard to="/sesionN">` del menú en `slides.md` genera la ruta `/:no`. Slidev resuelve ese parámetro solo con **número de slide** o con **`frontmatter.routeAlias`** — el campo `id` **NO** sirve para navegación. Sin `routeAlias`, `/sesionN` no matchea y la navegación falla (parece que el menú no funciona o todo es secuencial).
 
-**Alcance:** aplica a `sesion1`–`sesion4` (ya hechos) y a **cualquier sesión nueva** que se agregue a `slides.md` con `src: ./pages/sesionN.md` + `<Link to="/sesionN">`.
+**Alcance:** aplica a `sesion1`–`sesion4` (ya hechos) y a **cualquier sesión nueva** que se agregue a `slides.md` con `src: ./pages/sesionN.md` + `<HubNavCard to="/sesionN">`.
+
+> **REGLA OBLIGATORIA (modo presenter):** el hub **NO** debe usar `<Link to="/sesionN">` crudo. Debe usar `<HubNavCard to="/sesionN">` (`Slides/components/HubNavCard.vue`), que antepone `/presenter` cuando `useNav().isPresenter` es verdadero — mismo patrón del `TocList` oficial de Slidev. Un `RouterLink` crudo a `/sesionN` clicado desde `/presenter/2` navega a `/sesion1` y **abandona la ruta `/presenter/*`**, matando la vista de presentador (notas, preview, controles).
 
 ### Reglas de HTML/SVG en Markdown (Evitar Errores de Compilación)
 
