@@ -399,6 +399,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[13px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### ¿Por qué el audio crudo es difícil para una red?
@@ -407,23 +409,23 @@ layout: two-cols
 
 <v-clicks>
 
-- **Forma de onda (*Waveform*):** la presión sonora registrada en el tiempo $x(t)$.
-- **Frecuencia de muestreo:** a 16 kHz (estándar de voz), 1 segundo contiene **16.000 muestras** numéricas.
-- **Desafíos:**
-  - Dimensionalidad colosal para una red densa o recurrente.
-  - La forma de onda es extremadamente sensible al desfase de fase.
-- **Solución clásica:** pasar del dominio del tiempo al **dominio de la frecuencia**.
+- **Forma de onda:** presión sonora en el tiempo $x(t)$.
+- **Muestreo:** a 16 kHz, 1 segundo = **16.000 muestras**.
+- **Desafíos:** dimensionalidad colosal y sensibilidad extrema al desfase.
+- **Solución clásica:** pasar al **dominio de la frecuencia**.
 
 </v-clicks>
+
+</div>
 
 ::right::
 
 <v-clicks>
 
 <div class="h-full flex flex-col justify-center items-center pl-2">
-<div class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-xl w-full select-none text-center">
+<div class="p-3 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-xl w-full select-none text-center">
 <div class="font-bold text-slate-700 dark:text-zinc-200 font-mono text-xs">Onda Sonora: Dominio del Tiempo x(t)</div>
-<svg viewBox="0 0 300 120" class="w-full h-[130px]">
+<svg viewBox="0 0 300 120" class="w-full h-[105px]">
 <line x1="10" y1="60" x2="290" y2="60" stroke="#94a3b8" stroke-dasharray="3 3" />
 <path d="M 10 60 Q 30 10 50 60 T 90 60 T 130 60 T 170 60 T 210 60 T 250 60 T 290 60" fill="none" stroke="#2563eb" stroke-width="2" />
 <path d="M 10 60 Q 20 30 30 60 T 50 60 T 70 60 T 90 60 T 110 60 T 130 60 T 150 60 T 170 60 T 190 60 T 210 60 T 230 60 T 250 60 T 270 60 T 290 60" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.7" />
@@ -444,6 +446,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[13px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### STFT: Short-Time Fourier Transform
@@ -452,13 +456,15 @@ layout: two-cols
 
 <v-clicks>
 
-- **El principio:** una Transformada de Fourier global pierde el tiempo. Necesitamos saber *qué frecuencias ocurren y en qué momento*.
-- **Ventana deslizante:** dividimos la señal en fragmentos (`frame_length=255`) y avanzamos con solapamiento (`frame_step=128`).
+- **El principio:** una FFT global pierde el tiempo; importa *qué frecuencias y en qué momento*.
+- **Ventana deslizante:** fragmentos (`frame_length=255`) con solapamiento (`frame_step=128`).
 - A cada ventana se le aplica la FFT:
   $$X(t, f) = \sum_{n=-\infty}^{\infty} x[n] \cdot w[n - t] \cdot e^{-j 2\pi f n}$$
-- **Resultado:** una matriz 2D **Tiempo × Frecuencia** que se procesa como una imagen.
+- **Resultado:** matriz 2D **Tiempo × Frecuencia** = una imagen.
 
 </v-clicks>
+
+</div>
 
 ::right::
 
@@ -551,6 +557,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[13px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### Reducción dimensional e invarianzas espaciales
@@ -559,15 +567,15 @@ layout: two-cols
 
 <v-clicks>
 
-- **Objetivo central:** reducir las dimensiones espaciales preservando la información semántica relevante.
-- **Fórmula de dimensionalidad de salida:**
+- **Objetivo:** reducir dimensiones preservando la semántica.
+- **Fórmula de salida:**
   $$O = \left\lfloor \frac{N - f}{s} \right\rfloor + 1$$
-  - $N$: tamaño de entrada · $f$: tamaño del filtro · $s$: salto (*stride*).
-- **Beneficios clave:**
-  1. Reduce el cómputo y la cantidad de parámetros.
-  2. Aporta **invarianza a traslaciones** y pequeñas perturbaciones.
+- $N$: entrada · $f$: filtro · $s$: stride.
+- **Beneficios:** menos cómputo y parámetros + **invarianza a traslaciones**.
 
 </v-clicks>
+
+</div>
 
 ::right::
 

@@ -44,6 +44,7 @@
 - [x] Completar `sesion4.md` (deck creado con componente interactivo: `ConvolutionSimulator`).
 - [ ] Crear el Laboratorio 4 (`Sesiones/sesion4/` — hoy solo `.gitkeep`; notebook pendiente: convoluciones manuales, CNN en Keras, feature maps).
 - [x] Fix presenter del menú hub (`HubNavCard` — ver *Historial de Decisiones*).
+- [x] QA layout DOM v2 (Playwright, 85 slides en estado final de clicks): 4 overflows reales corregidos (`/41` Talón de Aquiles 90px, `/57` Audio 37px, `/58` Espectrograma 4px, `/61` Pooling S3 67px); `/69` es apilado intencional de canales RGB (falso positivo). Scripts en `qa/` temporal, no versionados.
 - [x] Regla de navegación del menú: toda sesión nueva en `pages/` requiere `routeAlias: sesionN` (ver *Presentaciones con Slidev*).
 - [x] Regla HTML/SVG sin líneas en blanco internas (evita errores *Invalid end tag* al compilar).
 

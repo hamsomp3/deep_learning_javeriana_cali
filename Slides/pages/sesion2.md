@@ -230,6 +230,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[13px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### Desvanecimiento del Gradiente (*Vanishing Gradient*)
@@ -238,28 +240,29 @@ layout: two-cols
 
 <v-clicks>
 
-- **Backpropagation Through Time (BPTT):** Para ajustar los pesos, el gradiente debe retroceder multiplicándose en cada paso temporal:
+- **BPTT:** para ajustar los pesos, el gradiente se multiplica hacia atrás en cada paso:
   $$\frac{\partial \mathcal{L}_T}{\partial h_1} = \frac{\partial \mathcal{L}_T}{\partial h_T} \prod_{j=2}^T \frac{\partial h_j}{\partial h_{j-1}}$$
-- **El producto sucesivo de derivadas:**
-  - Si los eigenvalores de $W_{hh} < 1$ o la derivada de $\tanh < 1$, el gradiente se atenúa exponencialmente hacia **cero**.
-- **Consecuencia práctica:** la red sufre **amnesia a corto plazo**: no recuerda lo visto hace más de 8 o 10 pasos atrás.
+- **Producto de derivadas:** si $|W_{hh}| < 1$ o $\tanh' < 1$, el gradiente decae a **cero**.
+- **Consecuencia:** **amnesia a corto plazo** — no recuerda lo visto 8-10 pasos atrás.
 
 </v-clicks>
+
+</div>
 
 ::right::
 
 <v-clicks>
 
 <div class="h-full flex flex-col justify-center items-center pl-2">
-<div class="p-5 rounded-2xl bg-rose-50/80 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 shadow-xl text-xs select-none w-full space-y-3">
-<div class="font-bold text-rose-900 dark:text-rose-200 text-sm flex items-center gap-1.5">
+<div class="p-3 rounded-2xl bg-rose-50/80 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 shadow-xl text-xs select-none w-full space-y-2">
+<div class="font-bold text-rose-900 dark:text-rose-200 text-[13px] flex items-center gap-1.5">
 <span>⚠️</span> Pérdida de Dependencias a Largo Plazo
 </div>
-<div class="p-3 bg-white dark:bg-zinc-900 rounded-xl border border-rose-200 dark:border-zinc-800 font-serif text-[11px] leading-relaxed">
-"Los <strong>perros</strong> que vi corriendo por el parque detrás de los niños durante aquella fría tarde de invierno en Bogotá <span v-mark.circle.red="1">[ estaban / estaba ]</span> cansados."
+<div class="p-2.5 bg-white dark:bg-zinc-900 rounded-xl border border-rose-200 dark:border-zinc-800 font-serif text-[11px] leading-snug">
+"Los <strong>perros</strong> que vi corriendo detrás de los niños <span v-mark.circle.red="1">[ estaban / estaba ]</span> cansados."
 </div>
-<p class="text-slate-600 dark:text-zinc-300 leading-normal">
-Para cuando la RNN llega al verbo final, la influencia del gradiente del sujeto plural <em>("Los perros")</em> se ha desvanecido por completo.
+<p class="text-slate-600 dark:text-zinc-300 leading-snug text-[11px]">
+Al llegar al verbo final, el sujeto plural ya se desvaneció del gradiente.
 </p>
 </div>
 </div>

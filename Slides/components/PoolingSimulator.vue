@@ -57,10 +57,10 @@ const operatorLabel = computed(() => (mode.value === 'max' ? 'max()' : mode.valu
 </script>
 
 <template>
-  <div class="flex flex-col items-center bg-white/90 dark:bg-zinc-900/90 p-3.5 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xl backdrop-blur-md select-none w-full max-w-[430px]">
+  <div class="flex flex-col items-center bg-white/90 dark:bg-zinc-900/90 p-2.5 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xl backdrop-blur-md select-none w-full max-w-[430px]">
 
     <!-- Encabezado: filtro/stride + selector de modo -->
-    <div class="flex items-center justify-between w-full mb-3 gap-2 flex-wrap">
+    <div class="flex items-center justify-between w-full mb-2 gap-2 flex-wrap">
       <div class="text-[11px] font-mono font-bold text-slate-700 dark:text-zinc-200">
         Filtro f&nbsp;=&nbsp;2×2 &nbsp;|&nbsp; Stride s&nbsp;=&nbsp;2
       </div>
@@ -138,7 +138,7 @@ const operatorLabel = computed(() => (mode.value === 'max' ? 'max()' : mode.valu
     </div>
 
     <!-- Leyenda matemática y explicación -->
-    <div class="w-full mt-2.5 p-2 rounded-xl bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700 text-xs">
+    <div class="w-full mt-1.5 p-2 rounded-xl bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700 text-xs">
       <div class="font-bold text-slate-800 dark:text-zinc-100 flex justify-between gap-2">
         <span v-if="mode === 'max'">Max Pooling: activación dominante</span>
         <span v-else-if="mode === 'avg'">Average Pooling: suavizado contextual</span>
