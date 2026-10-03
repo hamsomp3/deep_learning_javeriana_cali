@@ -77,7 +77,7 @@ slidev-build: ## Build estático del SPA
 	pnpm -C Slides build
 
 slidev-export: ## Exportar monolito completo a PDF
-	pnpm -C Slides export
+	pnpm -C Slides export -- --with-clicks
 
 slidev-format: ## Formatear slides.md con Slidev
 	pnpm -C Slides exec slidev format
@@ -123,28 +123,28 @@ slidev-c4: ## Clase 4 (dev aislado)
 slidev-c1-export: ## Exportar Clase 1 a PDF (individual)
 	@echo ">>> Exportando Clase 1 a PDF..."
 	@printf -- '---\nsrc: ./pages/sesion1.md\n---\n' > Slides/sesion1-export.md
-	@cd Slides && pnpm exec slidev export sesion1-export.md --output "../Sesion1.pdf" --timeout 120000
+	@cd Slides && pnpm exec slidev export sesion1-export.md --output "../Sesion1.pdf" --with-clicks --timeout 120000
 	@rm -f Slides/sesion1-export.md
 	@echo ">>> PDF generado: Sesion1.pdf"
 
 slidev-c2-export: ## Exportar Clase 2: RNN, LSTM y GRU a PDF (individual)
 	@echo ">>> Exportando Clase 2 a PDF..."
 	@printf -- '---\nsrc: ./pages/sesion2.md\n---\n' > Slides/sesion2-export.md
-	@cd Slides && pnpm exec slidev export sesion2-export.md --output "../Sesion2.pdf" --timeout 120000
+	@cd Slides && pnpm exec slidev export sesion2-export.md --output "../Sesion2.pdf" --with-clicks --timeout 120000
 	@rm -f Slides/sesion2-export.md
 	@echo ">>> PDF generado: Sesion2.pdf"
 
 slidev-c3-export: ## Exportar Clase 3 a PDF (individual)
 	@echo ">>> Exportando Clase 3 a PDF..."
 	@printf -- '---\nsrc: ./pages/sesion3.md\n---\n' > Slides/sesion3-export.md
-	@cd Slides && pnpm exec slidev export sesion3-export.md --output "../Sesion3.pdf" --timeout 120000
+	@cd Slides && pnpm exec slidev export sesion3-export.md --output "../Sesion3.pdf" --with-clicks --timeout 120000
 	@rm -f Slides/sesion3-export.md
 	@echo ">>> PDF generado: Sesion3.pdf"
 
 slidev-c4-export: ## Exportar Clase 4 a PDF (individual)
 	@echo ">>> Exportando Clase 4 a PDF..."
 	@printf -- '---\nsrc: ./pages/sesion4.md\n---\n' > Slides/sesion4-export.md
-	@cd Slides && pnpm exec slidev export sesion4-export.md --output "../Sesion4.pdf" --timeout 120000
+	@cd Slides && pnpm exec slidev export sesion4-export.md --output "../Sesion4.pdf" --with-clicks --timeout 120000
 	@rm -f Slides/sesion4-export.md
 	@echo ">>> PDF generado: Sesion4.pdf"
 

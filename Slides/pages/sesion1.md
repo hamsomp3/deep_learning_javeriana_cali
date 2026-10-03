@@ -53,12 +53,8 @@ layout: two-cols
 ---
 layout: two-cols
 ---
-
-<v-click>
-
-
-
-</v-click>
+layout: two-cols
+---
 
 <v-click>
 
@@ -70,50 +66,9 @@ layout: two-cols
 
 - **Relación lineal:** Este modelo describe una relación lineal entre las entradas $x$ y las salidas $y$.
 - Donde $w_0$ y $w_1$ *(weights)* representan el intercepto y la pendiente de la recta, respectivamente.
-
-
-</v-clicks>
-
-<v-clicks>
-
-$$y = w_0 + w_1 \cdot x$$
-
-</v-clicks>
-
-::right::
-
-<v-clicks>
-
-
-<div class="h-full flex items-center justify-center">
-<LinearRegressionPlot />
-</div>
-
-</v-clicks>
-
-
-
----
-layout: two-cols
----
-
-<v-click>
-
-
-
-</v-click>
-
-<v-click>
-
-# Regresión Lineal
-
-</v-click>
-
-<v-clicks>
-
-- Los pesos pueden tomar cualquier valor.
-- Diferentes pesos producen diferentes rectas.
+- Los pesos pueden tomar cualquier valor y diferentes pesos producen diferentes rectas.
 - Es necesario calcular la función de costo *(para encontrar los mejores pesos)*.
+
 </v-clicks>
 
 <v-clicks>
@@ -125,7 +80,6 @@ $$y = w_0 + w_1 \cdot x$$
 ::right::
 
 <v-clicks>
-
 
 <div class="h-full flex items-center justify-center">
 <LinearRegressionPlot />
@@ -257,13 +211,6 @@ layout: two-cols
 
 <v-click>
 
-
-
-</v-click>
-
-
-<v-click>
-
 # Gradiente Descendente
 
 </v-click>
@@ -306,17 +253,15 @@ layout: two-cols
 
 <v-click>
 
-
-
-# Gradiente Descendente
+# Superficies de Costo No Convexas
 
 </v-click>
 
 <v-clicks>
 
-$$\mathcal{L}(w_1) = \sum_{i=1}^N (w_1 \cdot x_i - y_i)^2$$
-
-$$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
+- En redes profundas $J(\theta_0, \theta_1)$ ya no es un tazón: aparecen **mínimos locales**, **puntos de silla** (*saddle points*) y valles planos.
+- El gradiente descendente converge al mínimo de **su propia cuenca de atracción**, no necesariamente al mínimo global.
+- La trayectoria depende de la inicialización $w^{(0)}$ y de $\alpha$: pasos grandes oscilan, pasos pequeños se estancan.
 
 </v-clicks>
 
@@ -325,55 +270,7 @@ $$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
 <v-clicks>
 
 
-![*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*](/img/sesion1/img06.jpg)
-
-</v-clicks>
-
----
-layout: two-cols
----
-
-
-
-# Gradiente Descendente
-
-
-$$\mathcal{L}(w_1) = \sum_{i=1}^N (w_1 \cdot x_i - y_i)^2$$
-
-$$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
-
-
-
-::right::
-
-<v-clicks>
-
-
-![*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*](/img/sesion1/img07.jpg)
-
-</v-clicks>
-
----
-layout: two-cols
----
-
-
-
-
-# Gradiente Descendente
-
-
-$$\mathcal{L}(w_1) = \sum_{i=1}^N (w_1 \cdot x_i - y_i)^2$$
-
-$$w^{(t+1)} = w^{(t)} - \alpha \nabla f_i(w^{(t)})$$
-
-
-::right::
-
-<v-clicks>
-
-
-![*(Superficie no convexa $J(\theta_0, \theta_1)$ y trayectoria de convergencia hacia un mínimo)*](/img/sesion1/img08.jpg)
+![Superficie no convexa y trayectoria de convergencia hacia un mínimo](/img/sesion1/img06.jpg)
 
 </v-clicks>
 
@@ -393,254 +290,10 @@ layout: two-cols
 
 - Se puede aplicar a datos con **múltiples atributos**.
 - Los parámetros del modelo se estiman a partir de los conceptos de **Función de costo** y **Gradiente descendente**.
-
-$$\hat{y} = w_0 + \sum_{j=1}^m w_j \cdot x_j$$
-
-</v-clicks>
-
-::right::
-
-<div class="h-full flex items-center justify-center">
-<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-  <defs>
-  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-  </marker>
-  </defs>
-  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  </svg>
-  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">0</sub>
-  </span>
-  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">1</sub>
-  </span>
-  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">2</sub>
-  </span>
-  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] italic">m</sub>
-  </span>
-  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
-    1
-  </div>
-  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs not-italic">1</sub>
-  </div>
-  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs not-italic">2</sub>
-  </div>
-  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
-    &#8942;
-  </div>
-  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs italic">m</sub>
-  </div>
-  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
-    ŷ
-  </div>
-</div>
-</div>
-
----
-layout: two-cols
----
-
-<v-click>
-
-
-
-# Regresión Lineal Multivariada
-
-</v-click>
-
-<v-clicks>
-
 - En este caso, la predicción se calcula como una **combinación lineal** de todos los atributos de entrada.
 
 $$\hat{y} = w_0 + \sum_{j=1}^m w_j \cdot x_j$$
 
-</v-clicks>
-
-::right::
-
-<div class="h-full flex items-center justify-center">
-<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-  <defs>
-  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-  </marker>
-  </defs>
-  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  </svg>
-  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">0</sub>
-  </span>
-  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">1</sub>
-  </span>
-  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">2</sub>
-  </span>
-  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] italic">m</sub>
-  </span>
-  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
-    1
-  </div>
-  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs not-italic">1</sub>
-  </div>
-  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs not-italic">2</sub>
-  </div>
-  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
-    &#8942;
-  </div>
-  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs italic">m</sub>
-  </div>
-  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
-    ŷ
-  </div>
-</div>
-</div>
-
----
-layout: two-cols
----
-
-<v-click>
-
-
-
-# Regresión Logística
-
-</v-click>
-
-<v-clicks>
-
-- Realiza predicciones a partir de una combinación lineal.
-- Se mide la probabilidad de que una instancia pertenezca a una de las dos clases (**clasificación binaria**).
-
-</v-clicks>
-
-<v-clicks>
-
-$$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j \right)$$
-
-</v-clicks>
-
-
-<v-clicks>
-
-*Donde:*
-
-</v-clicks>
-
-<v-clicks>
-
-- $\hat{y}$ es la probabilidad de que $y = 1$ dado el vector de atributos $\mathbf{x}$.
-- $\sigma(\cdot)$ es la función sigmoide.
-
-</v-clicks>
-
-::right::
-
-<div class="h-full flex items-center justify-center">
-<div class="relative w-[280px] h-[330px] mx-auto select-none font-serif">
-  <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 330">
-  <defs>
-  <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-  <path d="M 0 1.5 L 8 5 L 0 8.5 z" class="fill-[#1e296b] dark:fill-indigo-300" />
-  </marker>
-  </defs>
-  <line x1="62" y1="38" x2="214" y2="152" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="64" y1="102" x2="210" y2="158" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="65" y1="166" x2="209" y2="166" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  <line x1="62" y1="280" x2="214" y2="180" class="stroke-[#1e296b] dark:stroke-indigo-300" stroke-width="2" marker-end="url(#arrow)" />
-  </svg>
-  <span class="absolute left-[128px] top-[85px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">0</sub>
-  </span>
-  <span class="absolute left-[128px] top-[120px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">1</sub>
-  </span>
-  <span class="absolute left-[128px] top-[158px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] not-italic">2</sub>
-  </span>
-  <span class="absolute left-[126px] top-[225px] px-0.5 text-sm font-serif italic text-[#1e296b] dark:text-indigo-300 bg-white dark:bg-[#121212] leading-none">
-    w<sub class="text-[10px] italic">m</sub>
-  </span>
-  <div class="absolute left-[20px] top-[16px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif shadow-sm">
-    1
-  </div>
-  <div class="absolute left-[20px] top-[80px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs not-italic">1</sub>
-  </div>
-  <div class="absolute left-[20px] top-[144px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs not-italic">2</sub>
-  </div>
-  <div class="absolute left-[20px] top-[204px] w-11 flex justify-center text-2xl font-serif text-slate-700 dark:text-slate-300">
-    &#8942;
-  </div>
-  <div class="absolute left-[20px] top-[258px] w-11 h-11 rounded-full border-2 border-[#166534] bg-[#9de2b8] text-[#14532d] flex items-center justify-center text-lg font-serif italic shadow-sm">
-    x<sub class="text-xs italic">m</sub>
-  </div>
-  <div class="absolute left-[215px] top-[144px] w-11 h-11 rounded-full border-2 border-[#991b1b] bg-[#fca5a5] text-[#7f1d1d] flex items-center justify-center text-xl font-serif italic shadow-sm">
-    ŷ
-  </div>
-</div>
-</div>
-
----
-layout: two-cols
----
-
-<v-click>
-
-
-
-</v-click>
-
-<v-click>
-
-# Regresión Logística
-
-</v-click>
-
-<v-clicks>
-
-- La combinación lineal toma cualquier valor real.
-- Para mapear la predicción a una **probabilidad**, se usa la **función sigmoidal**.
-
-</v-clicks>
-
-<v-clicks>
-
-$$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j \right)$$
-
-</v-clicks>
-
-<v-clicks>
-
-*Donde:*
-
-</v-clicks>
-
-
-<v-clicks>
-
-- $\hat{y}$ es la probabilidad de que $y = 1$ dado el vector de atributos $\mathbf{x}$.
-- $\sigma(\cdot)$ es la función sigmoide.
 </v-clicks>
 
 ::right::
@@ -740,10 +393,10 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 </div>
 
 ---
+layout: two-cols
+---
 
 <v-click>
-
-
 
 # Red Neuronal Fully Connected
 
@@ -760,16 +413,25 @@ $$\hat{y} = p(y = 1 \mid \mathbf{x}) = \sigma \left( w_0 + \sum_{j=1}^m w_j x_j 
 <v-click>
 
 ### ¿Cuántas capas tiene la NN?
-*(Modelo biológico de la neurona: dendritas, soma/núcleo, axón vs modelo artificial de suma ponderada + activación)*
-
-
-<div style="zoom: 0.55;">
-
-![Taxonomía de algoritmos de Machine Learning](/img/sesion1/Artificial-Neurons-a-computational-model-Source.png)
-
-</div>
 
 </v-click>
+
+::right::
+
+<v-clicks>
+
+<div class="h-full flex flex-col justify-center gap-2 pl-2 select-none">
+<div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-xs">
+<div class="font-bold text-emerald-700 dark:text-emerald-300">🧬 Neurona biológica</div>
+<div class="text-slate-600 dark:text-zinc-300 mt-1">Dendritas reciben → Soma/núcleo integra → Axón transmite</div>
+</div>
+<div class="p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-300 dark:border-indigo-800 text-xs">
+<div class="font-bold text-indigo-700 dark:text-indigo-300">⚙️ Neurona artificial (McCulloch-Pitts)</div>
+<div class="text-slate-600 dark:text-zinc-300 mt-1">Suma ponderada de entradas × pesos + sesgo, luego activación g(·)</div>
+</div>
+</div>
+
+</v-clicks>
 
 ---
 
@@ -802,7 +464,7 @@ layout: two-cols
 
 <v-click>
 
-
+# Capas Ocultas y Notación Matricial
 
 </v-click>
 
@@ -1132,41 +794,31 @@ class: text-center
 
 <v-click>
 
-
-
-</v-click>
-
-<v-clicks>
-
 # 🎮 Juguemos un rato con una NN
 
-*(Demostración práctica interactiva / TensorFlow Playground)*
-
-</v-clicks>
-
----
+</v-click>
 
 <v-click>
 
-
-
-# Datos Secuenciales
+### Demostración interactiva en TensorFlow Playground
 
 </v-click>
 
-<v-clicks>
-
-- ¿Qué son los datos secuenciales?
-
-*(Ejemplo: series financieras, índice bursátil Dow Jones a lo largo del tiempo)*
-
-</v-clicks>
+<div class="max-w-xl mx-auto mt-6 p-6 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-2xl text-left text-sm space-y-4 select-none">
+<div v-click class="p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900">
+<div class="font-bold text-indigo-700 dark:text-indigo-300">🔗 playground.tensorflow.org</div>
+<div class="text-xs text-slate-500 mt-1">Abrir en el navegador del salón y proyectar. Sin instalación.</div>
+</div>
+<div v-click class="text-xs text-slate-600 dark:text-zinc-300 space-y-1.5">
+<div><strong>Reto 1:</strong> Con datos en espiral, ¿qué pasa si quitamos todas las activaciones no lineales?</div>
+<div><strong>Reto 2:</strong> ¿Cuántas neuronas necesita la capa oculta para separar dos círculos concéntricos?</div>
+<div><strong>Reto 3:</strong> Sube el <em>learning rate</em> a 1.0 — ¿qué le pasa a la frontera de decisión?</div>
+</div>
+</div>
 
 ---
 
 <v-click>
-
-
 
 # Datos Secuenciales
 
@@ -1177,6 +829,7 @@ class: text-center
 - ¿Qué son los datos secuenciales?
 - **El dato actual depende de la información anterior.**
 - **Dependencia temporal.**
+- *(Ejemplo: series financieras, índice bursátil Dow Jones a lo largo del tiempo)*
 
 </v-clicks>
 
@@ -1281,7 +934,7 @@ layout: two-cols
 
 <div class="h-full flex flex-col justify-center items-center pl-2">
 <div class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-lg text-xs font-mono select-none w-full">
-  <div class="text-slate-500 mb-2 font-sans font-bold">Concepto de Ventana Deslizante ($n=3$):</div>
+  <div class="text-slate-500 mb-2 font-sans font-bold">Concepto de Ventana Deslizante (n = 3):</div>
   <div class="space-y-1.5">
   <div class="p-1.5 rounded bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 flex justify-between">
   <span>X₁: [T₁, T₂, T₃]</span> <span class="text-rose-600 font-bold">→ Y₁: T₄</span>
@@ -1336,3 +989,4 @@ history = model.fit(
 )
 ```
 
+````

@@ -153,7 +153,7 @@ layout: two-cols
 
 </v-click>
 
-<div class="text-[12px] leading-snug space-y-2 pr-2">
+<div class="text-[12px] leading-snug space-y-1 pr-2">
 
 <v-click>
 
@@ -163,14 +163,13 @@ layout: two-cols
 
 <v-clicks>
 
-- **La celda recurrente no es un escalar:** Es una **capa densa (*Fully Connected*)** compuesta por $M$ neuronas ocultas.
-- **Entradas simultáneas:** La capa $h_2$ recibe dos fuentes de información:
-  1. <span v-mark.underline.green="1">La memoria previa ($h_1 \in \mathbb{R}^M$)</span> ponderada por la matriz $W^{(h,h)}$.
-  2. <span v-mark.underline.blue="2">La entrada actual ($x_2 \in \mathbb{R}^P$)</span> ponderada por la matriz $W^{(h,x)}$.
-- **Ecuación escalar por cada neurona $m$:**
+- **La celda no es un escalar:** es una **capa densa** de $M$ neuronas ocultas.
+- **Dos entradas simultáneas:**
+  1. <span v-mark.underline.green="1">Memoria previa ($h_1 \in \mathbb{R}^M$)</span> ponderada por $W^{(h,h)}$.
+  2. <span v-mark.underline.blue="2">Entrada actual ($x_2 \in \mathbb{R}^P$)</span> ponderada por $W^{(h,x)}$.
+- **Ecuación escalar por neurona $m$:**
   $$h_{2,m} = g\left( \sum_{k=1}^M w_{m,k}^{(h,h)} h_{1,k} + \sum_{p=1}^P w_{m,p}^{(h,x)} x_{2,p} + b_h \right)$$
-- **Generación de la predicción $\hat{y}_2$:**
-  Las $M$ activaciones se combinan mediante $W^{(y,h)}$ para emitir la salida:
+- **Predicción $\hat{y}_2$:** combina las $M$ activaciones con $W^{(y,h)}$:
   $$\hat{y}_2 = g\left( \sum_{m=1}^M w_m^{(y,h)} h_{2,m} + b_y \right)$$
 
 </v-clicks>
@@ -193,6 +192,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[12px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### Taxonomía de Arquitecturas Recurrentes
@@ -201,12 +202,14 @@ layout: two-cols
 
 <v-clicks>
 
-- **Many-to-One:** Secuencia de entrada ➔ Una sola predicción al final *(Análisis de sentimientos, clasificación de audios)*.
-- **One-to-Many:** Una sola entrada semilla ➔ Secuencia completa de salida *(Generación de música, subtitulado de imágenes)*.
-- **Many-to-Many Sincronizado ($T_x = T_y$):** Salida por cada instante de entrada *(POS Tagging gramatical, predicción de series)*.
-- **Many-to-Many Asíncrono ($T_x \neq T_y$):** Modelo Encoder-Decoder *(Traducción de idiomas, resumidores automáticos)*.
+- **Many-to-One:** Secuencia ➔ una predicción *(sentimientos, audios)*.
+- **One-to-Many:** Una semilla ➔ secuencia *(música, subtítulos)*.
+- **Many-to-Many Sincronizado ($T_x = T_y$):** salida por instante *(POS tagging, series)*.
+- **Many-to-Many Asíncrono ($T_x \neq T_y$):** Encoder-Decoder *(traducción, resúmenes)*.
 
 </v-clicks>
+
+</div>
 
 ::right::
 
@@ -239,34 +242,28 @@ layout: two-cols
   $$\frac{\partial \mathcal{L}_T}{\partial h_1} = \frac{\partial \mathcal{L}_T}{\partial h_T} \prod_{j=2}^T \frac{\partial h_j}{\partial h_{j-1}}$$
 - **El producto sucesivo de derivadas:**
   - Si los eigenvalores de $W_{hh} < 1$ o la derivada de $\tanh < 1$, el gradiente se atenúa exponencialmente hacia **cero**.
+- **Consecuencia práctica:** la red sufre **amnesia a corto plazo**: no recuerda lo visto hace más de 8 o 10 pasos atrás.
 
 </v-clicks>
 
 ::right::
 
-
-<v-clicks>
-
-- **Consecuencia práctica:**
-  - La red sufre de **amnesia a corto plazo**: no recuerda palabras o datos vistos hace más de 8 o 10 pasos atrás.
-
-</v-clicks>
-
 <v-clicks>
 
 <div class="h-full flex flex-col justify-center items-center pl-2">
 <div class="p-5 rounded-2xl bg-rose-50/80 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 shadow-xl text-xs select-none w-full space-y-3">
-  <div class="font-bold text-rose-900 dark:text-rose-200 text-sm flex items-center gap-1.5">
-  <span>⚠️</span> Pérdida de Dependencias a Largo Plazo
-  </div>
-  <div class="p-3 bg-white dark:bg-zinc-900 rounded-xl border border-rose-200 dark:border-zinc-800 font-serif text-[11px] leading-relaxed">
-    "Los <strong>perros</strong> que vi corriendo por el parque detrás de los niños durante aquella fría tarde de invierno en Bogotá <span v-mark.circle.red="1">[ estaban / estaba ]</span> cansados."
-  </div>
-  <p class="text-slate-600 dark:text-zinc-300 leading-normal">
-    Para cuando la RNN llega al verbo final, la influencia del gradiente del sujeto plural <em>("Los perros")</em> se ha desvanecido por completo.
-  </p>
+<div class="font-bold text-rose-900 dark:text-rose-200 text-sm flex items-center gap-1.5">
+<span>⚠️</span> Pérdida de Dependencias a Largo Plazo
+</div>
+<div class="p-3 bg-white dark:bg-zinc-900 rounded-xl border border-rose-200 dark:border-zinc-800 font-serif text-[11px] leading-relaxed">
+"Los <strong>perros</strong> que vi corriendo por el parque detrás de los niños durante aquella fría tarde de invierno en Bogotá <span v-mark.circle.red="1">[ estaban / estaba ]</span> cansados."
+</div>
+<p class="text-slate-600 dark:text-zinc-300 leading-normal">
+Para cuando la RNN llega al verbo final, la influencia del gradiente del sujeto plural <em>("Los perros")</em> se ha desvanecido por completo.
+</p>
 </div>
 </div>
+
 </v-clicks>
 
 ---
@@ -322,6 +319,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[12px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### Cho et al. (2014) — La alternativa simplificada
@@ -330,15 +329,17 @@ layout: two-cols
 
 <v-clicks>
 
-- **Motivación:** LSTM es potente pero costosa en cómputo (4 matrices de pesos por celda).
-- **Fusión de estados:** Unifica el estado celular $C_t$ y el estado oculto $h_t$ en una sola variable: <span v-mark.underline.orange="1">$h_t$</span>.
-- **Solo 2 compuertas principales:**
-  - **$\Gamma_u$ (*Update Gate*):** Decide si conservar el estado anterior o actualizarlo.
-  - **$\Gamma_r$ (*Reset Gate*):** Decide qué tanto del estado anterior influye en el nuevo candidato $\tilde{h}_t$.
-- **Actualización convexa elegante:**
+- **Motivación:** LSTM es potente pero costosa (4 matrices por celda).
+- **Fusión de estados:** $C_t$ y $h_t$ en una sola variable: <span v-mark.underline.orange="1">$h_t$</span>.
+- **Solo 2 compuertas:**
+  - **$\Gamma_u$ (*Update*):** conservar o actualizar el estado.
+  - **$\Gamma_r$ (*Reset*):** cuánto influye el pasado en $\tilde{h}_t$.
+- **Actualización convexa:**
   $$h_t = (1 - \Gamma_u) \odot h_{t-1} + \Gamma_u \odot \tilde{h}_t$$
 
 </v-clicks>
+
+</div>
 
 ::right::
 

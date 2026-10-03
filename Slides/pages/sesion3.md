@@ -354,7 +354,7 @@ layout: default
 </div>
 <div v-click class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-lg">
 <div class="font-bold text-emerald-600 dark:text-emerald-400">Weight Decay (L2)</div>
-<div class="text-xs text-slate-600 dark:text-zinc-300 mt-1">Penaliza pesos grandes: $\mathcal{L} + \lambda \sum w^2$. Mantiene la función suave y evita el sobreajuste.</div>
+<div class="text-xs text-slate-600 dark:text-zinc-300 mt-1">Penaliza pesos grandes con penalización L2 sobre los pesos (λ · Σw²). Mantiene la función suave y evita el sobreajuste.</div>
 </div>
 <div v-click class="p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 shadow-lg">
 <div class="font-bold text-amber-600 dark:text-amber-400">Data Augmentation</div>
@@ -503,6 +503,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[12px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### ¿Por qué aplicar convolución 2D a un espectrograma?
@@ -511,12 +513,14 @@ layout: two-cols
 
 <v-clicks>
 
-- **El audio se convirtió en una imagen:** tensor de entrada `(124, 129, 1)` *(Tiempo, Frecuencia, Canal)*.
-- **Patrones locales acústicos:** los fonemas tienen firmas espectrales distintivas (formantes, silencios, transitorios).
-- **Invarianza a traslaciones:** una palabra pronunciada 100 ms después conserva su forma, solo se desplaza en el eje temporal.
-- Las capas **`Conv2D`** extraen estos patrones locales con **filtros compartidos** (muchos menos parámetros que una red densa).
+- **El audio se convirtió en una imagen:** tensor `(124, 129, 1)` *(Tiempo, Frecuencia, Canal)*.
+- **Patrones locales:** los fonemas tienen firmas espectrales (formantes, silencios, transitorios).
+- **Invarianza temporal:** una palabra 100 ms después conserva su forma, solo se desplaza en el eje temporal.
+- Las capas **`Conv2D`** extraen esos patrones con **filtros compartidos** (muchos menos parámetros que una red densa).
 
 </v-clicks>
+
+</div>
 
 ::right::
 
@@ -588,7 +592,7 @@ layout: two-cols
 <div>
 <div class="text-indigo-600 dark:text-indigo-400 font-bold text-lg mb-2 flex items-center gap-2"><span>⚡</span> Max Pooling</div>
 <ul class="text-xs text-slate-600 dark:text-zinc-300 space-y-2.5 list-disc pl-4">
-<li><strong>Operación:</strong> toma el valor máximo dentro de cada ventana: $\max(R)$.</li>
+<li><strong>Operación:</strong> toma el valor máximo dentro de cada ventana: max(R).</li>
 <li><strong>Semántica:</strong> "¿apareció la característica buscada en esta región?" (un borde, un formante).</li>
 <li><strong>Uso:</strong> entre bloques de convolución intermedios para resaltar patrones fuertes.</li>
 </ul>
@@ -599,7 +603,7 @@ layout: two-cols
 <div>
 <div class="text-emerald-600 dark:text-emerald-400 font-bold text-lg mb-2 flex items-center gap-2"><span>🌊</span> Average Pooling</div>
 <ul class="text-xs text-slate-600 dark:text-zinc-300 space-y-2.5 list-disc pl-4">
-<li><strong>Operación:</strong> promedio aritmético de la región: $\frac{1}{|R|} \sum x_i$.</li>
+<li><strong>Operación:</strong> promedio aritmético de la región: (1 / |R|) · Σ xᵢ.</li>
 <li><strong>Semántica:</strong> mide la presencia media o el contexto general del mapa.</li>
 <li><strong>Uso:</strong> muy común como <em>Global Average Pooling</em> antes de la capa final.</li>
 </ul>

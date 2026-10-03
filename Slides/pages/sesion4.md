@@ -230,6 +230,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[12px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### Producto punto deslizante
@@ -238,14 +240,16 @@ layout: two-cols
 
 <v-clicks>
 
-- **Kernel / Filtro ($\mathbf{K}$):** Una pequeña matriz de pesos entrenables (típicamente $3 \times 3$ o $5 \times 5$).
-- **Operación Local:** El filtro se superpone en una región de la entrada, multiplica elemento a elemento con los píxeles y suma los resultados más un sesgo (*bias*):
-  $$S(i, j) = (I * K)(i, j) = \sum_{m} \sum_{n} I(i + m, j + n) K(m, n) + b$$
-- **Dos Principios Revolucionarios:**
-  1. <span v-mark.underline.indigo="1">Conexiones Locales (*Local Receptive Field*):</span> Cada neurona solo observa un parche diminuto de la imagen.
-  2. <span v-mark.circle.emerald="2">Pesos Compartidos (*Weight Sharing*):</span> El mismo filtro se reutiliza en **toda** la imagen.
+- **Kernel ($\mathbf{K}$):** matriz pequeña de pesos entrenables ($3 \times 3$ o $5 \times 5$).
+- **Operación local:** superpone el filtro, multiplica elemento a elemento y suma + sesgo $b$:
+  $$S(i,j) = (I * K)(i,j) = \sum_m \sum_n I_{i+m,j+n} K_{m,n} + b$$
+- **Dos principios:**
+  1. <span v-mark.underline.indigo="1">Conexiones locales:</span> cada neurona ve solo un parche diminuto.
+  2. <span v-mark.circle.emerald="2">Pesos compartidos:</span> el mismo filtro barre **toda** la imagen.
 
 </v-clicks>
+
+</div>
 
 ::right::
 
@@ -344,6 +348,8 @@ layout: two-cols
 
 </v-click>
 
+<div class="text-[12px] leading-snug space-y-1 pr-2">
+
 <v-click>
 
 ### Protegiendo los bordes de la imagen
@@ -352,15 +358,16 @@ layout: two-cols
 
 <v-clicks>
 
-- **El problema de la convolución cruda:**
-  - Cada convolución encoge la imagen: una entrada de $N \times N$ con kernel $f \times f$ resulta en:
-    $$O = N - f + 1 \quad (5 \times 5 \text{ con filtro } 3 \times 3 \to \mathbf{3 \times 3})$$
-  - Los píxeles de las esquinas solo participan en una operación, perdiendo información perimetral.
-- **La Solución: Padding ($p$):** Rellenar los bordes con ceros (*Zero Padding*).
-  1. <span v-mark.underline.orange="1">Valid Padding ($p = 0$):</span> Sin relleno; la imagen encoge progresivamente.
-  2. <span v-mark.circle.emerald="2">Same Padding:</span> Se agregan $p = \frac{f - 1}{2}$ ceros para que la salida tenga **exactamente el mismo tamaño** que la entrada.
+- **La convolución cruda encoge:** $N \times N$ con kernel $f \times f$ da:
+  $$O = N - f + 1 \quad (5 \times 5, f = 3 \to \mathbf{3 \times 3})$$
+- Las esquinas participan una sola vez: se pierde información perimetral.
+- **Solución: Padding ($p$)** con ceros (*Zero Padding*):
+  1. <span v-mark.underline.orange="1">Valid ($p = 0$):</span> sin relleno, encoge.
+  2. <span v-mark.circle.emerald="2">Same:</span> $p = \frac{f-1}{2}$ ceros, la salida conserva el tamaño.
 
 </v-clicks>
+
+</div>
 
 ::right::
 
@@ -487,8 +494,8 @@ Salida:<br>
 </div>
 </div>
 <div class="p-2 rounded-lg bg-slate-100 dark:bg-zinc-800 font-mono text-[10px] text-slate-600 dark:text-zinc-300">
-Total parámetros por filtro: $(3 \times 3 \times 3) + 1 \text{ bias} = 28$<br>
-Capa completa (16 filtros): $28 \times 16 = \mathbf{448 \text{ parámetros}}$
+Total parámetros por filtro: (3 × 3 × 3) + 1 bias = 28<br>
+Capa completa (16 filtros): 28 × 16 = <strong>448 parámetros</strong>
 </div>
 </div>
 </div>
@@ -679,7 +686,7 @@ layout: default
 </div>
 
 <div class="text-xs text-slate-600 dark:text-zinc-300 space-y-1 mt-4">
-<p><strong>Regla de Diseño Estándar:</strong> A medida que la red profundiza, la resolución espacial disminuye ($H \downarrow, W \downarrow$) mediante MaxPooling, mientras que la riqueza semántica aumenta incrementando los filtros ($C \uparrow$).</p>
+<p><strong>Regla de Diseño Estándar:</strong> A medida que la red profundiza, la resolución espacial disminuye (H ↓, W ↓) mediante MaxPooling, mientras que la riqueza semántica aumenta incrementando los filtros (C ↑).</p>
 </div>
 
 ---

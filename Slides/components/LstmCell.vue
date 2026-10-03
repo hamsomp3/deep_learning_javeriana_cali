@@ -146,11 +146,17 @@ const gateInfo = {
     <div class="w-full mt-3 p-2.5 rounded-xl bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700 text-xs">
       <div class="font-bold text-slate-800 dark:text-zinc-100">{{ gateInfo[activeGate].title }}</div>
       <p class="text-slate-600 dark:text-zinc-300 mt-0.5 leading-snug">{{ gateInfo[activeGate].desc }}</p>
-      <div 
-        class="mt-1.5 font-serif text-[13px] text-indigo-700 dark:text-indigo-300 font-medium tracking-wide"
+      <div
+        class="mt-1.5 font-serif text-[13px] text-indigo-700 dark:text-indigo-300 font-medium tracking-wide whitespace-nowrap overflow-x-auto"
         v-html="gateInfo[activeGate].formulaHtml"
       ></div>
     </div>
 
   </div>
 </template>
+
+<style scoped>
+:deep(sub) {
+  line-height: 0;
+}
+</style>

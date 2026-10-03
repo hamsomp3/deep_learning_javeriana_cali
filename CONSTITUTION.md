@@ -279,6 +279,16 @@ title: Sesión N - ...
 
 **Verificación:** `pnpm -C Slides build` debe pasar (exit 0) antes de dar por buenas las slides.
 
+### Regla de LaTeX — Nunca `$...$` Dentro de HTML Crudo (Evitar Fórmulas Muertas)
+
+> **REGLA OBLIGATORIA:** las matemáticas `$...$` / `$$...$$` **solo compilan (KaTeX) dentro de contenido Markdown** — incluyendo el interior de `<v-click>` / `<v-clicks>`. **Dentro de tags HTML crudos** (`<div>`, `<p>`, `<li>`, `<span>` escritos a mano) el parser no las transforma y el `$` crudo llega a pantalla y al PDF.
+
+**Casos reales corregidos (dictamen PDF):** `$\mathcal{L} + \lambda \sum w^2$` en tarjeta (S3 Botiquín), `$\max(R)$` y `$\frac{1}{|R|}$` en `<li>` crudos (S3 Max vs Average), `($n=3$)` en tarjeta (S1 NN-AR), `$(3 \times 3 \times 3)...$` en tarjeta y `($H \downarrow$)` en pie (S4).
+
+**Reparación:** reescribir con texto/Unicode nativo (`max(R)`, `(1 / |R|) · Σ xᵢ`, `(H ↓, W ↓)`, `(n = 3)`, `λ · Σw²`) o sacar la fórmula fuera del tag HTML.
+
+**Excepción exporter:** `magic-move` en vivo funciona, pero el PDF estático solo imprime el último paso salvo que se exporte con `--with-clicks` (ver `Makefile`: todos los targets `slidev-*-export` lo incluyen para que el material de estudio conserve la progresión).
+
 ---
 
 ### Reglas de Animación (v-click / v-clicks)
