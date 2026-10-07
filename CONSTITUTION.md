@@ -171,6 +171,12 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
   - `Sesiones/` → material práctico por sesión (notebooks/scripts).
 - Un **único `Makefile` en la raíz** orquesta comandos Python y Slidev.
 
+### Makefile — Orquestación, targets por sesión y terminología
+- **Terminología unificada:** el proyecto usa **"Sesión"** (nunca "Clase"). Los targets por sesión son `slidev-s1`…`slidev-s4` (dev aislado) y `slidev-s1-export`…`slidev-s4-export` (PDF individual), más `slidev-all-export`. Reemplazan a los antiguos `slidev-cN`.
+- **Títulos centralizados:** `make help` lee los títulos desde las variables `S1_TITLE`…`S4_TITLE` (fuente única de verdad) para evitar desfases entre el Makefile y los decks.
+- **`slidev-export`:** acepta `OUTPUT=<archivo.pdf>` opcional (se escribe en la raíz del repo); sin `OUTPUT` conserva la salida por defecto de Slidev.
+- **`--with-clicks`:** todos los targets de export `slidev-*-export` lo incluyen para conservar la progresión de animaciones en el PDF de estudio.
+
 ### Material Práctico (`Sesiones/`)
 
 - **Sesión 1:** `Sesiones/sesion1/sesion_1_modelos_autorregresivos.ipynb` — red **MLP autorregresiva** sobre *Monthly Sunspots* (FFT, descomposición estacional, ventana deslizante 2D, inferencia recursiva).

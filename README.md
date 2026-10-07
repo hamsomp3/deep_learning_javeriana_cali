@@ -108,7 +108,7 @@ slides.md  --src:-->  pages/sesionN.md  --usa-->  components/ · public/img/
 
 **Reglas de ingeniería clave** (detalle en `CONSTITUTION.md`):
 
-1. **Un solo Slidev**: `Slides/` con un único `package.json` y `pnpm-lock.yaml` determinista. Nada de sub-projects por clase.
+1. **Un solo Slidev**: `Slides/` con un único `package.json` y `pnpm-lock.yaml` determinista. Nada de sub-projects por sesión.
 2. **Una sesión = un archivo**: `Slides/pages/sesionN.md`, importado por `Slides/slides.md` vía `src:`.
 3. **Compartir, no duplicar**: `components/`, `layouts/`, `styles.css` y `setup.ts` son globales.
 4. **Comandos centralizados**: todo se ejecuta con `make ...` desde la raíz.
@@ -204,17 +204,57 @@ make help
 
 ## ⌨️ Comandos disponibles
 
+### 🧭 General
+
 | Target | Descripción |
 |--------|-------------|
-| `make help` | Lista todos los targets con su descripción |
+| `make help` | Lista todos los targets disponibles con su descripción |
+
+### 🐍 Python (`uv`)
+
+| Target | Descripción |
+|--------|-------------|
 | `make python-sync` | Sincroniza el entorno virtual con `pyproject.toml` |
 | `make python-add PKG=<paquete>` | Agrega una dependencia Python |
 | `make python-lint` | Linting con Ruff (`ruff check . --fix`) |
 | `make python-format` | Formatea el código con Ruff |
-| `make slidev-install` | Instala dependencias Slidev (`pnpm -C Slides install`) |
-| `make slidev-dev` | Servidor de desarrollo de diapositivas (`:3030`) |
+
+### 🎬 Slidev (`pnpm`) — general
+
+| Target | Descripción |
+|--------|-------------|
+| `make slidev-install` | Instala las dependencias de Slidev (`pnpm -C Slides install`) |
+| `make slidev-dev` | Servidor de desarrollo del deck completo (`http://localhost:3030`) |
 | `make slidev-build` | Build estático del SPA |
-| `make slidev-export OUTPUT=deck.pdf` | Exporta la presentación a PDF |
+| `make slidev-export [OUTPUT=<archivo.pdf>]` | Exporta el deck completo a PDF (con `OUTPUT` la salida va a la raíz del repo) |
+| `make slidev-format` | Formatea `slides.md` con Slidev |
+
+### 🎞️ Slidev — dev por sesión (aislado)
+
+Cada target crea un entry point temporal, levanta Slidev con **solo esa sesión** y limpia al salir.
+
+| Target | Descripción |
+|--------|-------------|
+| `make slidev-s1` | Sesión 1 — Modelos Auto Regresivos |
+| `make slidev-s2` | Sesión 2 — RNN, LSTM y GRU |
+| `make slidev-s3` | Sesión 3 — Diagnóstico, Regularización y Espectrogramas |
+| `make slidev-s4` | Sesión 4 — Redes Neuronales Convolucionales (CNNs) |
+
+### 📄 Slidev — exportar una sesión a PDF (individual)
+
+| Target | Descripción |
+|--------|-------------|
+| `make slidev-s1-export` | Exporta la Sesión 1 a `Sesion1.pdf` |
+| `make slidev-s2-export` | Exporta la Sesión 2 a `Sesion2.pdf` |
+| `make slidev-s3-export` | Exporta la Sesión 3 a `Sesion3.pdf` |
+| `make slidev-s4-export` | Exporta la Sesión 4 a `Sesion4.pdf` |
+| `make slidev-all-export` | Exporta las 4 sesiones en secuencia |
+
+### 🧹 Limpieza
+
+| Target | Descripción |
+|--------|-------------|
+| `make clean` | Elimina entry points temporales (`sesion*-dev.md`, `sesion*-export.md`) y cachés de Python |
 
 ---
 
