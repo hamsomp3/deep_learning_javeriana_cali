@@ -74,6 +74,9 @@ Contiene, de forma versionada y reproducible:
 
 > Las fechas y contenidos se publicarán aquí y en `CONSTITUTION.md` conforme se confirmen. Cada sesión consta de un deck en `Slides/pages/sesionN.md` y material práctico en `Sesiones/sesionN/`.
 
+> 📄 **¿No usas Git?** Puedes abrir o descargar el PDF de cada sesión directamente desde aquí:
+> [Sesión 1](Sesion1.pdf) · [Sesión 2](Sesion2.pdf) · [Sesión 3](Sesion3.pdf) · [Sesión 4](Sesion4.pdf).
+
 ---
 
 ## 🏗️ Arquitectura
