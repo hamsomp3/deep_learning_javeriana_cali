@@ -9,5 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+# Sesión 5 — competencia privada (contiene ground truth oculto; NO versionar)
+Sesiones/sesion5/
+
 # macOS
 .DS_Store
