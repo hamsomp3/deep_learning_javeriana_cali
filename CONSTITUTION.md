@@ -66,6 +66,9 @@ make slidev-dev
 # 3. Linting y formato
 make python-lint && make python-format
 
+# 3.5. Limpiar outputs de notebooks (si se ejecutaron)
+find Sesiones -name "*.ipynb" -exec uv run jupyter nbconvert --clear-output --inplace {} +
+
 # 4. Agregar y commitear
 git add -A
 git commit -m "tipo: mensaje descriptivo"
@@ -75,6 +78,18 @@ git push
 ```
 
 > Nota: cuando se confirme Streamlit, se agregará `make python-run` a este flujo.
+
+### Regla de Notebooks — Sin Outputs (*Clean*)
+
+> **REGLA OBLIGATORIA:** todo notebook (`.ipynb`) se versiona **sin outputs ni `execution_count`** (*clean*). Nunca commitear imágenes, texto de salida, gráficas ni números de ejecución.
+
+- **Antes de cada commit** en el que se haya ejecutado un notebook de `Sesiones/`, limpiarlo:
+  ```bash
+  uv run jupyter nbconvert --clear-output --inplace Sesiones/sesionN/*.ipynb
+  ```
+- **Convención del repo:** los 4 notebooks de `Sesiones/` están *clean* (0 outputs). Mantener esa consistencia.
+- **Por qué:** las salidas son artefactos reproducibles; inflan el repo y producen diffs ruidosos e ilegibles.
+- **Excepción:** las capturas o resultados que deban mostrarse viajan como **imágenes** en `Slides/public/img/sesionN/`, nunca como output versionado del notebook.
 
 ### Convención de Commits
 Usar la especificación de [Conventional Commits](https://www.conventionalcommits.org/):

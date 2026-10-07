@@ -268,10 +268,21 @@ git pull --rebase                       # 0. Sincronizar al iniciar
 git status                              # 1. Revisar cambios
 make slidev-dev                         # 2. Verificar diapositivas
 make python-lint && make python-format  # 3. Calidad de código
+find Sesiones -name "*.ipynb" -exec uv run jupyter nbconvert --clear-output --inplace {} +  # 3.5. Limpiar outputs de notebooks
 git add -A
 git commit -m "tipo: mensaje descriptivo"
 git push
 ```
+
+### Notebooks (sin outputs)
+
+Todo notebook se commitea *clean*: **sin outputs ni `execution_count`**. Si ejecutaste alguno en `Sesiones/`, límpialo antes del commit:
+
+```bash
+uv run jupyter nbconvert --clear-output --inplace Sesiones/sesionN/*.ipynb
+```
+
+> Detalle y justificación en [`CONSTITUTION.md`](CONSTITUTION.md).
 
 ### Convención de commits
 
