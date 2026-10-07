@@ -56,8 +56,8 @@ Contiene, de forma versionada y reproducible:
 | | |
 |---|---|
 | **Audiencia** | Estudiantes de pregrado — Pontificia Universidad Javeriana Cali |
-| **Modalidad** | 4 sesiones presenciales |
-| **Duración** | 2 horas por sesión (8 horas totales) |
+| **Modalidad** | 4 sesiones presenciales + competencia final de cierre |
+| **Duración** | 2 horas por sesión (8 horas) + cierre |
 | **Tutor** | Jan Polanco Velasco |
 | **Enfoque** | Fundamentos y práctica de Deep Learning con Python |
 
@@ -71,11 +71,13 @@ Contiene, de forma versionada y reproducible:
 | 2 | Redes Neuronales Recurrentes (RNN, LSTM y GRU) | _Pendiente_ | Orden temporal vs. bag of words, arquitecturas RNN, desvanecimiento del gradiente, LSTM (compuertas), GRU y bidireccionales | ✅ Deck + Lab |
 | 3 | Diagnóstico, Regularización y Espectrogramas | _Pendiente_ | Curvas de pérdida, overfitting/underfitting, gradientes que se desvanecen/explosionan, dropout, early stopping, gradient clipping, STFT y espectrogramas, transición a CNN (Conv2D + Pooling) | ✅ Deck + Lab |
 | 4 | Redes Neuronales Convolucionales (CNNs) | _Pendiente_ | Filtros/kernels, detección de bordes, stride, padding, pooling y extracción de patrones visuales | ✅ Deck + Lab |
+| 5 | 🏆 Competencia Kaggle — Pronóstico de una Serie Temporal Anónima | _Pendiente_ | Reto de cierre: pronóstico a 24 pasos con una red neuronal, métrica RMSE, *leaderboard* y certificado por superar el baseline de persistencia | ✅ Deck · 🔒 Lab privado |
 
 > Las fechas y contenidos se publicarán aquí y en `CONSTITUTION.md` conforme se confirmen. Cada sesión consta de un deck en `Slides/pages/sesionN.md` y material práctico en `Sesiones/sesionN/`.
+> 🔒 El material de la **Sesión 5** (notebook, serie y *ground truth*) es privado y **no se versiona** (contiene las respuestas ocultas); el deck público explica las reglas sin revelar la fuente de los datos.
 
 > 📄 **¿No usas Git?** Puedes abrir o descargar el PDF de cada sesión directamente desde aquí:
-> [Sesión 1](Sesion1.pdf) · [Sesión 2](Sesion2.pdf) · [Sesión 3](Sesion3.pdf) · [Sesión 4](Sesion4.pdf).
+> [Sesión 1](Sesion1.pdf) · [Sesión 2](Sesion2.pdf) · [Sesión 3](Sesion3.pdf) · [Sesión 4](Sesion4.pdf) · [Sesión 5](Sesion5.pdf).
 
 ---
 
@@ -132,7 +134,7 @@ DL-Javeriana/
 ├── .gitignore               # Exclusiones (.venv, __pycache__, .DS_Store)
 ├── Slides/                  # 🎬 Monolito Slidev (todas las presentaciones)
 │   ├── slides.md            #    Entry point maestro (menú hub + src:)
-│   ├── pages/               #    sesion1.md … sesion4.md
+│   ├── pages/               #    sesion1.md … sesion5.md
 │   ├── components/          #    Componentes Vue compartidos
 │   ├── layouts/             #    Layouts personalizados compartidos
 │   ├── public/              #    Assets globales + img/logos/ + img/sesionN/
@@ -242,6 +244,7 @@ Cada target crea un entry point temporal, levanta Slidev con **solo esa sesión*
 | `make slidev-s2` | Sesión 2 — RNN, LSTM y GRU |
 | `make slidev-s3` | Sesión 3 — Diagnóstico, Regularización y Espectrogramas |
 | `make slidev-s4` | Sesión 4 — Redes Neuronales Convolucionales (CNNs) |
+| `make slidev-s5` | Sesión 5 — Competencia Kaggle (serie temporal anónima) |
 
 ### 📄 Slidev — exportar una sesión a PDF (individual)
 
@@ -251,7 +254,8 @@ Cada target crea un entry point temporal, levanta Slidev con **solo esa sesión*
 | `make slidev-s2-export` | Exporta la Sesión 2 a `Sesion2.pdf` |
 | `make slidev-s3-export` | Exporta la Sesión 3 a `Sesion3.pdf` |
 | `make slidev-s4-export` | Exporta la Sesión 4 a `Sesion4.pdf` |
-| `make slidev-all-export` | Exporta las 4 sesiones en secuencia |
+| `make slidev-s5-export` | Exporta la Sesión 5 a `Sesion5.pdf` |
+| `make slidev-all-export` | Exporta las 5 sesiones en secuencia |
 
 ### 🧹 Limpieza
 

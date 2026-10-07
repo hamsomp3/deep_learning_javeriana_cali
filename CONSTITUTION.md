@@ -2,7 +2,7 @@
 
 > **Contexto del proyecto:** Repositorio central para las sesiones del **Curso de Deep Learning**
 > dirigido a estudiantes de **pregrado** de la Pontificia Universidad Javeriana, sede Cali.
-> **Formato:** 4 sesiones de 2 horas cada una. Tutor: **Jan Polanco Velasco**.
+> **Formato:** 4 sesiones de 2 horas cada una + una **competencia final de cierre** (Sesión 5). Tutor: **Jan Polanco Velasco**.
 > Trackeado al repositorio remoto `hamsomp3/deep_learning_javeriana_cali`.
 
 ---
@@ -23,9 +23,11 @@
 | **Sesión 2** | Fecha: PENDIENTE — **Redes Neuronales Recurrentes (RNN, LSTM y GRU)**: orden temporal vs. bag of words, arquitecturas RNN (Many-to-One, One-to-Many, Many-to-Many), desvanecimiento del gradiente, LSTM (celda de memoria y compuertas), GRU y redes bidireccionales |
 | **Sesión 3** | Fecha: PENDIENTE — **Diagnóstico, Regularización y Espectrogramas**: curvas de pérdida (overfitting/underfitting), patologías del gradiente (desvanecimiento/explosión), dropout, early stopping, gradient clipping, procesamiento de audio (STFT) y espectrogramas como puente hacia las CNN (Conv2D + Pooling) |
 | **Sesión 4** | Fecha: PENDIENTE — **Redes Neuronales Convolucionales (CNNs)**: imagen como tensor, colapso de la MLP (flatten), convolución 2D y kernels, padding/stride, convolución 3D multicanal, pooling, jerarquía visual y arquitectura canónica en Keras |
+| **Sesión 5** | Fecha: PENDIENTE — **Competencia Kaggle: pronóstico de una serie temporal anónima**: cierre del seminario con un reto ciego (predecir 24 pasos), métrica RMSE y certificado por superar el baseline de persistencia |
 
 > Las fechas y el contenido de cada sesión se completarán cuando sean provistos.
 > Cada sesión tendrá: diapositivas en `Slides/pages/sesionN.md` + material práctico en `Sesiones/sesionN/`.
+> ⚠️ El material de la **Sesión 5** (notebook + serie + *ground truth*) vive en `Sesiones/sesion5/`, que está **ignorado por Git** para no filtrar el futuro; el deck `Slides/pages/sesion5.md` sí es público y **no revela el origen real de los datos**.
 
 ---
 
@@ -47,6 +49,8 @@
 - [x] QA layout DOM v2 (Playwright, 85 slides en estado final de clicks): 4 overflows reales corregidos (`/41` Talón de Aquiles 90px, `/57` Audio 37px, `/58` Espectrograma 4px, `/61` Pooling S3 67px); `/69` es apilado intencional de canales RGB (falso positivo). Scripts en `qa/` temporal, no versionados.
 - [x] Regla de navegación del menú: toda sesión nueva en `pages/` requiere `routeAlias: sesionN` (ver *Presentaciones con Slidev*).
 - [x] Regla HTML/SVG sin líneas en blanco internas (evita errores *Invalid end tag* al compilar).
+- [x] Completar `sesion5.md` (deck público de la competencia Kaggle de cierre: misión, reglas, entrega y estrategia).
+- [x] Crear el Laboratorio 5 (`Sesiones/sesion5/sesion_5_redes.ipynb` — notebook base de la competencia, material privado).
 
 ---
 
@@ -173,10 +177,15 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 - **Dataset:** *Fashion-MNIST* vía `tf.keras.datasets` (auto-descarga, cacheado en `~/.keras/datasets`), sin archivos privados — mantiene la reproducibilidad total del lab (igual que el audio sintético del Lab 3).
 - **Sin dependencias nuevas:** se usó NumPy + `scipy.ndimage` en lugar de OpenCV (`cv2` no está en `pyproject.toml`); la implementación manual es además más pedagógica para entender la operación.
 
+### Deck Sesión 5 — Competencia Kaggle (cierre)
+- **Estructura en 4 bloques:** (1) la misión, (2) reglas y evaluación, (3) tu entrega, (4) estrategia ganadora.
+- **Deck público y anonimizado:** `Slides/pages/sesion5.md` describe el reto (predecir 24 pasos de una serie anónima), la métrica (RMSE / desempate MAE), el certificado por superar el baseline de persistencia y el formato del CSV; **no revela el origen real ni el *ground truth***.
+- **Regla anti-fuga:** el *ground truth*, la serie y el notebook base viven en `Sesiones/sesion5/` (ignorado por Git); el deck nunca los expone.
+
 ### Fix Presenter del Menú Hub — `HubNavCard`
 - **Síntoma:** con `make slidev-dev` (pestañas `:3030` + `:3030/presenter/`), clicar una sesión desde el índice (`/2`) mataba el modo presenter.
 - **Causa raíz:** el hub usaba `<Link to="/sesionN">` crudo (`RouterLink`). Slidev genera rutas como `getSlideRoutePath`: normal `/<alias>` vs. presenter `/presenter/<alias>`; el link crudo navega a `/sesionN` y **abandona `/presenter/*`**. Verificado en `node_modules/@slidev/client/logic/slidePath.ts` y `composables/useNav.ts` (`go()` sí preserva el prefijo).
-- **Solución:** `Slides/components/HubNavCard.vue` — wrapper que replica el patrón del `TocList` oficial (`builtin/TocList.vue:56`): `<Link :to="isPresenter ? \`/presenter${to}\` : to">`. El hub (`Slides/slides.md`) usa `<HubNavCard to="/sesionN">` en las 4 cards.
+- **Solución:** `Slides/components/HubNavCard.vue` — wrapper que replica el patrón del `TocList` oficial (`builtin/TocList.vue:56`): `<Link :to="isPresenter ? \`/presenter${to}\` : to">`. El hub (`Slides/slides.md`) usa `<HubNavCard to="/sesionN">` en las 5 cards.
 - **Regla de imports Slidev:** en componentes propios importar desde el entrypoint público (`import { useNav } from '@slidev/client'`); el subpath profundo (`@slidev/client/composables/useNav`) **rompe el build** (`[UNLOADABLE_DEPENDENCY]`, exit 1).
 - **Verificación:** `pnpm -C Slides build` en verde + `200` en `/2`, `/sesion1`, `/presenter/2`, `/presenter/sesion1`. Prueba manual: abrir `/presenter/2`, clicar sesión → debe ir a `/presenter/sesionN` con notas/preview intactos.
 
@@ -187,8 +196,8 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 - Un **único `Makefile` en la raíz** orquesta comandos Python y Slidev.
 
 ### Makefile — Orquestación, targets por sesión y terminología
-- **Terminología unificada:** el proyecto usa **"Sesión"** (nunca "Clase"). Los targets por sesión son `slidev-s1`…`slidev-s4` (dev aislado) y `slidev-s1-export`…`slidev-s4-export` (PDF individual), más `slidev-all-export`. Reemplazan a los antiguos `slidev-cN`.
-- **Títulos centralizados:** `make help` lee los títulos desde las variables `S1_TITLE`…`S4_TITLE` (fuente única de verdad) para evitar desfases entre el Makefile y los decks.
+- **Terminología unificada:** el proyecto usa **"Sesión"** (nunca "Clase"). Los targets por sesión son `slidev-s1`…`slidev-s5` (dev aislado) y `slidev-s1-export`…`slidev-s5-export` (PDF individual), más `slidev-all-export`. Reemplazan a los antiguos `slidev-cN`.
+- **Títulos centralizados:** `make help` lee los títulos desde las variables `S1_TITLE`…`S5_TITLE` (fuente única de verdad) para evitar desfases entre el Makefile y los decks.
 - **`slidev-export`:** acepta `OUTPUT=<archivo.pdf>` opcional (se escribe en la raíz del repo); sin `OUTPUT` conserva la salida por defecto de Slidev.
 - **`--with-clicks`:** todos los targets de export `slidev-*-export` lo incluyen para conservar la progresión de animaciones en el PDF de estudio.
 
@@ -198,6 +207,7 @@ Usar la especificación de [Conventional Commits](https://www.conventionalcommit
 - **Sesión 2:** `Sesiones/sesion2/sesion_2_rnn_lstm_gru.ipynb` — **RNN, LSTM y GRU**: tensor 3D `[samples, time_steps, features]`, *benchmarking* de arquitecturas (parámetros, tiempo, MSE), inferencia paso a paso y *adding problem* para evidenciar el desvanecimiento del gradiente.
 - **Sesión 3:** `Sesiones/sesion3/sesion_3_espectrogramas_cnn.ipynb` — **Espectrogramas + CNN**: dataset sintético de audio de 3 clases (grave, agudo, barrido), STFT (`frame_length=255`, `frame_step=128`) → espectrograma `(124, 129, 1)`, visualización 2D/3D, CNN `Conv2D → MaxPooling2D → GlobalAveragePooling2D → Dropout → Dense(softmax)`, curvas de aprendizaje, matriz de confusión/F1, visualización de filtros, pooling a mano + fórmula de reducción, GAP vs. Flatten, Gradient Clipping en acción, Dropout entrenamiento vs. inferencia y diagnóstico con etiquetas aleatorias (memorización/sobreajuste).
 - **Sesión 4:** `Sesiones/sesion4/sesion_4_redes_convolucionales.ipynb` — **CNNs**: imagen como tensor y colapso de la MLP (`Flatten`), convolución 2D a mano (replica el componente `ConvolutionSimulator` con Sobel/Laplaciano/Identidad), validación contra `scipy.ndimage.correlate`, filtros clásicos sobre escena sintética e imagen real de *Fashion-MNIST*, equivarianza (conv) vs. invarianza (GAP), ecuación dimensional `O = ⌊(N + 2p − f)/s⌋ + 1`, padding/stride, convolución 3D multicanal (RGB), pooling a mano + invarianza, arquitectura canónica `Conv2D → BatchNorm → ReLU → MaxPool → GAP → Dropout → Dense(softmax)`, entrenamiento sobre *Fashion-MNIST*, matriz de confusión/F1, mapas de activación (`conv1` vs. `conv2`), filtros aprendidos y *benchmark* MLP vs. CNN.
+- **Sesión 5 (privada):** `Sesiones/sesion5/` — **competencia Kaggle de cierre**: `sesion_5_redes.ipynb` (notebook base del estudiante), `serie_anonima.csv` (2.820 pasos anonimizados), `ground_truth_anonimo.csv` (24 valores ocultos), `evaluar_submissions.ipynb` (leaderboard + certificado) y `GUIA_COMPETENCIA.md` (findings privados). Toda la carpeta está en `.gitignore`; el deck `Slides/pages/sesion5.md` es la cara pública.
 - **Estilo de los notebooks:** teoría en Markdown + celdas de código reproducibles (semillas fijas: `np.random.seed` / `tf.random.set_seed`), gráficas interactivas con **Plotly** y salidas **no versionadas** (notebook *clean*).
 - **Stack de DL:** **TensorFlow 2 / Keras 3**, elegido por su claridad académica y su API de capas recurrentes.
 
@@ -246,7 +256,8 @@ Slides/
     ├── sesion1.md         # Diapositivas Sesión 1 (id + routeAlias: sesion1)
     ├── sesion2.md         # Diapositivas Sesión 2 (id + routeAlias: sesion2)
     ├── sesion3.md         # Diapositivas Sesión 3 (id + routeAlias: sesion3)
-    └── sesion4.md         # Diapositivas Sesión 4 (id + routeAlias: sesion4)
+    ├── sesion4.md         # Diapositivas Sesión 4 (id + routeAlias: sesion4)
+    └── sesion5.md         # Diapositivas Sesión 5 — Competencia Kaggle (id + routeAlias: sesion5)
 ```
 
 > **Regla:** Un **único** proyecto Slidev (`Slides/`) con **un solo** `package.json` y `pnpm-lock.yaml`. Cada sesión vive en `Slides/pages/sesionN.md` y se importa en `Slides/slides.md` vía `src: ./pages/sesionN.md`. Componentes, layouts, estilos y assets son compartidos. Los comandos Slidev se ejecutan desde el `Makefile` de la raíz (`make slidev-dev`, etc.).
@@ -286,7 +297,7 @@ title: Sesión N - ...
 
 **Por qué:** el `<HubNavCard to="/sesionN">` del menú en `slides.md` genera la ruta `/:no`. Slidev resuelve ese parámetro solo con **número de slide** o con **`frontmatter.routeAlias`** — el campo `id` **NO** sirve para navegación. Sin `routeAlias`, `/sesionN` no matchea y la navegación falla (parece que el menú no funciona o todo es secuencial).
 
-**Alcance:** aplica a `sesion1`–`sesion4` (ya hechos) y a **cualquier sesión nueva** que se agregue a `slides.md` con `src: ./pages/sesionN.md` + `<HubNavCard to="/sesionN">`.
+**Alcance:** aplica a `sesion1`–`sesion5` (ya hechos) y a **cualquier sesión nueva** que se agregue a `slides.md` con `src: ./pages/sesionN.md` + `<HubNavCard to="/sesionN">`.
 
 > **REGLA OBLIGATORIA (modo presenter):** el hub **NO** debe usar `<Link to="/sesionN">` crudo. Debe usar `<HubNavCard to="/sesionN">` (`Slides/components/HubNavCard.vue`), que antepone `/presenter` cuando `useNav().isPresenter` es verdadero — mismo patrón del `TocList` oficial de Slidev. Un `RouterLink` crudo a `/sesionN` clicado desde `/presenter/2` navega a `/sesion1` y **abandona la ruta `/presenter/*`**, matando la vista de presentador (notas, preview, controles).
 

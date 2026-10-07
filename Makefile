@@ -7,8 +7,8 @@
 .DEFAULT_GOAL := help
 .PHONY: help python-sync python-add python-lint python-format \
         slidev-install slidev-dev slidev-build slidev-export slidev-format \
-        slidev-s1 slidev-s2 slidev-s3 slidev-s4 \
-        slidev-s1-export slidev-s2-export slidev-s3-export slidev-s4-export \
+        slidev-s1 slidev-s2 slidev-s3 slidev-s4 slidev-s5 \
+        slidev-s1-export slidev-s2-export slidev-s3-export slidev-s4-export slidev-s5-export \
         slidev-all-export clean
 
 # ----------------------------- Títulos de las sesiones -----------------------------
@@ -17,6 +17,7 @@ S1_TITLE := Modelos Auto Regresivos
 S2_TITLE := RNN, LSTM y GRU
 S3_TITLE := Diagnóstico, Regularización y Espectrogramas
 S4_TITLE := Redes Neuronales Convolucionales (CNNs)
+S5_TITLE := Competencia Kaggle - Pronóstico de una Serie Temporal Anónima
 
 # ----------------------------- Ayuda -----------------------------
 help: ## Listar todos los targets disponibles
@@ -45,6 +46,7 @@ help: ## Listar todos los targets disponibles
 	@echo "  make slidev-s2        -> Sesión 2: $(S2_TITLE)"
 	@echo "  make slidev-s3        -> Sesión 3: $(S3_TITLE)"
 	@echo "  make slidev-s4        -> Sesión 4: $(S4_TITLE)"
+	@echo "  make slidev-s5        -> Sesión 5: $(S5_TITLE)"
 	@echo ""
 	@echo "  SLIDEV — Exportar sesión a PDF (individual)"
 	@echo "  --------------------------------------------"
@@ -52,7 +54,8 @@ help: ## Listar todos los targets disponibles
 	@echo "  make slidev-s2-export -> PDF solo Sesión 2: $(S2_TITLE)"
 	@echo "  make slidev-s3-export -> PDF solo Sesión 3: $(S3_TITLE)"
 	@echo "  make slidev-s4-export -> PDF solo Sesión 4: $(S4_TITLE)"
-	@echo "  make slidev-all-export -> Exportar las 4 sesiones en secuencia"
+	@echo "  make slidev-s5-export -> PDF solo Sesión 5: $(S5_TITLE)"
+	@echo "  make slidev-all-export -> Exportar las 5 sesiones en secuencia"
 	@echo ""
 	@echo "  LIMPIEZA"
 	@echo "  --------"
@@ -126,6 +129,14 @@ slidev-s4: ## Sesión 4: Redes Neuronales Convolucionales (CNNs) (dev aislado)
 	@cd Slides && pnpm exec slidev sesion4-dev.md --open
 	@rm -f Slides/sesion4-dev.md
 
+slidev-s5: ## Sesión 5: Competencia Kaggle (dev aislado)
+	@echo "---" > Slides/sesion5-dev.md
+	@echo "src: ./pages/sesion5.md" >> Slides/sesion5-dev.md
+	@echo "---" >> Slides/sesion5-dev.md
+	@echo ">>> Iniciando Slidev para Sesión 5 (aislada)..."
+	@cd Slides && pnpm exec slidev sesion5-dev.md --open
+	@rm -f Slides/sesion5-dev.md
+
 # ----------------------------- Slidev — Export por sesión (individual) -----------------------------
 # Crea un entry point temporal, exporta solo esa sesión a PDF, y limpia.
 
@@ -157,7 +168,14 @@ slidev-s4-export: ## Exportar Sesión 4: Redes Neuronales Convolucionales (CNNs)
 	@rm -f Slides/sesion4-export.md
 	@echo ">>> PDF generado: Sesion4.pdf"
 
-slidev-all-export: slidev-s1-export slidev-s2-export slidev-s3-export slidev-s4-export ## Exportar las 4 sesiones a PDF
+slidev-s5-export: ## Exportar Sesión 5: Competencia Kaggle a PDF (individual)
+	@echo ">>> Exportando Sesión 5 a PDF..."
+	@printf -- '---\nsrc: ./pages/sesion5.md\n---\n' > Slides/sesion5-export.md
+	@cd Slides && pnpm exec slidev export sesion5-export.md --output "../Sesion5.pdf" --with-clicks --timeout 120000
+	@rm -f Slides/sesion5-export.md
+	@echo ">>> PDF generado: Sesion5.pdf"
+
+slidev-all-export: slidev-s1-export slidev-s2-export slidev-s3-export slidev-s4-export slidev-s5-export ## Exportar las 5 sesiones a PDF
 	@echo ">>> Todas las sesiones exportadas a PDF"
 
 # ----------------------------- Limpieza -----------------------------

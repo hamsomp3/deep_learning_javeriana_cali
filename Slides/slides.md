@@ -42,7 +42,7 @@ title: 📚 Índice del Curso (4 Sesiones)
 ---
 
 <h1 class="hub-h1">📚 Índice del Curso</h1>
-<p class="hub-sub">Semestre 2026-2 · 4 sesiones (2 horas c/u) · Clic en una sesión disponible para saltar directo</p>
+<p class="hub-sub">Semestre 2026-2 · 4 sesiones (2 horas c/u) + competencia final · Clic en una sesión para saltar directo</p>
 
 <div class="grid grid-cols-2 gap-x-3 gap-y-1.5">
 
@@ -60,6 +60,10 @@ title: 📚 Índice del Curso (4 Sesiones)
 
 <HubNavCard to="/sesion4" class="hub-card border border-teal-500/40 bg-teal-500/5 hover:bg-teal-500/20">
   <span class="hub-no bg-teal-600">4</span><span class="hub-name">Redes Neuronales Convolucionales (CNNs)</span><span class="hub-status">✅ Deck</span>
+</HubNavCard>
+
+<HubNavCard to="/sesion5" class="hub-card col-span-2 border border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/20">
+  <span class="hub-no bg-amber-600">5</span><span class="hub-name">🏆 Competencia Kaggle — Pronóstico de una Serie Temporal Anónima</span><span class="hub-status">✅ Deck</span>
 </HubNavCard>
 
 </div>
@@ -137,6 +141,10 @@ src: ./pages/sesion3.md
 
 ---
 src: ./pages/sesion4.md
+---
+
+---
+src: ./pages/sesion5.md
 ---
 
 ---
