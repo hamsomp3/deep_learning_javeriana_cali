@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Icono de FORMATO Makefile (no es una marca registrada): la «M» con la que se
+       reconoce el archivo. GNU Make no tiene logosímbolo propio; su marca es el ñu
+       (gnu.svg), que no se usa porque el curso identifica el formato, no el proyecto. -->
+  <path d="M 34 156 L 34 44 L 100 120 L 166 44 L 166 156"
+        fill="none" stroke="#0F172A" stroke-width="20"
+        stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

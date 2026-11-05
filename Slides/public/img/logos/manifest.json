@@ -1,0 +1,671 @@
+{
+  "version": 1,
+  "note": "Logos de marcas citadas en los decks del curso. Uso nominativo con fines educativos. Las marcas pertenecen a sus titulares.",
+  "sources": {
+    "simple-icons": "https://simpleicons.org (CC0; marcas de sus titulares)",
+    "official-favicon": "favicon oficial del dominio indicado, descargado a 128 px",
+    "repo": "asset ya versionado en este repositorio",
+    "wikimedia": "SVG de Wikimedia Commons",
+    "github-avatar": "avatar oficial de la organización en GitHub (github.com/<org>.png)"
+  },
+  "logos": [
+    {
+      "slug": "agno",
+      "file": "agno.png",
+      "name": "Agno",
+      "domain": "agno.com",
+      "source": "repo"
+    },
+    {
+      "slug": "anthropic",
+      "file": "anthropic.png",
+      "name": "Anthropic",
+      "domain": "anthropic.com",
+      "source": "repo"
+    },
+    {
+      "slug": "antigravity",
+      "file": "antigravity.png",
+      "name": "Google Antigravity",
+      "domain": "antigravity.google",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "apple",
+      "file": "apple.svg",
+      "name": "Apple",
+      "domain": "apple.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "astral",
+      "file": "astral.svg",
+      "name": "Astral",
+      "domain": "astral.sh",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "aws",
+      "file": "aws.svg",
+      "name": "Amazon Web Services",
+      "domain": "aws.amazon.com",
+      "source": "wikimedia"
+    },
+    {
+      "slug": "bair",
+      "file": "bair.png",
+      "name": "Berkeley BAIR",
+      "domain": "bair.berkeley.edu",
+      "source": "repo"
+    },
+    {
+      "slug": "chocolatey",
+      "file": "chocolatey.svg",
+      "name": "Chocolatey",
+      "domain": "chocolatey.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "chroma",
+      "file": "chroma.png",
+      "name": "Chroma",
+      "domain": "trychroma.com",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "cohere",
+      "file": "cohere.png",
+      "name": "Cohere",
+      "domain": "cohere.com",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "databricks",
+      "file": "databricks.png",
+      "name": "Databricks",
+      "domain": "databricks.com",
+      "source": "repo"
+    },
+    {
+      "slug": "deepseek",
+      "file": "deepseek.png",
+      "name": "DeepSeek",
+      "domain": "deepseek.com",
+      "source": "repo"
+    },
+    {
+      "slug": "deepseek-github",
+      "file": "deepseek-github.png",
+      "name": "DeepSeek (GitHub)",
+      "domain": "github.com/deepseek-ai",
+      "source": "repo"
+    },
+    {
+      "slug": "devin",
+      "file": "devin.png",
+      "name": "Devin (antes Windsurf)",
+      "domain": "devin.ai",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "digitalocean",
+      "file": "digitalocean.svg",
+      "name": "DigitalOcean",
+      "domain": "digitalocean.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "docker",
+      "file": "docker.svg",
+      "name": "Docker",
+      "domain": "docker.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "dspy",
+      "file": "dspy.png",
+      "name": "DSPy",
+      "domain": "dspy.ai",
+      "source": "repo"
+    },
+    {
+      "slug": "elasticsearch",
+      "file": "elasticsearch.svg",
+      "name": "Elasticsearch",
+      "domain": "elastic.co",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "elpais",
+      "file": "elpais.png",
+      "name": "El País (Colombia)",
+      "domain": "elpais.com.co",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "fastapi",
+      "file": "fastapi.svg",
+      "name": "FastAPI",
+      "domain": "fastapi.tiangolo.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "gemini",
+      "file": "gemini.svg",
+      "name": "Google Gemini",
+      "domain": "gemini.google.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "gentlemanprogramming",
+      "file": "gentlemanprogramming.png",
+      "name": "Gentleman Programming",
+      "domain": "gentlemanprogramming.com",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "git",
+      "file": "git.svg",
+      "name": "Git",
+      "domain": "git-scm.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "github",
+      "file": "github.svg",
+      "name": "GitHub",
+      "domain": "github.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "githubcopilot",
+      "file": "githubcopilot.svg",
+      "name": "GitHub Copilot",
+      "domain": "github.com/features/copilot",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "gitlab",
+      "file": "gitlab.svg",
+      "name": "GitLab",
+      "domain": "gitlab.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "gnu",
+      "file": "gnu.svg",
+      "name": "GNU (Make)",
+      "domain": "gnu.org/software/make",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "go",
+      "file": "go.svg",
+      "name": "Go",
+      "domain": "go.dev",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "google",
+      "file": "google.png",
+      "name": "Google",
+      "domain": "google.com",
+      "source": "repo"
+    },
+    {
+      "slug": "googlesheets",
+      "file": "googlesheets.svg",
+      "name": "Google Sheets",
+      "domain": "docs.google.com/spreadsheets",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "gradio",
+      "file": "gradio.svg",
+      "name": "Gradio",
+      "domain": "gradio.app",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "highflyer",
+      "file": "highflyer.png",
+      "name": "High-Flyer",
+      "domain": "high-flyer.cn",
+      "source": "repo"
+    },
+    {
+      "slug": "homebrew",
+      "file": "homebrew.svg",
+      "name": "Homebrew",
+      "domain": "brew.sh",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "huawei",
+      "file": "huawei.png",
+      "name": "Huawei",
+      "domain": "huawei.com",
+      "source": "repo"
+    },
+    {
+      "slug": "huggingface",
+      "file": "huggingface.png",
+      "name": "Hugging Face",
+      "domain": "huggingface.co",
+      "source": "repo"
+    },
+    {
+      "slug": "javeriana",
+      "file": "javeriana.png",
+      "name": "Pontificia Universidad Javeriana",
+      "domain": "javeriana.edu.co",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "javeriana-cali",
+      "file": "javeriana-cali.svg",
+      "name": "Javeriana Cali",
+      "domain": "",
+      "source": "repo"
+    },
+    {
+      "slug": "javeriana-cali-dark",
+      "file": "javeriana-cali-dark.svg",
+      "name": "Javeriana Cali Dark",
+      "domain": "",
+      "source": "repo"
+    },
+    {
+      "slug": "javeriana-cali-footer",
+      "file": "javeriana-cali-footer.svg",
+      "name": "Javeriana Cali Footer",
+      "domain": "",
+      "source": "repo"
+    },
+    {
+      "slug": "jira",
+      "file": "jira.svg",
+      "name": "Jira",
+      "domain": "atlassian.com/software/jira",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "jupyter",
+      "file": "jupyter.svg",
+      "name": "Jupyter",
+      "domain": "jupyter.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "lancedb",
+      "file": "lancedb.png",
+      "name": "LanceDB",
+      "domain": "lancedb.com",
+      "source": "github-avatar"
+    },
+    {
+      "slug": "langchain",
+      "file": "langchain.png",
+      "name": "LangChain",
+      "domain": "langchain.com",
+      "source": "repo"
+    },
+    {
+      "slug": "langgraph",
+      "file": "langgraph.svg",
+      "name": "LangGraph",
+      "domain": "langchain.com/langgraph",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "langsmith",
+      "file": "langsmith.png",
+      "name": "LangSmith",
+      "domain": "smith.langchain.com",
+      "source": "repo"
+    },
+    {
+      "slug": "linear",
+      "file": "linear.svg",
+      "name": "Linear",
+      "domain": "linear.app",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "llamaindex",
+      "file": "llamaindex.png",
+      "name": "LlamaIndex",
+      "domain": "llamaindex.ai",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "makefile",
+      "file": "makefile.svg",
+      "name": "Makefile (formato)",
+      "domain": "gnu.org/software/make",
+      "source": "custom"
+    },
+    {
+      "slug": "meta",
+      "file": "meta.png",
+      "name": "Meta",
+      "domain": "meta.com",
+      "source": "repo"
+    },
+    {
+      "slug": "microsoft",
+      "file": "microsoft.png",
+      "name": "Microsoft",
+      "domain": "microsoft.com",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "milvus",
+      "file": "milvus.svg",
+      "name": "Milvus",
+      "domain": "milvus.io",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "mistral",
+      "file": "mistral.svg",
+      "name": "Mistral AI",
+      "domain": "mistral.ai",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "mlflow",
+      "file": "mlflow.svg",
+      "name": "MLflow",
+      "domain": "mlflow.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "moonshot",
+      "file": "moonshot.png",
+      "name": "Moonshot AI (Kimi)",
+      "domain": "moonshot.ai",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "nodejs",
+      "file": "nodejs.svg",
+      "name": "Node.js",
+      "domain": "nodejs.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "nomic",
+      "file": "nomic.png",
+      "name": "Nomic",
+      "domain": "nomic.ai",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "npm",
+      "file": "npm.svg",
+      "name": "npm",
+      "domain": "npmjs.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "nvidia",
+      "file": "nvidia.png",
+      "name": "NVIDIA",
+      "domain": "nvidia.com",
+      "source": "repo"
+    },
+    {
+      "slug": "ollama",
+      "file": "ollama.png",
+      "name": "Ollama",
+      "domain": "ollama.com",
+      "source": "repo"
+    },
+    {
+      "slug": "openai",
+      "file": "openai.png",
+      "name": "OpenAI",
+      "domain": "openai.com",
+      "source": "repo"
+    },
+    {
+      "slug": "opencode",
+      "file": "opencode.svg",
+      "name": "OpenCode",
+      "domain": "opencode.ai",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "openspec",
+      "file": "openspec.png",
+      "name": "OpenSpec",
+      "domain": "openspec.dev",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "pinecone",
+      "file": "pinecone.png",
+      "name": "Pinecone",
+      "domain": "pinecone.io",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "postgresql",
+      "file": "postgresql.svg",
+      "name": "PostgreSQL",
+      "domain": "postgresql.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "pydantic",
+      "file": "pydantic.png",
+      "name": "Pydantic",
+      "domain": "pydantic.dev",
+      "source": "repo"
+    },
+    {
+      "slug": "pytest",
+      "file": "pytest.svg",
+      "name": "pytest",
+      "domain": "pytest.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "python",
+      "file": "python.svg",
+      "name": "Python",
+      "domain": "python.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "qdrant",
+      "file": "qdrant.svg",
+      "name": "Qdrant",
+      "domain": "qdrant.tech",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "qwen",
+      "file": "qwen.svg",
+      "name": "Qwen (Alibaba)",
+      "domain": "qwen.ai",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "redis",
+      "file": "redis.svg",
+      "name": "Redis",
+      "domain": "redis.io",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "ruff",
+      "file": "ruff.svg",
+      "name": "Ruff",
+      "domain": "docs.astral.sh/ruff",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "rust",
+      "file": "rust.svg",
+      "name": "Rust",
+      "domain": "rust-lang.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "sglang",
+      "file": "sglang.png",
+      "name": "SGLang",
+      "domain": "sglang.ai",
+      "source": "repo"
+    },
+    {
+      "slug": "siam",
+      "file": "siam.png",
+      "name": "Siam",
+      "domain": "",
+      "source": "repo"
+    },
+    {
+      "slug": "siam-white",
+      "file": "siam-white.png",
+      "name": "Siam White",
+      "domain": "",
+      "source": "repo"
+    },
+    {
+      "slug": "slack",
+      "file": "slack.png",
+      "name": "Slack",
+      "domain": "slack.com",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "sqlite",
+      "file": "sqlite.svg",
+      "name": "SQLite",
+      "domain": "sqlite.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "streamlit",
+      "file": "streamlit.svg",
+      "name": "Streamlit",
+      "domain": "streamlit.io",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "stripe",
+      "file": "stripe.png",
+      "name": "Stripe",
+      "domain": "stripe.com",
+      "source": "repo"
+    },
+    {
+      "slug": "telegram",
+      "file": "telegram.svg",
+      "name": "Telegram",
+      "domain": "telegram.org",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "trello",
+      "file": "trello.svg",
+      "name": "Trello",
+      "domain": "trello.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "uao",
+      "file": "uao.svg",
+      "name": "Universidad Autónoma de Occidente",
+      "domain": "uao.edu.co",
+      "source": "repo"
+    },
+    {
+      "slug": "uv",
+      "file": "uv.png",
+      "name": "uv (Astral)",
+      "domain": "astral.sh/uv",
+      "source": "repo"
+    },
+    {
+      "slug": "vllm",
+      "file": "vllm.png",
+      "name": "vLLM",
+      "domain": "vllm.ai",
+      "source": "repo"
+    },
+    {
+      "slug": "vscode",
+      "file": "vscode.svg",
+      "name": "Visual Studio Code",
+      "domain": "code.visualstudio.com",
+      "source": "wikimedia"
+    },
+    {
+      "slug": "warp",
+      "file": "warp.svg",
+      "name": "Warp",
+      "domain": "warp.dev",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "weaviate",
+      "file": "weaviate.png",
+      "name": "Weaviate",
+      "domain": "weaviate.io",
+      "source": "repo"
+    },
+    {
+      "slug": "whatsapp",
+      "file": "whatsapp.svg",
+      "name": "WhatsApp",
+      "domain": "whatsapp.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "windows",
+      "file": "windows.svg",
+      "name": "Windows",
+      "domain": "microsoft.com/windows",
+      "source": "wikimedia"
+    },
+    {
+      "slug": "windsurf",
+      "file": "windsurf.svg",
+      "name": "Windsurf",
+      "domain": "windsurf.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "wizeline",
+      "file": "wizeline.png",
+      "name": "Wizeline",
+      "domain": "wizeline.com",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "xai",
+      "file": "xai.png",
+      "name": "xAI",
+      "domain": "x.ai",
+      "source": "official-favicon"
+    },
+    {
+      "slug": "youtube",
+      "file": "youtube.svg",
+      "name": "YouTube",
+      "domain": "youtube.com",
+      "source": "simple-icons"
+    },
+    {
+      "slug": "zai",
+      "file": "zai.png",
+      "name": "Z.ai (GLM)",
+      "domain": "z.ai",
+      "source": "official-favicon"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 90" width="200" height="90">
+  <!-- UAO Logo - Based on UAO Corporate Identity (Rojo #FF0000, Negro #000000, Gris #F4F4F6) -->
+  <defs>
+    <linearGradient id="uaoRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CC0000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- "UAO" Text -->
+  <text x="100" y="55" font-family="Helvetica Neue, Arial, sans-serif" font-weight="800" font-size="48" fill="url(#uaoRedGradient)" text-anchor="middle" letter-spacing="-2">UAO</text>
+
+  <!-- Subtitle line -->
+  <line x1="45" y1="62" x2="155" y2="62" stroke="#FF0000" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- "Universidad Autónoma de Occidente" -->
+  <text x="100" y="80" font-family="Helvetica Neue, Arial, sans-serif" font-weight="400" font-size="10" fill="#333333" text-anchor="middle" letter-spacing="0.5">Universidad Autónoma de Occidente</text>
+</svg>
